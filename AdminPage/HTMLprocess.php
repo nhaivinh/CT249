@@ -61,8 +61,8 @@
 	function showAccount(){
 		if(isset($_GET['username'])){
 			$connect = connectDB();
-			$query = "Select account.username as username, Quyen_han, hoten_user, diachi_user, sodt_user from account 
-				join info_user on account.Username=info_user.Username 
+			$query = "Select account.username as username, Quyen_han, hoten_user, diachi, sodt_user from account 
+				join info_user on account.ID_User=info_user.ID_User join address_user on account.ID_User=address_user.ID_User
 				where account.Username='".$_GET['username']."'";
 			$result = mysqli_query($connect, $query);
 			$data = array();
@@ -73,7 +73,7 @@
 				$username = $data[0]['username'];
 				if($data[0]['Quyen_han'] != null) $quyen_han = $data[0]['Quyen_han'];
 				$hoten = $data[0]['hoten_user'];
-				$diachi = $data[0]['diachi_user'];
+				$diachi = $data[0]['diachi'];
 				$sdt = $data[0]['sodt_user'];
 				echo "<div class=\"content_chitiet_account\">
 						<div class=\"header_chitiet_account\">
@@ -262,72 +262,71 @@
 	function show_QL_ThongSoSPAt($loai_lk, $dataThongSo, $current_index){
 		switch($loai_lk){
 			case 'cpu':
-?>
-				<label>Đời: </label>
-				<input type="number" min="1" class="input_thongso_sp" name="doi_cpu" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Series") ?>">
-				<label>Số core: </label>
-				<input type="number" min="1" class="input_thongso_sp" name="core_cpu" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Core") ?>">
-				<label>Xung: </label>
-				<input class="input_thongso_sp" name="xung_cpu" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Xung") ?>">
-				<label>Socket: </label>
-				<input class="input_thongso_sp" name="socket_cpu" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Socket") ?>">
-<?php
+				echo '
+					<label>Đời: </label>
+					<input type="number" min="1" class="input_thongso_sp" name="doi_cpu" value="'.getThongTinSPAt($dataThongSo, $current_index, "Series").'">
+					<label>Số core: </label>
+					<input type="number" min="1" class="input_thongso_sp" name="core_cpu" value="'.getThongTinSPAt($dataThongSo, $current_index, "Core").'">
+					<label>Xung: </label>
+					<input class="input_thongso_sp" name="xung_cpu" value="'.getThongTinSPAt($dataThongSo, $current_index, "Xung").'">
+					<label>Socket: </label>
+					<input class="input_thongso_sp" name="socket_cpu" value="'.getThongTinSPAt($dataThongSo, $current_index, "Socket").'">
+				';
 				break;
 			case 'gpu':
-?>
-				<label>Chip đồ họa: </label>
-				<input class="input_thongso_sp" name="chip_gpu" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Chip_do_hoa") ?>">
-				<label>VMemory: </label>
-				<input type="number" min="1" class="input_thongso_sp" name="vmemory_gpu"  value="<?php showThongTinSPAt($dataThongSo, $current_index, "VMemory") ?>">
-				<label>Thế hệ bộ nhớ: </label>
-				<input class="input_thongso_sp" name="thehe_gpu" value="<?php showThongTinSPAt($dataThongSo, $current_index, "The_he_bo_nho") ?>">
-<?php
+				echo '
+					<label>Chip đồ họa: </label>
+					<input class="input_thongso_sp" name="chip_gpu" value="'.getThongTinSPAt($dataThongSo, $current_index, "Chip_do_hoa").'">
+					<label>VMemory: </label>
+					<input type="number" min="1" class="input_thongso_sp" name="vmemory_gpu"  value="'.getThongTinSPAt($dataThongSo, $current_index, "VMemory").'">
+					<label>Thế hệ bộ nhớ: </label>
+					<input class="input_thongso_sp" name="thehe_gpu" value="'.getThongTinSPAt($dataThongSo, $current_index, "The_he_bo_nho").'">
+				';
 				break;
 			case 'mainboard':
-?>
-				<label>Socket: </label>
-				<input class="input_thongso_sp" name="socket_mainboard" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Socket") ?>">
-				<label>Chipset: </label>
-				<input class="input_thongso_sp" name="chipset_mainboard" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Chipset") ?>">
-				<label>Chuẩn kích thước : </label>
-				<input class="input_thongso_sp" name="kt_mainboard" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Chuan_kich_thuoc") ?>"> 
-<?php
+				echo '
+					<label>Socket: </label>
+					<input class="input_thongso_sp" name="socket_mainboard" value="'.getThongTinSPAt($dataThongSo, $current_index, "Socket").'">
+					<label>Chipset: </label>
+					<input class="input_thongso_sp" name="chipset_mainboard" value="'.getThongTinSPAt($dataThongSo, $current_index, "Chipset").'">
+					<label>Chuẩn kích thước : </label>
+					<input class="input_thongso_sp" name="kt_mainboard" value="'.getThongTinSPAt($dataThongSo, $current_index, "Chuan_kich_thuoc").'"> 
+				';
 				break;
 			case 'ram':
-?>
-				<label>DDR: </label>
-				<input class="input_thongso_sp" name="ddr_ram" value="<?php showThongTinSPAt($dataThongSo, $current_index, "DDR") ?>"> 
-				<label>Dung lượng:(GB) </label>
-				<input type="number" min="1" class="input_thongso_sp" name="dl_ram" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Dung_luong") ?>">
-				<label>Bus: </label>
-				<input type="number" min="1" class="input_thongso_sp" name="bus_ram" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Bus") ?>">
-<?php			
+				echo '
+					<label>DDR: </label>
+					<input class="input_thongso_sp" name="ddr_ram" value="'.getThongTinSPAt($dataThongSo, $current_index, "DDR").'"> 
+					<label>Dung lượng:(GB) </label>
+					<input type="number" min="1" class="input_thongso_sp" name="dl_ram" value="'.getThongTinSPAt($dataThongSo, $current_index, "Dung_luong").'">
+					<label>Bus: </label>
+					<input type="number" min="1" class="input_thongso_sp" name="bus_ram" value="'.getThongTinSPAt($dataThongSo, $current_index, "Bus").'">
+				';			
 				break;
 			case 'disk':
-?>
-				<label>Chuẩn kết nối: </label>
-				<input class="input_thongso_sp" name="chuanketnoi_disk" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Chuan_ket_noi") ?>">
-				<label>Kích thước: </label>
-				<input class="input_thongso_sp" name="kt_disk" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Kich_thuoc") ?>">
-				<label>Dung lượng: </label>
-				<input class="input_thongso_sp" name="dl_disk" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Dung_luong") ?>">
-				<label>Loại disk: </label>
-				<input class="input_thongso_sp" name="loai_disk" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Loai") ?>">
-<?php			
+				echo '
+					<label>Chuẩn kết nối: </label>
+					<input class="input_thongso_sp" name="chuanketnoi_disk" value="'.getThongTinSPAt($dataThongSo, $current_index, "Chuan_ket_noi").'">
+					<label>Kích thước: </label>
+					<input class="input_thongso_sp" name="kt_disk" value="'.getThongTinSPAt($dataThongSo, $current_index, "Kich_thuoc").'">
+					<label>Dung lượng: </label>
+					<input class="input_thongso_sp" name="dl_disk" value="'.getThongTinSPAt($dataThongSo, $current_index, "Dung_luong").'">
+					<label>Loại disk: </label>
+					<input class="input_thongso_sp" name="loai_disk" value="'.getThongTinSPAt($dataThongSo, $current_index, "Loai").'">
+				';
 				break;
 			case 'case':
-?>
-				<label>Kiểu case: </label>
-				<input class="input_thongso_sp" name="kieu_case" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Kieu_case") ?>">
-				<label>Màu: </label>
-				<input class="input_thongso_sp" name="mau_case" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Mau") ?>">
-				<label>Kiểu Mainboard tương thích: </label>
-				<input class="input_thongso_sp" name="kieumain_case" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Kieu_mainboard") ?>">
-				<label>Chất liệu case: </label>
-				<input class="input_thongso_sp" name="cl_case" value="<?php showThongTinSPAt($dataThongSo, $current_index, "Chat_lieu") ?>">
-<?php			
+				echo '
+					<label>Kiểu case: </label>
+					<input class="input_thongso_sp" name="kieu_case" value="'.getThongTinSPAt($dataThongSo, $current_index, "Kieu_case").'">
+					<label>Màu: </label>
+					<input class="input_thongso_sp" name="mau_case" value="'.getThongTinSPAt($dataThongSo, $current_index, "Mau").'">
+					<label>Kiểu Mainboard tương thích: </label>
+					<input class="input_thongso_sp" name="kieumain_case" value="'.getThongTinSPAt($dataThongSo, $current_index, "Kieu_mainboard").'">
+					<label>Chất liệu case: </label>
+					<input class="input_thongso_sp" name="cl_case" value="'.getThongTinSPAt($dataThongSo, $current_index, "Chat_lieu").'">
+				';			
 				break;
-			
 		}
 	}
 	function show_QL_ChiTiet_SP(){
@@ -356,87 +355,85 @@
 				$current_index=0;
 				if(isset($_GET['edit'])){
 					if($_GET['edit'] == "false"){
-?>
-						<div class="hang_ngang">
-							<img src="<?php echo "../".$linhkien[$current_index]['Hinh_anh']; ?>" class="img_sp">
-							<div class="Chi_tiet_SP">
-								<p class="ten_sp"><?php showThongTinSPAt($linhkien, $current_index, "Ten_LK") ?></p>
-								<p class="thongso_sp">Hãng sản xuất: <?php showThongTinSPAt($thongso, $current_index, "HangSX") ?>  </p>
-								<p class="thongso_sp" name="sl_ton">Số lượng hàng tồn: <?php showThongTinSPAt($linhkien, $current_index, "So_luong") ?>  </p>
-<?php
-								showThongSoSPAt(strtolower($_GET['loai_lk']), $thongso, $current_index);
-?>
+						echo '
+							<div class="hang_ngang">
+								<img src="'.$linhkien[$current_index]['Hinh_anh'].'" class="img_sp">
+								<div class="Chi_tiet_SP">
+									<p class="ten_sp">'.getThongTinSPAt($linhkien, $current_index, "Ten_LK").'</p>
+									<p class="thongso_sp">Hãng sản xuất: '.getThongTinSPAt($thongso, $current_index, "HangSX").'  </p>
+									<p class="thongso_sp" name="sl_ton">Số lượng hàng tồn: '.getThongTinSPAt($linhkien, $current_index, "So_luong").'  </p>
+						';
+
+						showThongSoSPAt(strtolower($_GET['loai_lk']), $thongso, $current_index);
+
+						echo '
+								</div>
 							</div>
-						</div>
-						<div class="hang_ngang2">
-							<p class="gia_giam">
-								<?php echo getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia")); ?>
-							</p>
-							<div class="hang_doc2">
-								<p>-<?php echo 100*getThongTinSPAt($linhkien, $current_index, "Giam_gia"); ?>%</p>
-								<del class="gia_goc">
-									<?php showThongTinSPAt($linhkien, $current_index, "Gia_LK") ?>
-								</del>
+							<div class="hang_ngang2">
+								<p class="gia_giam">'.(getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia"))).'</p>
+								<div class="hang_doc2">
+									<p>-'.(100*getThongTinSPAt($linhkien, $current_index, "Giam_gia")).'%</p>
+									<del class="gia_goc">getThongTinSPAt($linhkien, $current_index, "Gia_LK")</del>
+								</div>
 							</div>
-						</div>
-<?php			
+						';
 						closeDB($connect);
 					}
 					else{
-?>
-						<div class="hang_ngang">
-							<img src="<?php echo "../".$linhkien[$current_index]['Hinh_anh']; ?>" class="img_sp">
-							<div class="Chi_tiet_SP">
-								<form method="POST" action="suaTT.php" id="frmSuaTT">
-									<input type="text" class="hidden_input" name="id_lk" value="<?php echo $_GET['id_lk'] ?>">
-									<input type="text" class="hidden_input" name="loai_lk" value="<?php echo $_GET['loai_lk'] ?>">
-									<label>Tên sản phẩm:</label> 
-									<input type="text" class="input_ten_sp" name="ten_lk" value="<?php echo $linhkien[$current_index]['Ten_LK'] ?>">
-									<label>Hãng sản xuất:</label> 
-									<input type="text" class="input_thongso_sp" name="hang_sx" value="<?php showThongTinSPAt($thongso, $current_index, "HangSX") ?> ">
-									<label>Số lượng hàng tồn:</label> 
-									<input type="text" class="input_thongso_sp" name="sl_ton" value="<?php showThongTinSPAt($linhkien, $current_index, "So_luong") ?>">
-<?php
-									show_QL_ThongSoSPAt(strtolower($_GET['loai_lk']), $thongso, $current_index);
-?>
-									<label>Giá:</label> 
-									<input type="number" class="input_gia" name="gia_goc" value="<?php showThongTinSPAt($linhkien, $current_index, "Gia_LK") ?>" min="0">
-									<label>Giảm giá:</label> 
-									<input type="number" class="input_gia" name="giam_gia" lang="en" value="<?php showThongTinSPAt($linhkien, $current_index, "Giam_gia") ?>" min="0" max="0.9" step="0.1">
-									<br/>
-									<input type="submit" value="Xác nhận chỉnh sửa" class="xac_nhan">
-								</form>
+						echo '
+							<div class="hang_ngang">
+								<img src="'.$linhkien[$current_index]['Hinh_anh'].'" class="img_sp">
+								<div class="Chi_tiet_SP">
+									<form method="POST" action="suaTT.php" id="frmSuaTT">
+										<input type="text" class="hidden_input" name="id_lk" value="'.$_GET['id_lk'].'">
+										<input type="text" class="hidden_input" name="loai_lk" value="'.$_GET['loai_lk'].'">
+										<label>Tên sản phẩm:</label> 
+										<input type="text" class="input_ten_sp" name="ten_lk" value="'.$linhkien[$current_index]['Ten_LK'].'">
+										<label>Hãng sản xuất:</label> 
+										<input type="text" class="input_thongso_sp" name="hang_sx" value="'.getThongTinSPAt($thongso, $current_index, "HangSX").' ">
+										<label>Số lượng hàng tồn:</label> 
+										<input type="text" class="input_thongso_sp" name="sl_ton" value="'.getThongTinSPAt($linhkien, $current_index, "So_luong").'">
+						';
+
+						show_QL_ThongSoSPAt(strtolower($_GET['loai_lk']), $thongso, $current_index);
+
+						echo '
+										<label>Giá:</label> 
+										<input type="number" class="input_gia" name="gia_goc" value="'.getThongTinSPAt($linhkien, $current_index, "Gia_LK").'" min="0">
+										<label>Giảm giá:</label> 
+										<input type="number" class="input_gia" name="giam_gia" lang="en" value="'.getThongTinSPAt($linhkien, $current_index, "Giam_gia").'" min="0" max="0.9" step="0.1">
+										<br/>
+										<input type="submit" value="Xác nhận chỉnh sửa" class="xac_nhan">
+									</form>
+								</div>
 							</div>
-						</div>
-<?php			
+						';
 						closeDB($connect);
 					}
 				}
 				else{
-?>
-					<div class="hang_ngang">
-						<img src="<?php echo "../".$linhkien[$current_index]['Hinh_anh']; ?>" class="img_sp">
-						<div class="Chi_tiet_SP">
-							<p class="ten_sp"><?php showThongTinSPAt($linhkien, $current_index, "Ten_LK") ?></p>
-							<p class="thongso_sp">Hãng sản xuất: <?php showThongTinSPAt($thongso, $current_index, "HangSX") ?>  </p>
-							<p class="thongso_sp" name="sl_ton">Số lượng hàng tồn: <?php showThongTinSPAt($linhkien, $current_index, "So_luong") ?>  </p>
-<?php
-							showThongSoSPAt(strtolower($_GET['loai_lk']), $thongso, $current_index);
-?>
+					echo '
+						<div class="hang_ngang">
+							<img src="'.$linhkien[$current_index]['Hinh_anh'].'" class="img_sp">
+							<div class="Chi_tiet_SP">
+								<p class="ten_sp">'.getThongTinSPAt($linhkien, $current_index, "Ten_LK").'</p>
+								<p class="thongso_sp">Hãng sản xuất: '.getThongTinSPAt($thongso, $current_index, "HangSX").'  </p>
+								<p class="thongso_sp" name="sl_ton">Số lượng hàng tồn: '.getThongTinSPAt($linhkien, $current_index, "So_luong").'  </p>
+					';
+
+					showThongSoSPAt(strtolower($_GET['loai_lk']), $thongso, $current_index);
+
+					echo '
+							</div>
 						</div>
-					</div>
-					<div class="hang_ngang2">
-						<p class="gia_giam">
-							<?php echo getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia")); ?>
-						</p>
-						<div class="hang_doc2">
-							<p>-<?php echo 100*getThongTinSPAt($linhkien, $current_index, "Giam_gia"); ?>%</p>
-							<del class="gia_goc">
-								<?php showThongTinSPAt($linhkien, $current_index, "Gia_LK") ?>
-							</del>
+						<div class="hang_ngang2">
+							<p class="gia_giam">'.(getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia"))).'</p>
+							<div class="hang_doc2">
+								<p>-'.(100*getThongTinSPAt($linhkien, $current_index, "Giam_gia")).'%</p>
+								<del class="gia_goc">'.getThongTinSPAt($linhkien, $current_index, "Gia_LK").'</del>
+							</div>
 						</div>
-					</div>
-<?php			
+					';
 					closeDB($connect);
 				}
 			}
@@ -455,52 +452,53 @@
 			while($row = mysqli_fetch_array($result, 1)){
 				$data[] = $row;
 			}
-?>
-			<div class="content_DH">
-				<div class="DH_ngang">
-					<label class="ID_DH"> ID ĐH</label>
-					<label class="Date"> Ngày đặt hàng</label>
-					<label class="Date"> Ngày giao hàng</label>
-					<label class="Status"> Tình trạng</label>
-					<label class="Total"> Tổng tiền</label>
-				</div>
-<?php
-				if(count($data)!=0){
-					for($i=0;$i<count($data);$i++){
-						$id_dh = $data[$i]['ID_DH'];
-						$ngay_dat = $data[$i]['Ngay_Dat'];
-						$ngay_giao = $data[$i]['Ngay_Giao'];
-						$tinh_trang = $data[$i]['Status_DH'];
-						$tong_tien = $data[$i]['Tong_tien'];
+			echo '
+				<div class="content_DH">
+					<div class="DH_ngang">
+						<label class="ID_DH"> ID ĐH</label>
+						<label class="Date"> Ngày đặt hàng</label>
+						<label class="Date"> Ngày giao hàng</label>
+						<label class="Status"> Tình trạng</label>
+						<label class="Total"> Tổng tiền</label>
+					</div>
+			';
+
+			if(count($data)!=0){
+				for($i=0;$i<count($data);$i++){
+					$id_dh = $data[$i]['ID_DH'];
+					$ngay_dat = $data[$i]['Ngay_Dat'];
+					$ngay_giao = $data[$i]['Ngay_Giao'];
+					$tinh_trang = $data[$i]['Status_DH'];
+					$tong_tien = $data[$i]['Tong_tien'];
 						
-						$query = "Select linhkien.id_lk as ID_LK, linhkien.ten_lk as Ten_LK, chitietdh.So_luong as So_luong, round((Gia_LK*Giam_gia)) as Don_gia from chitietdh join linhkien on chitietdh.id_lk = linhkien.id_lk where ID_DH='".$id_dh."'";
-						$result = mysqli_query($connect, $query);
-						$data2 = array();
-						while($row = mysqli_fetch_array($result, 1)){
-							$data2[] = $row;
-						}
-?>
-						<div class="DH_ngang">
-							<a class="ID_DH" href="QL_DH.php?ID_DH=<?php echo $id_dh ?>"><?php echo $id_dh ?></a>
-							<a class="Date" href="QL_DH.php?ID_DH=<?php echo $id_dh ?>"><?php echo $ngay_dat ?></a>
-							<a class="Date" href="QL_DH.php?ID_DH=<?php echo $id_dh ?>"><?php echo $ngay_giao ?></a>
-<?php
-							if(strcmp($tinh_trang, "Chờ xử lý") == 0){
-								echo "<a class=\"Status_ChoXuLy\" href=\"QL_DH.php?ID_DH=".$id_dh."\"> ".$tinh_trang." </a>";
-							}
-							else{
-								echo "<a class=\"Status_DaXuLy\" href=\"QL_DH.php?ID_DH=".$id_dh."\">".$tinh_trang."</a>";
-							}
-?>
-							<a class="Total" href="QL_DH.php?ID_DH=<?php echo $id_dh ?>"><?php echo $tong_tien ?></a>
-						</div>
-						
-<?php
+					$query = "Select linhkien.id_lk as ID_LK, linhkien.ten_lk as Ten_LK, chitietdh.So_luong as So_luong, round((Gia_LK*Giam_gia)) as Don_gia from chitietdh join linhkien on chitietdh.id_lk = linhkien.id_lk where ID_DH='".$id_dh."'";
+					$result = mysqli_query($connect, $query);
+					$data2 = array();
+					while($row = mysqli_fetch_array($result, 1)){
+						$data2[] = $row;
 					}
+
+					echo '
+						<div class="DH_ngang">
+							<a class="ID_DH" href="QL_DH.php?ID_DH='.$id_dh.'">'.$id_dh.'</a>
+							<a class="Date" href="QL_DH.php?ID_DH='.$id_dh.'">'.$ngay_dat.'</a>
+							<a class="Date" href="QL_DH.php?ID_DH='.$id_dh.'">'.$ngay_giao.'</a>
+					';
+
+					if(strcmp($tinh_trang, "Chờ xử lý") == 0){
+						echo "<a class=\"Status_ChoXuLy\" href=\"QL_DH.php?ID_DH=".$id_dh."\"> ".$tinh_trang." </a>";
+					}
+					else{
+						echo "<a class=\"Status_DaXuLy\" href=\"QL_DH.php?ID_DH=".$id_dh."\">".$tinh_trang."</a>";
+					}
+
+					echo '
+							<a class="Total" href="QL_DH.php?ID_DH='.$id_dh.'">'.$tong_tien.'</a>
+						</div>
+					';
 				}
-?>
-			</div>
-<?php
+			}
+			echo '</div>';
 			closeDB($connect);
 		}
 		else{
@@ -521,7 +519,7 @@
 				$data2[] = $row;
 			}
 			if(count($data)>0){
-				$username_kh = $data[0]['Username_KH'];
+				$id_kh = $data[0]['ID_User_KH'];
 				$status = $data[0]['Status_DH'];
 				$ngay_dat = $data[0]['Ngay_Dat'];
 				$tong_tien = $data[0]['Tong_tien'];
@@ -530,8 +528,8 @@
 							<p>Thông tin đơn hàng</p>
 						</div>";
 				echo "<div class=\"chitiet_dh\">
-						<p>Username Khách hàng: ".$username_kh."</p>";
-				if($data[0]['Username_QL'] != null) echo "<p>Username nhân viên: ".$data[0]['Username_QL']."</p>";
+						<p>Username Khách hàng: ".$id_kh."</p>";
+				if($data[0]['ID_User_QL'] != null) echo "<p>Username nhân viên: ".$data[0]['ID_User_QL']."</p>";
 				else echo "<p>Username nhân viên: Chưa có nhân viên xử lý đơn hàng</p>";	
 				echo "<p>Ngày đặt hàng: ".$ngay_dat."</p>";
 				if($data[0]['Ngay_Giao'] != null) echo "<p>Ngày giao hàng: ".$data[0]['Ngay_Giao']."</p>";
