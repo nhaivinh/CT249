@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("DBconnect.php");
+	require_once("../DBconnect.php");
 	$connect = connectDB();
 	$oldPass = $_POST['oldPass'];
 	$newPass = $_POST['newPass'];

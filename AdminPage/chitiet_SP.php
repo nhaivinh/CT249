@@ -32,7 +32,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="chitiet_SP.css" />
+	<link rel="stylesheet" href="./CSS/chitiet_SP.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>

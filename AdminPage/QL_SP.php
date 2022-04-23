@@ -27,41 +27,12 @@
 	else{
 		header("Location: ../index.php");
 	}
-	if(isset($_POST['ngay']) && isset($_POST['thang']) && isset($_POST['nam']) && isset($_POST['id_dh'])){
-		$ngay = $_POST['ngay'];
-		$thang = $_POST['thang'];
-		$nam = $_POST['nam'];
-		$id_dh = $_POST['id_dh'];
-		$max_ngay = 0;
-		switch($thang){
-			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-				$max_ngay = 31;
-				break;
-			case 4: case 6: case 9: case 11: 
-				$max_ngay = 30;
-				break;
-			case 2:
-				if ($nam % 400 == 0 || $nam % 4 == 0 && $nam % 100 != 0) $max_ngay = 29;
-				else $max_ngay = 28;
-				break;
-		}
-		if($ngay <= $max_ngay){
-			$query = "update donhang set Ngay_giao= '".$nam."-".$thang."-".$ngay."', 
-				Username_QL='".$_SESSION['username']."', Status_DH='Đã xử lý' where id_dh=".$id_dh;
-			mysqli_query($connect, $query);
-			$_SESSION['xuly_dh'] = 'Đơn hàng đã được cập nhật';
-		}
-		else{
-			$_SESSION['xuly_dh'] = 'Ngày giao hàng không hợp lệ';
-		}
-		closeDB($connect);
-	}
 ?>
 <!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="QL_DH.css" />
+	<link rel="stylesheet" href="./CSS/QL_SP.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
@@ -93,15 +64,38 @@
 	<br>
 	<br>
 	<div class="admin_content">
-		<?php show_QL_DH() ?>
+		<div class="search_bar">
+			<ul>
+				<li>
+					<form method="GET" action="" id="frmSearch">
+						<input type="text" name="search_key" placeholder="Nhập tên sản phẩm" class="search_box">
+						<input type="submit" class="search_submit" value="Search">
+					</form>
+				</li>
+			</ul>
+		</div>
+		<div class="danh_muc">
+			<a href="QL_SP_Them.php"> Thêm sản phẩm</a>
+		</div>
+		<br>
+<?php
+		if(empty($_GET)){
+			show_QL_All_SP();
+		}
+		if(isset($_GET['search_key'])){
+			show_QL_Search_SP();
+		}
+		
+?>
 	</div>
 </body>
 </html>
 
 <?php
-	if(isset($_SESSION['xuly_dh'])){
-		$alert = "<script>alert('".$_SESSION['xuly_dh']."');</script>";
+	if(isset($_SESSION['status_themsp'])){
+		$alert = "<script>alert('".$_SESSION['status_themsp']."');</script>";
 		echo $alert;
-		unset($_SESSION['xuly_dh']);
+		unset($_SESSION['status_themsp']);
 	}
 ?>
+	

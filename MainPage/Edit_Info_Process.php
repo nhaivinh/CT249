@@ -1,5 +1,5 @@
 <?php
-	require_once("DBconnect.php");
+	require_once("../DBconnect.php");
 	session_start();
 	$connect = connectDB();
 	$Hoten = $_POST['Hoten'];

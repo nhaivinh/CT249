@@ -2,6 +2,7 @@
 	require_once("../DBprocess.php");
 	require_once('../HTMLprocess.php');
 	require_once("HTMLprocess.php");
+	
 	if(isset($_SESSION['username'])){
 		$connect = connectDB();
 		$query = "Select Quyen_han from Account where username = '".$_SESSION['username']."'";
@@ -14,32 +15,33 @@
 		if(isset($_SESSION['privilege']))
 			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
 				if($privilege != $_SESSION['privilege']){
-					header("Location: ../index.php");
+					header("Location: ../MainPage/index.php");
 				}
 			}
 			else {
-				header("Location: ../index.php");
+				header("Location: ../MainPage/index.php");
 			}
 		else{
-			header("Location: ../index.php");
+			header("Location: ../MainPage/index.php");
 		}
 	}
 	else{
-		header("Location: ../index.php");
+		header("Location: ../MainPage/index.php");
 	}
+	
 ?>
 <!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="QL_Account.css" />
+	<link rel="stylesheet" href="./CSS/index.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
 	<div class="page_Header">
 		<div class="Account">
 			<ul>
-				<li style="border-left-width: 0px;width:500px;"><a href="../index.php">Shop linh kiện DEMO - bán tất cả loại linh kiện máy tính</a></li>
+				<li style="border-left-width: 0px;width:500px;"><a href="../MainPage/index.php">Shop linh kiện DEMO - bán tất cả loại linh kiện máy tính</a></li>
 <?php
 				if(isset($_SESSION['username'])){
 ?>
@@ -64,23 +66,11 @@
 	<br>
 	<br>
 	<div class="admin_content">
+		<div class="content">
 <?php
-			if(empty($_GET)){
-				showAllAccount();
-			}
-			else{
-				showAccount();
-			}
-			
+			ShowThongBao();
 ?>
+		</div>
 	</div>
 </body>
 </html>
-	
-<?php
-	if(isset($_SESSION['Capnhat_quyenhan'])){
-		$alert = "<script>alert('".$_SESSION['Capnhat_quyenhan']."');</script>";
-		echo $alert;
-		unset($_SESSION['Capnhat_quyenhan']);
-	}
-?>

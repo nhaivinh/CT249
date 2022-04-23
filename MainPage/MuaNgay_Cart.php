@@ -1,5 +1,5 @@
 <?php
-	require_once("DBprocess.php");
+	require_once("../DBprocess.php");
 	if(isset($_SESSION['username'])){
 		$connect = connectDB();
 			

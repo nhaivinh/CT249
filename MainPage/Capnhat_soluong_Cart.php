@@ -1,5 +1,5 @@
 <?php
-	require_once("DBprocess.php");
+	require_once("../DBprocess.php");
 	if(isset($_POST)){
 		$connect = connectDB();
 		$id = $_POST['id_lk'];

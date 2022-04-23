@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("DBconnect.php");
+	require_once("../DBconnect.php");
 	$connect = connectDB();
 	$id_lk = $_POST['id_lk'];
 	$loai_lk = $_POST['loai_lk'];

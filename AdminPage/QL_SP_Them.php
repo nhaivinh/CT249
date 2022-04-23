@@ -1,6 +1,6 @@
 <?php
-	require_once("../DBprocess.php");
-	require_once('../HTMLprocess.php');
+	require_once('../MainPage/DBprocess.php');
+	require_once('../MainPage/HTMLprocess.php');
 	require_once("HTMLprocess.php");
 	if(isset($_SESSION['username'])){
 		$connect = connectDB();
@@ -32,7 +32,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="QL_SP_Them.css" />
+	<link rel="stylesheet" href="./CSS/QL_SP_Them.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>

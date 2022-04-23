@@ -32,7 +32,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="index.css" />
+	<link rel="stylesheet" href="./CSS/QL_Account.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
@@ -64,11 +64,23 @@
 	<br>
 	<br>
 	<div class="admin_content">
-		<div class="content">
 <?php
-			ShowThongBao();
+			if(empty($_GET)){
+				showAllAccount();
+			}
+			else{
+				showAccount();
+			}
+			
 ?>
-		</div>
 	</div>
 </body>
 </html>
+	
+<?php
+	if(isset($_SESSION['Capnhat_quyenhan'])){
+		$alert = "<script>alert('".$_SESSION['Capnhat_quyenhan']."');</script>";
+		echo $alert;
+		unset($_SESSION['Capnhat_quyenhan']);
+	}
+?>

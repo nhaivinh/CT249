@@ -1,5 +1,5 @@
 <?php
-	require_once("DBprocess.php");
+	require_once("../DBprocess.php");
 	if(isset($_SESSION['username'])){
 		header("Location: index.php");
 	}
@@ -11,7 +11,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="Register_form.css" />
+	<link rel="stylesheet" href="./CSS/Register_form.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>

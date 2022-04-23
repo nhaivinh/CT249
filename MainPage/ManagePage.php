@@ -1,6 +1,6 @@
 <?php
-	require_once("DBprocess.php");
-	require_once("HTMLprocess.php");
+	require_once("../DBprocess.php");
+	require_once("../HTMLprocess.php");
 	if(!isset($_SESSION['username'])){
 		header("Location: index.php");
 	}
@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="ManagePage.css" />
+	<link rel="stylesheet" href="./CSS/ManagePage.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
@@ -62,7 +62,7 @@
 			<a href="ManagePage.php?info=hoaDon" id="hoaDon"> Xem hóa đơn </a>
 <?php
 			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
-				echo "<a href=\"Admin/index.php\"> Đến trang quản lý </a>";
+				echo "<a href=\"../AdminPage/index.php\"> Đến trang quản lý </a>";
 			}
 ?>
 		</div>

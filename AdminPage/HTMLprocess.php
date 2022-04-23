@@ -143,7 +143,7 @@
 ?>
 				<div class="san_pham">
 					<a href="chitiet_SP.php?id_lk=<?php showThongTinSPAt($data, $current_index, "ID_LK") ?>&loai_lk=<?php showThongTinSPAt($data, $current_index, "Loai_LK") ?>" class="chitiet_sp">
-						<img src="<?php echo "../".$data[$current_index]['Hinh_anh']; ?>" class="img_sp">
+						<img src="<?php echo $data[$current_index]['Hinh_anh']; ?>" class="img_sp">
 						<p class="ten_sp" title="<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>">
 							<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>
 						</p>
@@ -173,7 +173,7 @@
 ?>
 			<div class="san_pham">
 				<a href="chitiet_SP.php?id_lk=<?php showThongTinSPAt($data, $current_index, "ID_LK") ?>&loai_lk=<?php showThongTinSPAt($data, $current_index, "Loai_LK") ?>" class="chitiet_sp">
-					<img src="<?php echo "../".$data[$current_index]['Hinh_anh']; ?>" class="img_sp">
+					<img src="<?php echo $data[$current_index]['Hinh_anh']; ?>" class="img_sp">
 					<p class="ten_sp" title="<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>">
 							<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>
 					</p>
