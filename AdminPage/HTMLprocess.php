@@ -61,19 +61,26 @@
 	function showAccount(){
 		if(isset($_GET['username'])){
 			$connect = connectDB();
-			$query = "Select account.username as username, Quyen_han, hoten_user, diachi, sodt_user from account 
-				join info_user on account.ID_User=info_user.ID_User join address_user on account.ID_User=address_user.ID_User
+			$query = "Select account.username as username, Quyen_han, hoten_user, sodt_user from account 
+				join info_user on account.ID_User=info_user.ID_User
 				where account.Username='".$_GET['username']."'";
 			$result = mysqli_query($connect, $query);
 			$data = array();
 			while($row = mysqli_fetch_array($result, 1)){
 				$data[] = $row;
 			}
+			$query = "Select diachi from account 
+				join address_user on account.ID_User=address_user.ID_User
+				where account.Username='".$_GET['username']."'";
+			$result = mysqli_query($connect, $query);
+			$address = array();
+			while($row = mysqli_fetch_array($result, 1)){
+				$address[] = $row;
+			}
 			if(count($data)>0){
 				$username = $data[0]['username'];
 				if($data[0]['Quyen_han'] != null) $quyen_han = $data[0]['Quyen_han'];
 				$hoten = $data[0]['hoten_user'];
-				$diachi = $data[0]['diachi'];
 				$sdt = $data[0]['sodt_user'];
 				echo "<div class=\"content_chitiet_account\">
 						<div class=\"header_chitiet_account\">
@@ -85,9 +92,13 @@
 						<p>Username: ".$username."</p>";
 				if($data[0]['Quyen_han'] != null) echo "<p>Quyền hạn: ".$quyen_han."</p>";
 				else echo "<p>Quyền hạn: Không có</p>";	
-				echo "<p>Họ và tên: ".$hoten."</p>
-						<p>Địa chỉ: ".$diachi."</p>
-						<p>Số điện thoại: ".$sdt."</p>
+				echo "<p>Họ và tên: ".$hoten."</p>";
+						
+				for($i=1;$i<=count($address);$i++){
+					echo "<p>Địa chỉ ".$i.": ".$address[$i-1]["diachi"]."</p>";
+				}
+
+				echo "<p>Số điện thoại: ".$sdt."</p>
 					</div>";
 					
 				if(strcmp($_SESSION['privilege'],"Owner") == 0){
@@ -373,7 +384,7 @@
 								<p class="gia_giam">'.(getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia"))).'</p>
 								<div class="hang_doc2">
 									<p>-'.(100*getThongTinSPAt($linhkien, $current_index, "Giam_gia")).'%</p>
-									<del class="gia_goc">getThongTinSPAt($linhkien, $current_index, "Gia_LK")</del>
+									<del class="gia_goc">'.getThongTinSPAt($linhkien, $current_index, "Gia_LK").'</del>
 								</div>
 							</div>
 						';

@@ -1,6 +1,6 @@
 <?php
 	require_once("../DBprocess.php");
-	require_once('../HTMLprocess.php');
+	require_once('../MainPage/HTMLprocess.php');
 	require_once("HTMLprocess.php");
 	
 	if(isset($_SESSION['username'])){

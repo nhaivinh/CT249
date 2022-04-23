@@ -1,5 +1,5 @@
 <?php
-	require_once('DBconnect.php');
+	require_once('../DBconnect.php');
 	function showSoDuTK($username){
 		$connect = connectDB();
 		$query = "Select So_du from account where username ='".$username."'";
@@ -261,10 +261,16 @@
 						<td class="title">Họ và tên: </td>
 						<td class="info">'.getThongTinSPAt($data, $current_index, "Hoten_User").'</td>
 					</tr>
+			';
+			for($i=1;$i<=count($address);$i++){
+				echo '
 					<tr>
-						<td class="title">Địa chỉ: </td>
-						<td class="info">'.getThongTinSPAt($address, $current_index, "Diachi").'</td>
+						<td class="title">Địa chỉ '.$i.': </td>
+						<td class="info">'.getThongTinSPAt($address, ($i-1), "Diachi").'</td>
 					</tr>
+				';
+			}
+			echo '
 					<tr>
 						<td class="title">Số điện thoại: </td>
 						<td class="info">'.getThongTinSPAt($data, $current_index, "SoDT_User").'</td>
@@ -307,6 +313,7 @@
 				</table>
 			';
 		}
+
 		if(isset($_GET['editor_status']) && $_GET['editor_status'] == 'true'){
 			echo '<input type="submit" value="Xác nhận chỉnh sửa" class="xac_nhan">';
 		}
