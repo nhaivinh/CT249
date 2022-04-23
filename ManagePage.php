@@ -26,7 +26,6 @@
 								<?php echo "Welcome ".$_SESSION['username']; ?> 
 							</a>
 						</li>
-						
 						<li><a href ="Logout.php">Đăng xuất</a></li>
 				<?php
 					}

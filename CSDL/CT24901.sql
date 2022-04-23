@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 23, 2022 lúc 06:23 AM
+-- Thời gian đã tạo: Th4 23, 2022 lúc 12:16 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.2
 
@@ -97,8 +97,18 @@ INSERT INTO `case` (`ID_LK`, `HangSX`, `Kieu_case`, `Mau`, `Kieu_mainboard`, `Ch
 CREATE TABLE `chitietdh` (
   `ID_DH` int(11) NOT NULL,
   `ID_LK` int(11) NOT NULL,
-  `So_luong` int(11) NOT NULL CHECK (`So_luong` > 0)
+  `So_luong` int(11) NOT NULL CHECK (`So_luong` > 0),
+  `Don_gia` int(11) NOT NULL CHECK (`Don_gia` > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdh`
+--
+
+INSERT INTO `chitietdh` (`ID_DH`, `ID_LK`, `So_luong`, `Don_gia`) VALUES
+(1, 2, 1, 4776000),
+(2, 2, 1, 4776000),
+(2, 1, 1, 2680000);
 
 -- --------------------------------------------------------
 
@@ -161,11 +171,20 @@ INSERT INTO `disk` (`ID_LK`, `HangSX`, `Chuan_ket_noi`, `Kich_thuoc`, `Dung_luon
 CREATE TABLE `donhang` (
   `ID_DH` int(11) NOT NULL,
   `ID_User_KH` int(11) NOT NULL,
-  `ID_User_QL` int(11) NOT NULL,
+  `ID_User_QL` int(11) DEFAULT NULL,
   `Status_DH` varchar(30) NOT NULL,
   `Ngay_Dat` date DEFAULT NULL,
-  `Ngay_Giao` date DEFAULT NULL CHECK (`Ngay_Dat` <= `Ngay_Giao`)
+  `Ngay_Giao` date DEFAULT NULL CHECK (`Ngay_Dat` <= `Ngay_Giao`),
+  `Tong_tien` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`ID_DH`, `ID_User_KH`, `ID_User_QL`, `Status_DH`, `Ngay_Dat`, `Ngay_Giao`, `Tong_tien`) VALUES
+(1, 1, NULL, 'Chờ xử lý', '2022-04-23', NULL, 4776000),
+(2, 1, NULL, 'Chờ xử lý', '2022-04-23', NULL, 7456000);
 
 -- --------------------------------------------------------
 
@@ -235,8 +254,8 @@ CREATE TABLE `linhkien` (
 --
 
 INSERT INTO `linhkien` (`ID_LK`, `Ten_LK`, `Loai_LK`, `Gia_LK`, `Giam_gia`, `So_luong`, `Hinh_anh`, `Sale_Status`) VALUES
-(1, 'CPU Intel Core I3-7100 (3.9GHz)', 'CPU', 3350000, 0.2, 3, 'img/CPU Intel Core I3-7100 (3.9GHz).webp', 'Đang bán'),
-(2, 'CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)', 'CPU', 5970000, 0.2, 4, 'img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp', 'Đang bán'),
+(1, 'CPU Intel Core I3-7100 (3.9GHz)', 'CPU', 3350000, 0.2, 2, 'img/CPU Intel Core I3-7100 (3.9GHz).webp', 'Đang bán'),
+(2, 'CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)', 'CPU', 5970000, 0.2, 2, 'img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp', 'Đang bán'),
 (3, 'CPU INTEL i3-10100 (4C/8T, 3.60 GHz - 4.30 GHz, 6MB) - 1200', 'CPU', 4190000, 0.2, 5, 'img/CPU INTEL i3-10100 - 1200.webp', 'Đang bán'),
 (4, 'CPU Intel Core I3-8100 (3.6GHz)', 'CPU', 3290000, 0.2, 6, 'img/CPU Intel Core I3-8100 (3.6GHz).webp', 'Đang bán'),
 (5, 'CPU AMD Ryzen R5 1600 (3.2GHz - 3.6GHz)', 'CPU', 4990000, 0.2, 7, 'img/CPU AMD Ryzen R5 1600 (3.2GHz - 3.6GHz).webp', 'Đang bán'),
@@ -321,13 +340,6 @@ CREATE TABLE `user_cart` (
   `Don_gia` int(11) NOT NULL CHECK (`Don_gia` > 0),
   `Tong` int(11) NOT NULL CHECK (`Don_gia` > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `user_cart`
---
-
-INSERT INTO `user_cart` (`ID_User`, `ID_LK`, `So_luong`, `Don_gia`, `Tong`) VALUES
-(1, 2, 1, 4776000, 4776000);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -429,7 +441,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `ID_DH` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_DH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `linhkien`

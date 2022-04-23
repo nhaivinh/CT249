@@ -19,12 +19,22 @@
 			}
 			if(count($data) == 0){
 				if($password == $repass){
-					$query = "Insert into Account(username, password) values ('".$username."','".$password."')";
+					$query = "Select max(ID_User) as MAX from account";
+					$result = mysqli_query($connect, $query);
+					$max_id= array();
+					while ($row = mysqli_fetch_array($result,1)){
+						$max_id[] = $row;
+					}
+					$id = $max_id[0]['MAX'] + 1;
+					$query = "Insert into Account(ID_User,username, password) values ('".$id."','".$username."','".$password."')";
 					mysqli_query(connectDB(), $query);
-					$query = "Insert into info_user(username, Hoten_user, Diachi_User, SoDT_User, Email_User) values 
-						('".$username."','".$hoten."','".$diachi."','".$sdt."','".$email."')";
+					$query = "Insert into info_user(ID_User, Hoten_user, SoDT_User, Email_User) values 
+						('".$id."','".$hoten."','".$sdt."','".$email."')";
 					mysqli_query(connectDB(), $query);
-					
+					$query = "Insert into address_user(ID_User, Diachi) values 
+						('".$id."','".$diachi."')";
+					mysqli_query(connectDB(), $query);
+
 					$_SESSION['register_status'] = "Đăng ký thành công";
 					closeDB($connect);
 					header("Location: index.php");
