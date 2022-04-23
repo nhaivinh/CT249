@@ -50,7 +50,7 @@
 							<?php echo "Welcome ".$_SESSION['privilege']." ".$_SESSION['username']; ?> 
 						</p>
 					</li>
-					<li><a href ="../Logout.php">Đăng xuất</a></li>
+					<li><a href ="../MainPage/Logout.php">Đăng xuất</a></li>
 <?php
 				}
 ?>

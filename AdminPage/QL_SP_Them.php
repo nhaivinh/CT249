@@ -1,6 +1,6 @@
 <?php
-	require_once('../MainPage/DBprocess.php');
-	require_once('../MainPage/HTMLprocess.php');
+	require_once('../DBprocess.php');
+	require_once('../HTMLprocess.php');
 	require_once("HTMLprocess.php");
 	if(isset($_SESSION['username'])){
 		$connect = connectDB();
@@ -14,18 +14,18 @@
 		if(isset($_SESSION['privilege']))
 			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
 				if($privilege != $_SESSION['privilege']){
-					header("Location: ../index.php");
+					header("Location: ../MainPage/index.php");
 				}
 			}
 			else {
-				header("Location: ../index.php");
+				header("Location: ../MainPage/index.php");
 			}
 		else{
-			header("Location: ../index.php");
+			header("Location: ../MainPage/index.php");
 		}
 	}
 	else{
-		header("Location: ../index.php");
+		header("Location: ../MainPage/index.php");
 	}
 ?>
 <!doctype html>
@@ -39,7 +39,7 @@
 	<div class="page_Header">
 		<div class="Account">
 			<ul>
-				<li style="border-left-width: 0px;width:500px;"><a href="../index.php">Shop linh kiện DEMO - bán tất cả loại linh kiện máy tính</a></li>
+				<li style="border-left-width: 0px;width:500px;"><a href="../MainPage/index.php">Shop linh kiện DEMO - bán tất cả loại linh kiện máy tính</a></li>
 <?php
 				if(isset($_SESSION['username'])){
 ?>
@@ -48,7 +48,7 @@
 							<?php echo "Welcome ".$_SESSION['privilege']." ".$_SESSION['username']; ?> 
 						</p>
 					</li>
-					<li><a href ="../Logout.php">Đăng xuất</a></li>
+					<li><a href ="../MainPage/Logout.php">Đăng xuất</a></li>
 <?php
 				}
 ?>

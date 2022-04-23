@@ -135,64 +135,36 @@
 			$data[] = $row;
 		}
 		$current_index = 0;
-		for($i = 0; $i < $so_hang-1; $i++){
-?>
-			<div class="hang_ngang">
-<?php		
-			for($j=0;$j<4;$j++){
-?>
-				<div class="san_pham">
-					<a href="chitiet_SP.php?id_lk=<?php showThongTinSPAt($data, $current_index, "ID_LK") ?>&loai_lk=<?php showThongTinSPAt($data, $current_index, "Loai_LK") ?>" class="chitiet_sp">
-						<img src="<?php echo $data[$current_index]['Hinh_anh']; ?>" class="img_sp">
-						<p class="ten_sp" title="<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>">
-							<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>
-						</p>
-						<p <?php if(strcmp($data[$current_index]['Sale_Status'],"Ngừng bán") ==0){ echo 'class="ngung_ban"';} ?>>
-							<?php showThongTinSPAt($data, $current_index, "Sale_Status") ?>
-						</p>
-						<p class="gia_giam">
-							<?php 
-								echo getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia")); 
-							?>
-						</p>
-						<p class="gia_sp">
-							<del><?php showThongTinSPAt($data, $current_index, "Gia_LK") ?> </del>
-							<label>&nbsp;-<?php echo 100*getThongTinSPAt($data, $current_index, "Giam_gia"); ?>%<label>
-						</p>
-					</a>
-				</div>
-<?php
-				$current_index++;
+		for($i = 0; $i < $so_hang; $i++){
+			echo '<div class="hang_ngang">';
+			if($current_index < $amount){
+				for($j=0;$j<4;$j++){
+					if($current_index < $amount){
+						echo '
+							<div class="san_pham">
+								<a href="chitiet_SP.php?id_lk='.getThongTinSPAt($data, $current_index, "ID_LK").'&loai_lk='.getThongTinSPAt($data, $current_index, "Loai_LK").'" class="chitiet_sp">
+									<img src="'.getThongTinSPAt($data, $current_index, "Hinh_anh").'" class="img_sp">
+									<p class="ten_sp" title="'.getThongTinSPAt($data, $current_index, "Ten_LK").'">
+										'.getThongTinSPAt($data, $current_index, "Ten_LK").'
+									</p>
+									<p class="gia_giam"> '.(getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia"))).'</p>
+									<p class="gia_sp">
+										<del>'.getThongTinSPAt($data, $current_index, "Gia_LK").' </del>
+										<label>&nbsp;-'.(100*getThongTinSPAt($data, $current_index, "Giam_gia")).'%<label>
+									</p>
+								</a>
+							</div>
+						';
+						$current_index++;
+					}
+					else{
+						break;
+					}
+				}
 			}
-		}
-?>		
-		<br>
-		<div class="hang_ngang">
-<?php
-		for($i=$current_index;$i<$amount;$i++){
-?>
-			<div class="san_pham">
-				<a href="chitiet_SP.php?id_lk=<?php showThongTinSPAt($data, $current_index, "ID_LK") ?>&loai_lk=<?php showThongTinSPAt($data, $current_index, "Loai_LK") ?>" class="chitiet_sp">
-					<img src="<?php echo $data[$current_index]['Hinh_anh']; ?>" class="img_sp">
-					<p class="ten_sp" title="<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>">
-							<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>
-					</p>
-					<p <?php if(strcmp($data[$current_index]['Sale_Status'],"Ngừng bán") ==0){ echo 'class="ngung_ban"';} ?>>
-						<?php showThongTinSPAt($data, $current_index, "Sale_Status") ?>
-					</p>
-					<p class="gia_giam">
-						<?php 
-							echo getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia")); 
-						?>
-					</p>
-					<p class="gia_sp">
-						<del><?php showThongTinSPAt($data, $current_index, "Gia_LK") ?> </del>
-						<label>&nbsp;-<?php echo 100*getThongTinSPAt($data, $current_index, "Giam_gia"); ?>%<label>
-					</p>
-				</a>
-			</div>
-<?php
-			$current_index++;
+			else{
+				break;
+			}
 		}
 		closeDB($connect);
 	}
@@ -254,64 +226,36 @@
 			$data[] = $row;
 		}
 		$current_index = 0;
-		for($i = 0; $i < $so_hang-1; $i++){
-?>
-			<div class="hang_ngang">
-<?php		
-			for($j=0;$j<4;$j++){
-?>
-				<div class="san_pham">
-					<a href="chitiet_SP.php?id_lk=<?php showThongTinSPAt($data, $current_index, "ID_LK") ?>&loai_lk=<?php showThongTinSPAt($data, $current_index, "Loai_LK") ?>" class="chitiet_sp">
-						<img src="<?php echo "../".$data[$current_index]['Hinh_anh']; ?>" class="img_sp">
-						<p class="ten_sp" title="<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>">
-							<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>
-						</p>
-						<p <?php if(strcmp($data[$current_index]['Sale_Status'],"Ngừng bán") ==0){ echo 'class="ngung_ban"';} ?>>
-							<?php showThongTinSPAt($data, $current_index, "Sale_Status") ?>
-						</p>
-						<p class="gia_giam">
-							<?php 
-								echo getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia")); 
-							?>
-						</p>
-						<p class="gia_sp">
-							<del><?php showThongTinSPAt($data, $current_index, "Gia_LK") ?> </del>
-							<label>&nbsp;-<?php echo 100*getThongTinSPAt($data, $current_index, "Giam_gia"); ?>%<label>
-						</p>
-					</a>
-				</div>
-<?php
-				$current_index++;
+		for($i = 0; $i < $so_hang; $i++){
+			echo '<div class="hang_ngang">';
+			if($current_index < $amount){
+				for($j=0;$j<4;$j++){
+					if($current_index < $amount){
+						echo '
+							<div class="san_pham">
+								<a href="chitiet_SP.php?id_lk='.getThongTinSPAt($data, $current_index, "ID_LK").'&loai_lk='.getThongTinSPAt($data, $current_index, "Loai_LK").'" class="chitiet_sp">
+									<img src="'.getThongTinSPAt($data, $current_index, "Hinh_anh").'" class="img_sp">
+									<p class="ten_sp" title="'.getThongTinSPAt($data, $current_index, "Ten_LK").'">
+										'.getThongTinSPAt($data, $current_index, "Ten_LK").'
+									</p>
+									<p class="gia_giam"> '.(getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia"))).'</p>
+									<p class="gia_sp">
+										<del>'.getThongTinSPAt($data, $current_index, "Gia_LK").' </del>
+										<label>&nbsp;-'.(100*getThongTinSPAt($data, $current_index, "Giam_gia")).'%<label>
+									</p>
+								</a>
+							</div>
+						';
+						$current_index++;
+					}
+					else{
+						break;
+					}
+				}
 			}
-		}
-?>		
-		<br>
-		<div class="hang_ngang">
-<?php
-		for($i=$current_index;$i<$amount;$i++){
-?>
-			<div class="san_pham">
-				<a href="chitiet_SP.php?id_lk=<?php showThongTinSPAt($data, $current_index, "ID_LK") ?>&loai_lk=<?php showThongTinSPAt($data, $current_index, "Loai_LK") ?>" class="chitiet_sp">
-					<img src="<?php echo "../".$data[$current_index]['Hinh_anh']; ?>" class="img_sp">
-					<p class="ten_sp" title="<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>">
-							<?php showThongTinSPAt($data, $current_index, "Ten_LK") ?>
-					</p>
-					<p <?php if(strcmp($data[$current_index]['Sale_Status'],"Ngừng bán") ==0){ echo 'class="ngung_ban"';} ?>>
-						<?php showThongTinSPAt($data, $current_index, "Sale_Status") ?>
-					</p>
-					<p class="gia_giam">
-						<?php 
-							echo getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia")); 
-						?>
-					</p>
-					<p class="gia_sp">
-						<del><?php showThongTinSPAt($data, $current_index, "Gia_LK") ?> </del>
-						<label>&nbsp;-<?php echo 100*getThongTinSPAt($data, $current_index, "Giam_gia"); ?>%<label>
-					</p>
-				</a>
-			</div>
-<?php
-			$current_index++;
+			else{
+				break;
+			}
 		}
 		closeDB($connect);
 	}
