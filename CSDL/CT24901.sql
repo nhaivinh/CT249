@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 23, 2022 lúc 02:30 PM
+-- Thời gian đã tạo: Th4 23, 2022 lúc 02:39 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.2
 
@@ -173,6 +173,7 @@ CREATE TABLE `donhang` (
   `ID_DH` int(11) NOT NULL,
   `ID_User_KH` int(11) NOT NULL,
   `ID_User_QL` int(11) DEFAULT NULL,
+  `Diachi_DH` varchar(500) NOT NULL,
   `Status_DH` varchar(30) NOT NULL,
   `Ngay_Dat` date DEFAULT NULL,
   `Ngay_Giao` date DEFAULT NULL CHECK (`Ngay_Dat` <= `Ngay_Giao`),
@@ -183,9 +184,9 @@ CREATE TABLE `donhang` (
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`ID_DH`, `ID_User_KH`, `ID_User_QL`, `Status_DH`, `Ngay_Dat`, `Ngay_Giao`, `Tong_tien`) VALUES
-(1, 1, NULL, 'Chờ xử lý', '2022-04-23', NULL, 4776000),
-(2, 1, NULL, 'Chờ xử lý', '2022-04-23', NULL, 7456000);
+INSERT INTO `donhang` (`ID_DH`, `ID_User_KH`, `ID_User_QL`, `Diachi_DH`, `Status_DH`, `Ngay_Dat`, `Ngay_Giao`, `Tong_tien`) VALUES
+(1, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', '2022-04-23', NULL, 4776000),
+(2, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', '2022-04-23', NULL, 7456000);
 
 -- --------------------------------------------------------
 
