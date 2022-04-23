@@ -2,7 +2,7 @@
 	const HOST = "localhost";
 	const USERNAME = "root";
 	const PASSWORD = "";
-	const DATABASE = "ct42801_B1805890";
+	const DATABASE = "ct24901";
 	function connectDB(){
 		$connect = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
 		mysqli_set_charset($connect, "utf8");

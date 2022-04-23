@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 24, 2021 at 04:35 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 23, 2022 lúc 05:44 AM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ct42801_b1805890`
+-- Cơ sở dữ liệu: `ct24901`
 --
 CREATE DATABASE IF NOT EXISTS `ct24901` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ct24901`;
@@ -26,28 +26,27 @@ USE `ct24901`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
   `Username` varchar(20) NOT NULL,
   `Password` varchar(20) NOT NULL,
-  `Quyen_han` varchar(20) NOT NULL,
-  `So_du` int(11) NOT NULL DEFAULT 0 CHECK (`So_du` >= 0)
+  `Quyen_han` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`Username`, `Password`, `Quyen_han`, `So_du`) VALUES
-('minhb1805890', '123', '', 4688000),
-('minhluu2608', '123', 'Owner', 100000000);
+INSERT INTO `account` (`Username`, `Password`, `Quyen_han`) VALUES
+('minhb1805890', '123', ''),
+('minhluu2608', '123', 'Owner');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `case`
+-- Cấu trúc bảng cho bảng `case`
 --
 
 CREATE TABLE `case` (
@@ -60,7 +59,7 @@ CREATE TABLE `case` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `case`
+-- Đang đổ dữ liệu cho bảng `case`
 --
 
 INSERT INTO `case` (`ID_LK`, `HangSX`, `Kieu_case`, `Mau`, `Kieu_mainboard`, `Chat_lieu`) VALUES
@@ -73,7 +72,7 @@ INSERT INTO `case` (`ID_LK`, `HangSX`, `Kieu_case`, `Mau`, `Kieu_mainboard`, `Ch
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietdh`
+-- Cấu trúc bảng cho bảng `chitietdh`
 --
 
 CREATE TABLE `chitietdh` (
@@ -84,7 +83,7 @@ CREATE TABLE `chitietdh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `chitietdh`
+-- Đang đổ dữ liệu cho bảng `chitietdh`
 --
 
 INSERT INTO `chitietdh` (`ID_DH`, `ID_LK`, `So_luong`, `Don_gia`) VALUES
@@ -94,7 +93,7 @@ INSERT INTO `chitietdh` (`ID_DH`, `ID_LK`, `So_luong`, `Don_gia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cpu`
+-- Cấu trúc bảng cho bảng `cpu`
 --
 
 CREATE TABLE `cpu` (
@@ -107,7 +106,7 @@ CREATE TABLE `cpu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `cpu`
+-- Đang đổ dữ liệu cho bảng `cpu`
 --
 
 INSERT INTO `cpu` (`ID_LK`, `HangSX`, `Series`, `Core`, `Xung`, `Socket`) VALUES
@@ -120,7 +119,7 @@ INSERT INTO `cpu` (`ID_LK`, `HangSX`, `Series`, `Core`, `Xung`, `Socket`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `disk`
+-- Cấu trúc bảng cho bảng `disk`
 --
 
 CREATE TABLE `disk` (
@@ -133,7 +132,7 @@ CREATE TABLE `disk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `disk`
+-- Đang đổ dữ liệu cho bảng `disk`
 --
 
 INSERT INTO `disk` (`ID_LK`, `HangSX`, `Chuan_ket_noi`, `Kich_thuoc`, `Dung_luong`, `Loai`) VALUES
@@ -146,7 +145,7 @@ INSERT INTO `disk` (`ID_LK`, `HangSX`, `Chuan_ket_noi`, `Kich_thuoc`, `Dung_luon
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donhang`
+-- Cấu trúc bảng cho bảng `donhang`
 --
 
 CREATE TABLE `donhang` (
@@ -160,7 +159,7 @@ CREATE TABLE `donhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `donhang`
+-- Đang đổ dữ liệu cho bảng `donhang`
 --
 
 INSERT INTO `donhang` (`ID_DH`, `Username_KH`, `Username_QL`, `Status_DH`, `Ngay_Dat`, `Ngay_Giao`, `Tong_tien`) VALUES
@@ -169,7 +168,7 @@ INSERT INTO `donhang` (`ID_DH`, `Username_KH`, `Username_QL`, `Status_DH`, `Ngay
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gpu`
+-- Cấu trúc bảng cho bảng `gpu`
 --
 
 CREATE TABLE `gpu` (
@@ -181,7 +180,7 @@ CREATE TABLE `gpu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `gpu`
+-- Đang đổ dữ liệu cho bảng `gpu`
 --
 
 INSERT INTO `gpu` (`ID_LK`, `HangSX`, `Chip_do_hoa`, `VMemory`, `The_he_bo_nho`) VALUES
@@ -194,7 +193,7 @@ INSERT INTO `gpu` (`ID_LK`, `HangSX`, `Chip_do_hoa`, `VMemory`, `The_he_bo_nho`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hinh_anh`
+-- Cấu trúc bảng cho bảng `hinh_anh`
 --
 
 CREATE TABLE `hinh_anh` (
@@ -204,7 +203,7 @@ CREATE TABLE `hinh_anh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `hinh_anh`
+-- Đang đổ dữ liệu cho bảng `hinh_anh`
 --
 
 INSERT INTO `hinh_anh` (`ID_Hinh`, `Ten_Hinh`, `Duong_dan`) VALUES
@@ -238,7 +237,7 @@ INSERT INTO `hinh_anh` (`ID_Hinh`, `Ten_Hinh`, `Duong_dan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `info_user`
+-- Cấu trúc bảng cho bảng `info_user`
 --
 
 CREATE TABLE `info_user` (
@@ -250,7 +249,7 @@ CREATE TABLE `info_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `info_user`
+-- Đang đổ dữ liệu cho bảng `info_user`
 --
 
 INSERT INTO `info_user` (`Username`, `Hoten_User`, `Diachi_User`, `SoDT_User`, `Email_User`) VALUES
@@ -260,7 +259,7 @@ INSERT INTO `info_user` (`Username`, `Hoten_User`, `Diachi_User`, `SoDT_User`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `linhkien`
+-- Cấu trúc bảng cho bảng `linhkien`
 --
 
 CREATE TABLE `linhkien` (
@@ -275,7 +274,7 @@ CREATE TABLE `linhkien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `linhkien`
+-- Đang đổ dữ liệu cho bảng `linhkien`
 --
 
 INSERT INTO `linhkien` (`ID_LK`, `Ten_LK`, `Loai_LK`, `Gia_LK`, `Giam_gia`, `So_luong`, `Hinh_anh`, `Sale_Status`) VALUES
@@ -309,7 +308,7 @@ INSERT INTO `linhkien` (`ID_LK`, `Ten_LK`, `Loai_LK`, `Gia_LK`, `Giam_gia`, `So_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mainboard`
+-- Cấu trúc bảng cho bảng `mainboard`
 --
 
 CREATE TABLE `mainboard` (
@@ -321,7 +320,7 @@ CREATE TABLE `mainboard` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `mainboard`
+-- Đang đổ dữ liệu cho bảng `mainboard`
 --
 
 INSERT INTO `mainboard` (`ID_LK`, `HangSX`, `Socket`, `Chipset`, `Chuan_kich_thuoc`) VALUES
@@ -330,7 +329,7 @@ INSERT INTO `mainboard` (`ID_LK`, `HangSX`, `Socket`, `Chipset`, `Chuan_kich_thu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ram`
+-- Cấu trúc bảng cho bảng `ram`
 --
 
 CREATE TABLE `ram` (
@@ -342,7 +341,7 @@ CREATE TABLE `ram` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ram`
+-- Đang đổ dữ liệu cho bảng `ram`
 --
 
 INSERT INTO `ram` (`ID_LK`, `HangSX`, `DDR`, `Dung_luong`, `Bus`) VALUES
@@ -355,7 +354,7 @@ INSERT INTO `ram` (`ID_LK`, `HangSX`, `DDR`, `Dung_luong`, `Bus`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_cart`
+-- Cấu trúc bảng cho bảng `user_cart`
 --
 
 CREATE TABLE `user_cart` (
@@ -367,42 +366,42 @@ CREATE TABLE `user_cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`Username`);
 
 --
--- Indexes for table `case`
+-- Chỉ mục cho bảng `case`
 --
 ALTER TABLE `case`
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `chitietdh`
+-- Chỉ mục cho bảng `chitietdh`
 --
 ALTER TABLE `chitietdh`
   ADD KEY `ID_DH` (`ID_DH`),
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `cpu`
+-- Chỉ mục cho bảng `cpu`
 --
 ALTER TABLE `cpu`
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `disk`
+-- Chỉ mục cho bảng `disk`
 --
 ALTER TABLE `disk`
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `donhang`
+-- Chỉ mục cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`ID_DH`),
@@ -410,140 +409,140 @@ ALTER TABLE `donhang`
   ADD KEY `Username_QL` (`Username_QL`);
 
 --
--- Indexes for table `gpu`
+-- Chỉ mục cho bảng `gpu`
 --
 ALTER TABLE `gpu`
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `hinh_anh`
+-- Chỉ mục cho bảng `hinh_anh`
 --
 ALTER TABLE `hinh_anh`
   ADD PRIMARY KEY (`ID_Hinh`),
   ADD UNIQUE KEY `Duong_dan` (`Duong_dan`);
 
 --
--- Indexes for table `info_user`
+-- Chỉ mục cho bảng `info_user`
 --
 ALTER TABLE `info_user`
   ADD KEY `Username` (`Username`);
 
 --
--- Indexes for table `linhkien`
+-- Chỉ mục cho bảng `linhkien`
 --
 ALTER TABLE `linhkien`
   ADD PRIMARY KEY (`ID_LK`),
   ADD KEY `Hinh_anh` (`Hinh_anh`);
 
 --
--- Indexes for table `mainboard`
+-- Chỉ mục cho bảng `mainboard`
 --
 ALTER TABLE `mainboard`
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `ram`
+-- Chỉ mục cho bảng `ram`
 --
 ALTER TABLE `ram`
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- Indexes for table `user_cart`
+-- Chỉ mục cho bảng `user_cart`
 --
 ALTER TABLE `user_cart`
   ADD KEY `Username` (`Username`),
   ADD KEY `ID_LK` (`ID_LK`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `donhang`
+-- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   MODIFY `ID_DH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `hinh_anh`
+-- AUTO_INCREMENT cho bảng `hinh_anh`
 --
 ALTER TABLE `hinh_anh`
   MODIFY `ID_Hinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `linhkien`
+-- AUTO_INCREMENT cho bảng `linhkien`
 --
 ALTER TABLE `linhkien`
   MODIFY `ID_LK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `case`
+-- Các ràng buộc cho bảng `case`
 --
 ALTER TABLE `case`
   ADD CONSTRAINT `case_ibfk_1` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `chitietdh`
+-- Các ràng buộc cho bảng `chitietdh`
 --
 ALTER TABLE `chitietdh`
   ADD CONSTRAINT `chitietdh_ibfk_1` FOREIGN KEY (`ID_DH`) REFERENCES `donhang` (`ID_DH`),
   ADD CONSTRAINT `chitietdh_ibfk_2` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `cpu`
+-- Các ràng buộc cho bảng `cpu`
 --
 ALTER TABLE `cpu`
   ADD CONSTRAINT `cpu_ibfk_1` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `disk`
+-- Các ràng buộc cho bảng `disk`
 --
 ALTER TABLE `disk`
   ADD CONSTRAINT `disk_ibfk_1` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `donhang`
+-- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`Username_KH`) REFERENCES `account` (`Username`),
   ADD CONSTRAINT `donhang_ibfk_2` FOREIGN KEY (`Username_QL`) REFERENCES `account` (`Username`);
 
 --
--- Constraints for table `gpu`
+-- Các ràng buộc cho bảng `gpu`
 --
 ALTER TABLE `gpu`
   ADD CONSTRAINT `gpu_ibfk_1` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `info_user`
+-- Các ràng buộc cho bảng `info_user`
 --
 ALTER TABLE `info_user`
   ADD CONSTRAINT `info_user_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `account` (`Username`);
 
 --
--- Constraints for table `linhkien`
+-- Các ràng buộc cho bảng `linhkien`
 --
 ALTER TABLE `linhkien`
   ADD CONSTRAINT `linhkien_ibfk_1` FOREIGN KEY (`Hinh_anh`) REFERENCES `hinh_anh` (`Duong_dan`);
 
 --
--- Constraints for table `mainboard`
+-- Các ràng buộc cho bảng `mainboard`
 --
 ALTER TABLE `mainboard`
   ADD CONSTRAINT `mainboard_ibfk_1` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `ram`
+-- Các ràng buộc cho bảng `ram`
 --
 ALTER TABLE `ram`
   ADD CONSTRAINT `ram_ibfk_1` FOREIGN KEY (`ID_LK`) REFERENCES `linhkien` (`ID_LK`);
 
 --
--- Constraints for table `user_cart`
+-- Các ràng buộc cho bảng `user_cart`
 --
 ALTER TABLE `user_cart`
   ADD CONSTRAINT `user_cart_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `account` (`Username`),

@@ -48,7 +48,6 @@
 							<?php echo "Welcome ".$_SESSION['privilege']." ".$_SESSION['username']; ?> 
 						</p>
 					</li>
-					<li id="Money"> Số dư TK: <?php showSoDuTK($_SESSION['username']) ?> VND</li>
 					<li><a href ="../Logout.php">Đăng xuất</a></li>
 <?php
 				}
