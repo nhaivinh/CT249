@@ -286,7 +286,7 @@
 	
 	function showUserInfo(){
 		$connect = connectDB();
-		$query = "Select * from info_user where username = '".$_SESSION['username']."'";
+		$query = "Select * from info_user where id_user = '".$_SESSION['id_user']."'";
 		$result = mysqli_query($connect, $query);
 		$data = array();
 		while($row = mysqli_fetch_array($result, 1)){
@@ -402,7 +402,7 @@
 	function showCart(){
 		$connect = connectDB();
 		$query = "SELECT user_cart.ID_LK as ID_LK, user_cart.So_luong as So_luong, linhkien.So_luong as So_luong_max, Don_gia, Tong, Ten_LK FROM `user_cart` 
-			join linhkien on user_cart.ID_LK=linhkien.ID_LK where username='".$_SESSION['username']."'";
+			join linhkien on user_cart.ID_LK=linhkien.ID_LK where id_user='".$_SESSION['id_user']."'";
 		$result = mysqli_query($connect, $query);
 		$data = array();
 		while($row = mysqli_fetch_array($result, 1)){
@@ -495,7 +495,7 @@
 	
 	function showHoaDon(){
 		$connect = connectDB();
-		$query = "Select * from donhang where username_KH='".$_SESSION['username']."'";
+		$query = "Select * from donhang where id_user_KH='".$_SESSION['id_user']."'";
 		$result = mysqli_query($connect, $query);
 		$data = array();
 		while($row = mysqli_fetch_array($result, 1)){

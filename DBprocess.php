@@ -61,6 +61,7 @@
 					$data2[] = $row;
 				}
 				if($data2 != null && count($data2) >0){
+					$_SESSION['id_user'] = $data2[0]['ID_User'];
 					$_SESSION['username'] = $username;
 					$_SESSION['privilege'] = $data2[0]['Quyen_han'];
 					$_SESSION['login_status'] = "Đăng nhập thành công";
