@@ -9,10 +9,11 @@ body{
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	background-color: aliceblue;
 }
 
 .page_Header{
-	width: auto;
+	width: 1920px;
 	height:50px;
 	background-color:#34495E;
 	line-height:50px;
@@ -21,7 +22,7 @@ body{
 }
 
 .page_Header .Account{
-	float:right;
+	float:left;
 }
 
 .page_Header .Account ul{
@@ -33,10 +34,11 @@ body{
 .page_Header .Account ul li{
 	display:inline-block;
 	border-left: 1px solid;
-	width: 199px;
+	width: 200px;
 	text-align: center;	
 }
 #Welcome{
+	margin-left: 910px;
 	width: 290px;
 }
 #Money{
@@ -50,40 +52,50 @@ body{
 }
 .page_Header .Account ul li a:hover{
 	transition-duration:0s;
-	color:#D8A70C;
+	color:#1594fc;
 }
 
-.page_Header .Account ul li #Login{
+.page_Header .Account ul li #Login_Button{
+	text-align: left;
 	text-decoration:none;
 	color:white;
 	font-size: 20px;
+	background-color:#34495E;
+	border: none;
+}
+#Login_Item{
+	margin-left: 1005px;
+}
+#Register_Item{
 }
 .page_Header .Account ul li #Login:hover{
 	transition-duration:0s;
-	color:#D8A70C;
+	color:#1594fc;
 }
-
 .nav_bar{
 	display: flex;
 	color: red;
-	width : 1365px;
+	width : 1920px;
 	height: 40px;
 	align-items: center;
-	background-color: yellow;
+	background-color: #4d6985;
 }
 .nav_bar a{
 	text-decoration: none;
 	flex-basis:20%;
-	border-right: 2px solid;
-	border-bottom: 2px solid;
+	border-right: 2px solid white;
+	border-bottom: 2px solid white;
 	line-height:40px;
 	justify-content: center;
+	color: white;
 }
 .nav_bar a:hover{
-	background-color: #77ceb1;
+	color:#1594fc;
 }
 .search_bar{
 	text-align: center;	
+	width: 1920px;
+
 }
 .search_bar .search_box{
 	width: 650px;
@@ -91,6 +103,7 @@ body{
 	border-radius: 15px;
 	font-size: 15px;
 }
+
 .search_bar .search_submit{
 	width: 100px;
 	height: 40px;
@@ -110,30 +123,39 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: 1920px;
 }
 .page_body .hang_ngang{
-	
+	justify-items: center;
 }
 .page_body .hang_ngang .san_pham{
+	padding: 30px 0 30px 0px;
 	position: relative;
-	width: 300px;
+	width: 400px;
 	height: 343px;
 	float: left;
 	flex-direction: column;
-	background-color: yellow;
+	margin-top: 20px;
+	text-align: center;
+	background-color:white;
+	margin-left: 20px;
+	margin-right: 50px;
+}
+.page_body .hang_ngang .san_pham :hover{
+	opacity: 80%;
 }
 .page_body .hang_ngang .san_pham .chitiet_sp{
 	text-decoration: none;
 	color: black;
 }
 .page_body .hang_ngang .san_pham .chitiet_sp .gia_sp label{
-	position: absolute;
 	color: blue;
 	bottom: 0%;
 }
 .page_body .hang_ngang .san_pham .chitiet_sp .gia_giam{
 	color: blue;
 	font-size: 25px;
+	margin-top: 10px;
 }
 .page_body .san_pham .chitiet_sp .img_sp{
 	position: relative;
@@ -141,7 +163,7 @@ body{
 	height: 250px;
 }
 .page_body .san_pham .chitiet_sp .ten_sp{
-	text-align: left;
+	text-align: center;
 	overflow: hidden;
 	height: 41px;
 	display: -webkit-box;

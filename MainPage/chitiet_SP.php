@@ -10,13 +10,39 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="./CSS/chitiet_SP.css" />
+	<link rel="stylesheet" href="./CSS/login.css" />
 	<title>Thông tin sản phẩm</title>
 </head>
 <body>
+<script>
+			function openPopup(){
+				document.getElementById("hidden-popup").classList.remove("hidden");
+				document.getElementById("hidden-login").classList.remove("hidden");
+			}
+			function openLogin(){
+				document.getElementById("hidden-login").classList.remove("hidden");
+				document.getElementById("hidden-register").classList.add("hidden");
+			}
+			function closeLogin(){
+				document.getElementById("hidden-popup").classList.add("hidden");
+				document.getElementById("hidden-login").classList.add("hidden");
+			}
+		</script>
+	<div class="login-container hidden" id="hidden-popup">
+			<div class="login-popup hidden" id="hidden-login">
+				<form action="" method="POST" class="login-input-container">
+					<input type="username" class="login-input" name="username" pattern="[a-zA-Z0-9]+$" placeholder="Tên người dùng">
+					<input type="password" class="login-input" name="password" placeholder="Mật khẩu">
+					<input type="submit" value="ĐĂNG NHẬP" class="login-login-btn">
+				</form>
+				<p class="login-forgot-password">Quên mật khẩu?</p>
+				<p class="login-no-account">Bạn là người dùng mới? <button onclick="">Tạo tài khoản</button></p>
+				<button class="exit-btn" onClick="closeLogin()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
+			</div>
+		</div>
 	<div class="page_Header">
 		<div class="Account">
 			<ul>
-				<form method="POST" action="" id="frmAccount">
 					<li style="border-left-width: 0px;width:500px;"><p>Shop linh kiện DEMO - bán tất cả loại linh kiện máy tính</p></li>
 				<?php
 					if(isset($_SESSION['username'])){
@@ -31,18 +57,11 @@
 					}
 					else{
 				?>
-							<li>
-								<input type="text" name="username" size="20" value="" placeholder="Nhập vào username" style="height:30px">
-							</li>
-							<li>
-								<input type="password" name="password" size="20" placeholder="Nhập vào password" style="height:30px">
-							</li>
-							<li><label id="Login" onClick="document.getElementById('frmAccount').submit();">Đăng nhập </label></li>
-							<li><a href ="Register_form.php" id="Register">Đăng ký </a></li>
+							<li id="Login_Item"><button id="Login_Button" onclick="openPopup()">Đăng nhập</button></li>
+							<li id="Register_Item"><a href ="Register_form.php" id="Register">Đăng ký </a></li>
 				<?php
 					}
 				?>
-				</form>
 			</ul>
 		</div>
 	</div>

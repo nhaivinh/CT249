@@ -9,10 +9,11 @@ body{
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	background-color: aliceblue;
 }
 
 .page_Header{
-	width: auto;
+	width: 1920px;
 	height:50px;
 	background-color:#34495E;
 	line-height:50px;
@@ -21,7 +22,7 @@ body{
 }
 
 .page_Header .Account{
-	float:right;
+	float:left;
 }
 
 .page_Header .Account ul{
@@ -33,10 +34,11 @@ body{
 .page_Header .Account ul li{
 	display:inline-block;
 	border-left: 1px solid;
-	width: 199px;
+	width: 200px;
 	text-align: center;	
 }
 #Welcome{
+	margin-left: 910px;
 	width: 290px;
 }
 #Money{
@@ -48,51 +50,53 @@ body{
 	display:block;
 	font-size: 20px;
 }
-.page_Header .Account ul li a{
-	text-decoration:none;
-	color:white;
-	display:block;
-	font-size: 20px;
-}
-
 .page_Header .Account ul li a:hover{
 	transition-duration:0s;
-	color:#D8A70C;
+	background-color: #1594fc;
 }
 
-.page_Header .Account ul li #Login{
+.page_Header .Account ul li #Login_Button{
+	text-align: left;
 	text-decoration:none;
 	color:white;
 	font-size: 20px;
+	background-color:#34495E;
+	border: none;
+}
+#Login_Item{
+	margin-left: 1005px;
+}
+#Register_Item{
 }
 .page_Header .Account ul li #Login:hover{
 	transition-duration:0s;
-	color:#D8A70C;
+	background-color: #1594fc;
 }
-
 .nav_bar{
 	display: flex;
 	color: red;
-	width : 1365px;
+	width : 1920px;
 	height: 40px;
 	align-items: center;
-	background-color: yellow;
+	background-color: #4d6985;
 }
 .nav_bar a{
 	text-decoration: none;
 	flex-basis:20%;
-	border-right: 2px solid;
-	border-bottom: 2px solid;
+	border-right: 2px solid white;
+	border-bottom: 2px solid white;
 	line-height:40px;
 	justify-content: center;
+	color: white;
 }
 .nav_bar a:hover{
-	background-color: #77ceb1;
+	background-color: #1594fc;
 }
 .hang_ngang{
-	margin-top: 30px;
-	display: flex;
-	
+	width: 1920px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }
 .hang_ngang .danh_muc {
 	margin-left: 100px;
@@ -102,35 +106,39 @@ body{
 .hang_ngang .danh_muc a{
 	display: flex;
 	font-size: 30px;
-	width: 300px;
+	width: 500px;
 	height: 50px;
 	justify-content: center;
 	align-items: center;
 	color: white;
-	background: gray;
+	background:#6987a5;
 	text-decoration: none;
 	border-bottom: 2px solid black;
 }
 .hang_ngang .danh_muc a:hover{
-	background-color: #ff0078;
+	background-color: #1594fc;
 }
 .hang_ngang .thong_tin{
 	display: flex;
 	flex-direction: column;
-	background-color: #f0d9ee;
-	height: 300px;
-	width: 700px;
+	background-color: #e8f4ff;
+	height: 260px;
+	width: 1200px;
 	margin-left: 2px;
 	align-items: center;
+	border: 1px black solid;
 }
 .hang_ngang .thong_tin .div_edit_status{
 	display: flex;
-	width: 700px;
+	width: 1200px;
 	justify-content: right;
 }
 .hang_ngang .thong_tin .div_edit_status a{
 	text-decoration: none;
-	padding-right: 10px;
+	padding: 10px;
+	border: 1px solid #34495E;
+	background-color:#34495E;
+	color: white;
 }
 .hang_ngang .thong_tin .tblRegister td{
 	padding: 10px;
@@ -155,36 +163,48 @@ body{
 	font-size: 22px;
 }
 .hang_ngang .thong_tin .xac_nhan_pass{
-	height: 50px;
+	height: 40px;
 	width: 250px;
 	font-size: 22px;
 }
 .hang_ngang .divCart{
-	background-color: #f0d9ee;
+	width: 1200px;
+	border: 1px black solid;
+	background-color: #e8f4ff;
 }
 .hang_ngang .divCart .tblCart{
+	margin: 0;
+	padding: 0;
 }
 .hang_ngang .divCart .tblCart th{
 	padding: 10px;
+	background-color:#34495E;
+	color: rgb(240, 240, 240);
 }
+
 .hang_ngang .divCart .tblCart td{
 	padding-bottom: 7px;
 }
 .hang_ngang .divCart .tblCart .ten_sp{
-	width: 400px;
+	width: 600px;
+	
 }
 .hang_ngang .divCart .tblCart .don_gia{
-	width: 130px;
+	width: 200px;
+
 }
+
 .hang_ngang .divCart .tblCart .tong_gia{
-	width: 130px;
+	width: 200px;
 }
+
 .hang_ngang .divCart .tblCart .so_luong{
-	width: 40px;
+	width: 100px;
 	font-size: 20px;
 	text-align: center;
 	-moz-appearance: textfield;
 }
+
 .hang_ngang .divCart .tblCart .dau{
 	width: 40px;
 	height: 30px;
@@ -195,9 +215,12 @@ body{
 	display: none;
 }
 .xoa_button{
-	text-decoration: underline;
-	color: blue;
+	text-decoration: none;
+	padding: 5px;
+	background-color: red;
+	color: white;
 	cursor: pointer;
+	border-radius: 20%;
 }
 .hang_ngang .divCart .MuaNgay_Cart{
 	display: flex;
@@ -212,24 +235,37 @@ body{
 	background-color: white;
 }
 .hang_ngang .div_HoaDon {
-	background-color: #f0d9ee;
+	background-color:#e8f4ff;
+	width: 1200px;
+	border: 1px black solid;
 }
 .hang_ngang .div_HoaDon .HD_ngang {
 	display: flex;
+	justify-content: left;
+	background-color: #34495E;
+	color: white;
 }
 .hang_ngang .div_HoaDon .HD_ngang .ID_DH{
 	width: 100px;
+	border-right: black 1px solid;
 }
 .hang_ngang .div_HoaDon .HD_ngang .Date{
-	width: 180px;
+	width: 150px;
+	border-right: black 1px solid;
 }
-.hang_ngang .div_HoaDon .HD_ngang .Status,.Total{
-	width: 200px;
+.hang_ngang .div_HoaDon .HD_ngang .Status{
+	width: 390px;
+	border-right: black 1px solid;
+}
+.hang_ngang .div_HoaDon .HD_ngang .Total{
+	width: 380px;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang>summary{
 	display: inline-block;
-	width: 900px;
+	width: 1200px;
 	list-style-type: none;
+	background-color: #4d6985;
+	color: white;
 }
 .hang_ngang .div_HoaDon details>summary::after{
 	content: "+";
@@ -241,50 +277,80 @@ body{
 	display: flex;
 	border-top: 2px black solid;
 	border-bottom: 2px black solid;
+	justify-content: left;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang summary .ID_DH{
 	width: 100px;
+
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang summary .Date{
-	width: 180px;
+	width: 150px;
+
 }
-.hang_ngang .div_HoaDon .Details_HD_ngang summary .Status,.Total{
-	width: 200px;
+.hang_ngang .div_HoaDon .Details_HD_ngang summary .Status{
+	width: 400px;
+}
+.hang_ngang .div_HoaDon .Details_HD_ngang summary .Total{
+	width: 380px;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD_header{
 	margin-left: 100px;
 	display: flex;
-	width: 800px;
-	border-bottom: 1px black solid;
+	width: 1100px;
+	border-top: 2px black solid;
+	border-bottom: 2px black solid;
+	background-color: #6987a5;
+	color: white;
+	justify-content: center;
+	text-align:center;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD_header .ID_LK{
 	width: 100px;
+	border-left: black 1px solid;
+	border-right: black 1px solid;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD_header .Ten_LK{
-	width: 400px;
+	width: 600px;
+	border-right: black 1px solid;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD_header .SL_LK{
-	width: 100px;
+	width: 200px;
+	border-right: black 1px solid;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD_header .Don_gia{
 	width: 200px;
+	border-right: black 1px solid;
 }
 
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD{
 	margin-left: 100px;
 	display: flex;
-	width: 800px;
+	width: 1100px;
+	border-bottom: 1px black solid;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD .ID_LK{
 	width: 100px;
+	height: 50px;
+	border-right: 1px black solid;
+	border-left: 1px black solid;
+	padding-top: 20px;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD .Ten_LK{
-	width: 400px;
+	width: 600px;
+	height: 50px;
+	border-right: 1px black solid;
+	padding-top: 20px;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD .SL_LK{
-	width: 100px;
+	width: 200px;
+	height: 50px;
+	border-right: 1px black solid;
+	padding-top: 20px;
 }
 .hang_ngang .div_HoaDon .Details_HD_ngang .Chitiet_HD .Don_gia{
 	width: 200px;
+	height: 50px;
+	border-right: 1px black solid;
+	padding-top: 20px;
 }
 

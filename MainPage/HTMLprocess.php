@@ -85,9 +85,9 @@
 									<p class="ten_sp" title="'.getThongTinSPAt($data, $current_index, "Ten_LK").'">
 										'.getThongTinSPAt($data, $current_index, "Ten_LK").'
 									</p>
-									<p class="gia_giam"> '.(getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia"))).'</p>
+									<p class="gia_giam"> '.(getThongTinSPAt($data, $current_index, "Gia_LK")*(1 - getThongTinSPAt($data, $current_index, "Giam_gia"))).' đ</p>
 									<p class="gia_sp">
-										<del>'.getThongTinSPAt($data, $current_index, "Gia_LK").' </del>
+										<del>'.getThongTinSPAt($data, $current_index, "Gia_LK").'</del>
 										<label>&nbsp;-'.(100*getThongTinSPAt($data, $current_index, "Giam_gia")).'%<label>
 									</p>
 								</a>
