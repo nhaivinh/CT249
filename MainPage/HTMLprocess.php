@@ -483,28 +483,41 @@
 							<p class="Status">'.$tinh_trang.'</p>
 							<p class="Total">'.$tong_tien.'</p>
 						</summary>
+						
 						<div class="Chitiet_HD_header">
 							<label class="ID_LK"> ID LK</label>
 							<label class="Ten_LK"> Tên LK</label>
 							<label class="SL_LK"> Số lượng</label>
 							<label class="Don_gia"> Đơn giá</label>
 						</div>
+						
 				';
 					for($j=0;$j<count($data2);$j++){
 						$id_lk = $data2[$j]['ID_LK'];
 						$ten_lk = $data2[$j]['Ten_LK'];
 						$sl_lk = $data2[$j]['So_luong'];
 						$don_gia = $data2[$j]['Don_gia'];
-
-						echo '
-							<div class="Chitiet_HD">
-								<label class="ID_LK">'.$id_lk.' </label>
-								<label class="Ten_LK">'.$ten_lk.'</label>
-								<label class="SL_LK">'.$sl_lk.'</label>
-								<label class="Don_gia">'.$don_gia.'</label>
-							</div>
-						';
+						if($j != count($data2) - 1){
+							echo '
+								<div class="Chitiet_HD">
+									<label class="ID_LK">'.$id_lk.' </label>
+									<label class="Ten_LK">'.$ten_lk.'</label>
+									<label class="SL_LK">'.$sl_lk.'</label>
+									<label class="Don_gia">'.$don_gia.'</label>
+								</div>
+							';
 						}
+						else{
+							echo '
+								<div class="Chitiet_HD end">
+									<label class="ID_LK">'.$id_lk.' </label>
+									<label class="Ten_LK">'.$ten_lk.'</label>
+									<label class="SL_LK">'.$sl_lk.'</label>
+									<label class="Don_gia">'.$don_gia.'</label>
+								</div>
+							';
+						}
+					}
 
 				echo '
 					</details>

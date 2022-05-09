@@ -47,14 +47,52 @@
 		}
 		if($ngay <= $max_ngay){
 			$query = "update donhang set Ngay_giao= '".$nam."-".$thang."-".$ngay."', 
-				Username_QL='".$_SESSION['username']."', Status_DH='Đã xử lý' where id_dh=".$id_dh;
+				ID_User_QL='".$_SESSION['id_user']."', Status_DH='Đã xử lý', Status_GiaoHang='Đang vận chuyển' where id_dh=".$id_dh;
 			mysqli_query($connect, $query);
+			
 			$_SESSION['xuly_dh'] = 'Đơn hàng đã được cập nhật';
 		}
 		else{
 			$_SESSION['xuly_dh'] = 'Ngày giao hàng không hợp lệ';
 		}
 		closeDB($connect);
+	}
+	if(isset($_POST['ngayUpdate']) && isset($_POST['thangUpdate']) && isset($_POST['namUpdate']) && isset($_POST['id_dh'])){
+		$ngay = $_POST['ngayUpdate'];
+		$thang = $_POST['thangUpdate'];
+		$nam = $_POST['namUpdate'];
+		$id_dh = $_POST['id_dh'];
+		$max_ngay = 0;
+		switch($thang){
+			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+				$max_ngay = 31;
+				break;
+			case 4: case 6: case 9: case 11: 
+				$max_ngay = 30;
+				break;
+			case 2:
+				if ($nam % 400 == 0 || $nam % 4 == 0 && $nam % 100 != 0) $max_ngay = 29;
+				else $max_ngay = 28;
+				break;
+		}
+		if($ngay <= $max_ngay){
+			$query = "update donhang set Ngay_giao= '".$nam."-".$thang."-".$ngay."' where id_dh=".$id_dh;
+			mysqli_query($connect, $query);
+			
+			$_SESSION['xuly_dh'] = 'Đơn hàng đã được cập nhật';
+		}
+		else{
+			$_SESSION['xuly_dh'] = 'Ngày giao hàng cập nhật không hợp lệ';
+		}
+		closeDB($connect);
+	}
+	if(isset($_POST['status_GH'])){
+		$id_dh = $_POST['id_dh'];
+		$status = $_POST['status_GH'];
+		$query = "update donhang set Status_GiaoHang='".$status."' where id_dh=".$id_dh;
+		mysqli_query($connect, $query);
+			
+		$_SESSION['xuly_dh'] = 'Đơn hàng đã được cập nhật';
 	}
 ?>
 <!doctype html>

@@ -1,6 +1,16 @@
 <?php
 	require_once("../DBconnect.php");
-	
+	function getUsernameByIDUser($id_user){
+		$connect = connectDB();
+		$query = "Select username from account where id_user='".$id_user."'";
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}
+		closeDB($connect);
+		return $data[0]['username'];
+	}
 	function showThongBao(){
 		$connect = connectDB();
 		$query = "Select * from linhkien where so_luong = 0";
@@ -533,18 +543,23 @@
 				$id_kh = $data[0]['ID_User_KH'];
 				$status = $data[0]['Status_DH'];
 				$ngay_dat = $data[0]['Ngay_Dat'];
+				$diachi_DH = $data[0]['Diachi_DH'];
 				$tong_tien = $data[0]['Tong_tien'];
 				echo "<div class=\"content_chitiet_dh\">
 						<div class=\"header_chitiet_dh\">
 							<p>Thông tin đơn hàng</p>
 						</div>";
 				echo "<div class=\"chitiet_dh\">
-						<p>Username Khách hàng: ".$id_kh."</p>";
-				if($data[0]['ID_User_QL'] != null) echo "<p>Username nhân viên: ".$data[0]['ID_User_QL']."</p>";
+						<p>Username Khách hàng: ".getUsernameByIDUser($id_kh)."</p>";
+				if($data[0]['ID_User_QL'] != null) echo "<p>Username nhân viên: ".getUsernameByIDUser($data[0]['ID_User_QL'])."</p>";
 				else echo "<p>Username nhân viên: Chưa có nhân viên xử lý đơn hàng</p>";	
+				echo '<p>Địa chỉ đơn hàng: '.$diachi_DH.'</p>';
 				echo "<p>Ngày đặt hàng: ".$ngay_dat."</p>";
-				if($data[0]['Ngay_Giao'] != null) echo "<p>Ngày giao hàng: ".$data[0]['Ngay_Giao']."</p>";
-				else echo "<p>Ngày giao hàng: Đơn hàng chưa được xử lý</p>";	
+				if($data[0]['Ngay_Giao'] != null) {
+					echo "<p>Ngày giao hàng: ".$data[0]['Ngay_Giao']."</p>";
+					echo "<p>Tình trạng giao hàng: ".$data[0]['Status_GiaoHang']."</p>";	
+				}
+				else echo "<p>Ngày giao hàng: Đơn hàng chưa được xử lý</p>";
 				echo "<p>Tổng tiền: ".$tong_tien."</p>";
 				echo "</div>";
 				echo "<div class=\"header_chitiet_dh\">
@@ -585,6 +600,36 @@
 								<input type=\"submit\" value=\"Xác nhận\" class=\"submit_dh\">
 							</form>
 						</div>";
+				}
+				else{
+					echo '
+						<div class="header_chitiet_dh">
+							<p>Cập nhật thông tin đơn hàng</p>
+						</div>
+						<div class="chitiet_dh">
+							<form class="frmXuLy" method="POST" action="">
+								<input type="text" name="id_dh" value="'.$id_dh.'" class="hidden_input">
+								<p>Cập nhật ngày giao hàng:</p>
+								Ngày:<input type="text" name="ngayUpdate">
+								Tháng:<input type="text" name="thangUpdate">
+								Năm:<input type="text" name="namUpdate">
+								<br>
+								<input type="submit" value="Xác nhận" class="submit_dh">
+							</form>
+							<hr>
+							<form class="frmXuLy" method="POST" action="">
+								<input type="text" name="id_dh" value="'.$id_dh.'" class="hidden_input">
+								<p>Cập nhật tình trạng giao hàng:</p>
+								<select name="status_GH">
+									<option value="Đang vận chuyển">Đang vận chuyển</option>
+									<option value="Giao thành công">Giao thành công</option>
+									<option value="Giao thất bại">Giao thất bại</option>
+								</select>
+								<br>
+								<input type="submit" value="Xác nhận" class="submit_dh">
+							</form>
+						</div>
+					';
 				}					
 				echo "</div>";
 			}
