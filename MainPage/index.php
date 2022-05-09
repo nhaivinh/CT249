@@ -37,7 +37,7 @@
 				</form>
 				<p class="login-forgot-password">Quên mật khẩu?</p>
 				<p class="login-no-account">Bạn là người dùng mới? <button onclick="">Tạo tài khoản</button></p>
-				<button class="exit-btn" onClick="closeLogin()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
+				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
 			</div>
 		</div>
 

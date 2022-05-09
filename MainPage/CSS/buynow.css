@@ -1,0 +1,171 @@
+.hidden{
+    visibility: hidden;
+}
+.buynow-container{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    background-color: rgba(21, 21, 21, 0.1);
+    z-index: 100;
+    color:#34495E;
+	
+	font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 35px;
+}
+input[type=text] #address{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.item_detail{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 500px;
+    float: left;
+    border: 1px black solid;
+}
+.Address_Info{
+    margin-top: 50px;
+}
+.Address_Text{
+    width: 400px;
+    margin-left: 20px;
+}
+.buynow-popup{
+    position: absolute;
+    background-color: white;
+    width: 1200px;
+    height: 600px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+.BuyNow_Button{
+    margin-top: 280px;
+    margin-left: 20px;
+}
+.buynow-input-container{
+    display: flex;
+    margin-top: 70px;
+    flex-direction: row;
+}
+.buynow-input{
+    height: 50px;
+    width: 400px;
+    border: solid 1px #34495E;
+    font-size: 25px;
+}
+
+.buynow-buynow-btn{
+    height: 50px;
+    width: 400px;
+    margin-top: 50px;
+    padding-left: 20px;
+    font-size: 25px;
+    color: white;
+    border-radius: 999px;
+    border:0;
+    background-color:#34495E;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.buynow-buynow-btn:hover{
+    border: 1px #34495E solid;
+    background-color: white;
+    color: white;
+    transition: .2s;
+}
+
+.buynow-forgot-password{
+    margin: 0;
+    margin-left: 325px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.exit-btn{
+    position: absolute;
+    top: 10px;
+    left:1200px;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    margin-left: 20px;
+    width: 400px;
+}
+  
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+  
+.select-selected {
+    background-color:#4d6985;
+}
+  
+  /*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+  
+  /*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+  
+  /*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+  
+  /*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color:#4d6985;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+  
+  /*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+  
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}

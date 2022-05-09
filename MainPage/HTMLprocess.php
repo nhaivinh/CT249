@@ -201,9 +201,11 @@
 								<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
 								<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
 								<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-								<input type="submit" value="Mua ngay" class="gio_hang" id="Buy" onClick="frmMua.action=\'muaNgay.php\'">
 								<input type="submit" value="Thêm vào giỏ hàng" class="gio_hang" id="add_Cart" onClick="frmMua.action=\'addCart.php\'">
 							</form>
+							<div class="BuyNow_Button_Area">
+								<button id="BuyNow_Button" onclick="openPopupBuyNow()">Mua Ngay</button>
+							</div>
 						</div>
 					</div>
 					<div class="hang_ngang2">
@@ -484,7 +486,7 @@
 			<br>
 		';
 		if(count($data) != 0){
-			echo '<a href="MuaNgay_Cart.php" class="MuaNgay_Cart"> Mua Ngay </a>';
+			echo '<button id="BuyNow_Button" onclick="openPopupBuyNow()">Mua Ngay</button>';
 		}
 		else{
 			echo '<a href="index.php" class="MuaNgay_Cart"> Giỏ hàng rỗng. Đi mua ngay </a>';

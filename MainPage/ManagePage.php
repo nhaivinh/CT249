@@ -9,10 +9,25 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="./CSS/BuyNow.css" />
 	<link rel="stylesheet" href="./CSS/ManagePage.css" />
+
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
+		<script>		
+			function openPopupBuyNow(){
+				document.getElementById("hidden-popup-buynow").classList.remove("hidden");
+				document.getElementById("hidden-buynow").classList.remove("hidden");
+			}
+			function openBuyNow(){
+				document.getElementById("hidden-buynow").classList.remove("hidden");
+			}
+			function closeBuyNow(){
+				document.getElementById("hidden-popup-buynow").classList.add("hidden");
+				document.getElementById("hidden-buynow").classList.add("hidden");
+			}
+		</script>
 	<div class="page_Header">
 		<div class="Account">
 			<ul>
@@ -46,6 +61,37 @@
 			</ul>
 		</div>
 	</div>
+	<div class="buynow-container hidden" id="hidden-popup-buynow">
+			<div class="buynow-popup hidden" id="hidden-buynow">
+				<form action="" method="POST" class="buynow-input-container">
+					<div class="item_detail">
+							Tên
+							mã
+							<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
+					</div>					
+					<div class="Address_Info">
+						<div class="Address_Text">
+							<input type="text"  name="address">
+						</div>
+						<div class="custom-select">
+							<select>
+								<option value="0">Chọn Địa Chỉ:</option>
+								<option value="1">Địa Chỉ 1</option>
+								<option value="3">Địa Chỉ 2</option>
+								<option value="2">Địa Chỉ Mới</option>
+							</select>			
+						</div>	
+						<div class="BuyNow_Button">
+							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+						</div>
+
+					</div>
+					
+				</form>
+				
+				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
 	<div class="nav_bar">
 		<a href="index.php">Trang chủ</a>
 		<a href="">Giới thiệu</a>
