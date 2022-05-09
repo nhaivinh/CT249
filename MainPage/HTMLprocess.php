@@ -240,6 +240,7 @@
 			$address[] = $row;
 		}
 		echo '
+			<div class="thong_tin_form">
 			<div class="thong_tin">
 				<div class="div_edit_status">
 		';
@@ -335,7 +336,7 @@
 			echo '
 				</table>
 			';
-
+			echo '</div>'; 
 		}
 		else{
 			echo '
