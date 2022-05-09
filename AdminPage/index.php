@@ -5,6 +5,23 @@
 	if(isset($_POST['username_admin']) && isset($_POST['password'])){
 		login();	
 	}
+	if(isset($_SESSION['username'])){
+		$connect = connectDB();
+		$query = "Select Quyen_han from Account where username = '".$_SESSION['username']."'";
+		$result = mysqli_query($connect, $query);
+		$data = array();
+		while($row = mysqli_fetch_array($result, 1)){
+			$data[] = $row;
+		}
+		$privilege = $data[0]['Quyen_han'];
+		if(isset($_SESSION['privilege'])){
+			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
+				if($privilege == $_SESSION['privilege']){
+					header("Location: ./mainpage.php");
+				}
+			}
+		}
+	}
 ?>
 <!doctype html>
 <html>

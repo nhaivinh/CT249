@@ -14,7 +14,7 @@
 		if(isset($_SESSION['privilege']))
 			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
 				if($privilege != $_SESSION['privilege']){
-					header("Location: ../MainPage/index.php");
+					header("Location: ./index.php");
 				}
 			}
 			else {
