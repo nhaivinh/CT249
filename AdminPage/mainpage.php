@@ -74,3 +74,11 @@
 	</div>
 </body>
 </html>
+
+<?php
+	if(isset($_SESSION['login_status'])){
+		$alert = "<script>alert('".$_SESSION['login_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['login_status']);
+	}
+?>

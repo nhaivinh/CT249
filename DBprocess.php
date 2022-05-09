@@ -53,7 +53,7 @@
 		}
 	}
 	function login(){
-		if(isset($_POST)){
+		if(isset($_POST['username'])){
 			$connect = connectDB();
 			$username = $_POST['username'];
 			$password = $_POST['password'];
@@ -76,6 +76,47 @@
 					$_SESSION['privilege'] = $data2[0]['Quyen_han'];
 					$_SESSION['login_status'] = "Đăng nhập thành công";
 					closeDB($connect);
+				}
+				else {
+					$_SESSION['login_status'] = "Mật khẩu không đúng";
+					closeDB($connect);
+				}
+			} 
+			else {
+				$_SESSION['login_status'] = "Username không tồn tại";
+				closeDB($connect);
+			}
+		}
+		if(isset($_POST['username_admin'])){
+			$connect = connectDB();
+			$username = $_POST['username_admin'];
+			$password = $_POST['password'];
+			$query = "Select * from Account where username = '".$username."'";
+			$result = mysqli_query($connect, $query);
+			$data = array();
+			while ($row = mysqli_fetch_array($result,1)){
+				$data[] = $row;
+			}
+			if($data != null && count($data) >0){
+				$query = "Select * from Account where username = '".$username."' and password = '".$password."'";
+				$result = mysqli_query($connect, $query);
+				$data2 = array();
+				while ($row = mysqli_fetch_array($result,1)){
+					$data2[] = $row;
+				}
+				if($data2 != null && count($data2) >0){
+					if(strcmp($data2[0]['Quyen_han'],"Owner") == 0 || strcmp($data2[0]['Quyen_han'],"Senior Staff") == 0 || strcmp($data2[0]['Quyen_han'],"Staff") == 0){
+						$_SESSION['id_user'] = $data2[0]['ID_User'];
+						$_SESSION['username'] = $username;
+						$_SESSION['privilege'] = $data2[0]['Quyen_han'];
+						$_SESSION['login_status'] = "Đăng nhập thành công";
+						header("Location: mainpage.php");	
+						closeDB($connect);
+					}
+					else{
+						$_SESSION['login_status'] = "Tài khoản của bạn không có quyền hạn này";
+						closeDB($connect);
+					}
 				}
 				else {
 					$_SESSION['login_status'] = "Mật khẩu không đúng";

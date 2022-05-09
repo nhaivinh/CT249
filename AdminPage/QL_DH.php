@@ -123,7 +123,7 @@
 		</div>
 	</div>
 	<div class="nav_bar">
-		<a href="index.php">Về trang chủ</a>
+		<a href="mainpage.php">Về trang chủ</a>
 		<a href="QL_Account.php">Xem thông tin Account</a>
 		<a href="QL_SP.php">Quản lí hàng hóa</a>
 		<a href="QL_DH.php">Quản lí đơn hàng</a>

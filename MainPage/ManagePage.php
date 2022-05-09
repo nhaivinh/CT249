@@ -62,7 +62,7 @@
 			<a href="ManagePage.php?info=hoaDon" id="hoaDon"> Xem hóa đơn </a>
 <?php
 			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
-				echo "<a href=\"../AdminPage/index.php\"> Đến trang quản lý </a>";
+				echo "<a href=\"../AdminPage/mainpage.php\"> Đến trang quản lý </a>";
 			}
 ?>
 		</div>

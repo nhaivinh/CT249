@@ -2,6 +2,9 @@
 	require_once("../DBprocess.php");
 	require_once('../MainPage/HTMLprocess.php');
 	require_once("HTMLprocess.php");
+	if(isset($_POST['username_admin']) && isset($_POST['password'])){
+		login();	
+	}
 ?>
 <!doctype html>
 <html>
@@ -31,7 +34,7 @@
 		</div>
 	</div>
 	<div class="nav_bar">
-		<a href="index.php">Về trang chủ</a>
+		<a href="mainpage.php">Về trang chủ</a>
 		<a href="QL_Account.php">Xem thông tin Account</a>
 		<a href="QL_SP.php">Quản lí hàng hóa</a>
 		<a href="QL_DH.php">Quản lí đơn hàng</a>
@@ -43,7 +46,7 @@
             <div class="login-container" id="hidden-popup">
                 <div class="login-popup" id="hidden-login">
                     <form action="" method="POST" class="login-input-container">
-                        <input type="username" class="login-input" name="username" pattern="[a-zA-Z0-9]+$" placeholder="Tên người dùng">
+                        <input type="username" class="login-input" name="username_admin" pattern="[a-zA-Z0-9]+$" placeholder="Tên người dùng">
                         <input type="password" class="login-input" name="password" placeholder="Mật khẩu">
                         <input type="submit" value="ĐĂNG NHẬP" class="login-login-btn">
                     </form>
