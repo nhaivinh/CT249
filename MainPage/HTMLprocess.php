@@ -244,23 +244,85 @@
 				<div class="div_edit_status">
 		';
 
-		if(!isset($_GET['editor_status']) || $_GET['editor_status'] == 'false'){
-			echo '<a href="ManagePage.php?editor_status=true">Thực hiện chỉnh sửa </a>';
+		if(!isset($_GET['edit_info_status']) || $_GET['edit_info_status'] == 'false'){
+			echo '<a href="ManagePage.php?edit_info_status=true">Chỉnh sửa thông tin cá nhân </a>';
 		}
 		else{	
-			echo '<a href="ManagePage.php?editor_status=false">Hủy trạng thái chỉnh sửa </a>';
+			echo '<a href="ManagePage.php?edit_info_status=false">Hủy trạng thái chỉnh sửa </a>';
 		}
 
 		echo '</div>';
 		echo '<form method="POST" action="Edit_Info_Process.php" class="frmUserInfo">';
 	
-		if(!isset($_GET['editor_status']) || $_GET['editor_status'] == 'false'){ 
+		if(!isset($_GET['edit_info_status']) || $_GET['edit_info_status'] == 'false'){ 
 			echo '
 				<table class="tblRegister">
 					<tr>
 						<td class="title">Họ và tên: </td>
 						<td class="info">'.getThongTinSPAt($data, $current_index, "Hoten_User").'</td>
 					</tr>
+					<tr>
+						<td class="title">Số điện thoại: </td>
+						<td class="info">'.getThongTinSPAt($data, $current_index, "SoDT_User").'</td>
+					</tr>
+					<tr>
+						<td class="title">Email: </td>
+						<td class="info">'.getThongTinSPAt($data, $current_index, "Email_User").'</td>
+					</tr>
+				</table>
+			';
+		}
+		else{
+			echo '
+				<table class="tblRegister">
+					<tr>
+						<td class="title">Họ và tên: </td>
+						<td class="info">
+							<input type="text" name="Hoten" value="'.getThongTinSPAt($data, $current_index, "Hoten_User").'" >
+						</td>
+					</tr>
+					<tr>
+						<td class="title">Số điện thoại: </td>
+						<td class="info">
+							<input type="tel" name="Tel" value="'.getThongTinSPAt($data, $current_index, "SoDT_User").'" pattern="[0-9]{10}">
+						</td>
+					</tr>
+					<tr>
+						<td class="title">Email: </td>
+						<td class="info">
+							<input type="email" name="Email" value="'.getThongTinSPAt($data, $current_index, "Email_User").'">
+						</td>
+					</tr>
+				</table>
+			';
+		}
+
+		if(isset($_GET['edit_info_status']) && $_GET['edit_info_status'] == 'true'){
+			echo '<input type="submit" value="Xác nhận chỉnh sửa" class="xac_nhan">';
+		}
+		echo '
+				</form>
+			</div>
+		';
+
+		echo '
+			<div class="thong_tin">
+				<div class="div_edit_status">
+		';
+
+		if(!isset($_GET['edit_address_status']) || $_GET['edit_address_status'] == 'false'){
+			echo '<a href="ManagePage.php?edit_address_status=true">Chỉnh sửa thông tin địa chỉ </a>';
+		}
+		else{	
+			echo '<a href="ManagePage.php?edit_address_status=false">Hủy trạng thái chỉnh sửa </a>';
+		}
+
+		echo '</div>';
+		echo '<form method="POST" action="Edit_Info_Process.php" class="frmUserInfo">';
+	
+		if(!isset($_GET['edit_address_status']) || $_GET['edit_address_status'] == 'false'){ 
+			echo '
+				<table class="tblRegister">
 			';
 			for($i=1;$i<=count($address);$i++){
 				echo '
@@ -271,14 +333,6 @@
 				';
 			}
 			echo '
-					<tr>
-						<td class="title">Số điện thoại: </td>
-						<td class="info">'.getThongTinSPAt($data, $current_index, "SoDT_User").'</td>
-					</tr>
-					<tr>
-						<td class="title">Email: </td>
-						<td class="info">'.getThongTinSPAt($data, $current_index, "Email_User").'</td>
-					</tr>
 				</table>
 			';
 
@@ -314,7 +368,7 @@
 			';
 		}
 
-		if(isset($_GET['editor_status']) && $_GET['editor_status'] == 'true'){
+		if(isset($_GET['edit_address_status']) && $_GET['edit_address_status'] == 'true'){
 			echo '<input type="submit" value="Xác nhận chỉnh sửa" class="xac_nhan">';
 		}
 		echo '
