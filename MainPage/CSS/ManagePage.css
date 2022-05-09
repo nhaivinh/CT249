@@ -123,13 +123,13 @@ body{
     flex-direction: column;
     background-color: #e8f4ff;
     height: 320px;
-    width: 1200px;
+    width: 900px;
     margin-left: 2px;
     border: 1px black solid;
 }
 .hang_ngang .thong_tin .div_edit_status{
 	display: flex;
-	width: 1200px;
+	width: 900px;
 	justify-content: right;
 }
 .hang_ngang .thong_tin .div_edit_status a{
@@ -161,6 +161,7 @@ body{
 }
 .hang_ngang .thong_tin .tblChangePass td{
 	padding: 18px;
+	width: 250px;
 	font-size: 22px;
 }
 .hang_ngang .thong_tin .xac_nhan_pass{
