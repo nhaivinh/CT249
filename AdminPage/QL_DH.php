@@ -18,14 +18,14 @@
 				}
 			}
 			else {
-				header("Location: ../MainPage/index.php");
+				header("Location: ./index.php");
 			}
 		else{
-			header("Location: ../MainPage/index.php");
+			header("Location: ./index.php");
 		}
 	}
 	else{
-		header("Location: ../MainPage/index.php");
+		header("Location: ./index.php");
 	}
 	if(isset($_POST['ngay']) && isset($_POST['thang']) && isset($_POST['nam']) && isset($_POST['id_dh'])){
 		$ngay = $_POST['ngay'];

@@ -39,6 +39,17 @@
 				document.getElementById("hidden-popup-buynow").classList.add("hidden");
 				document.getElementById("hidden-buynow").classList.add("hidden");
 			}
+			function showAddressText(){
+				value = document.getElementById("select_address").value;
+				if(value == 1){
+					document.getElementById("input_address").classList.remove("hidden");
+					document.getElementById("input_address").value = "";
+				}
+				else{
+					document.getElementById("input_address").classList.add("hidden");
+					document.getElementById("input_address").value = value;
+				}
+			}
 		</script>
 		<div class="login-container hidden" id="hidden-popup">
 			<div class="login-popup hidden" id="hidden-login">
@@ -61,19 +72,37 @@
 							<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
 					</div>					
 					<div class="Address_Info">
-						<div class="Address_Text">
-							<input type="text"  name="address">
-						</div>
 						<div class="custom-select">
-							<select>
-								<option value="0">Chọn Địa Chỉ:</option>
-								<option value="1">Địa Chỉ 1</option>
-								<option value="3">Địa Chỉ 2</option>
-								<option value="2">Địa Chỉ Mới</option>
+							<select onChange="showAddressText()" id="select_address">
+								<option value="0">Chọn địa chỉ: </option>
+								<?php
+									$connect = connectDB();
+									$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
+									$result = mysqli_query($connect, $query);
+									$address = array();
+									while($row = mysqli_fetch_array($result, 1)){
+										$address[] = $row;
+									}
+									for($i=0;$i<count($address);$i++){
+										echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
+									}
+									closeDB($connect);
+								?>
+								<option value="1">Thêm địa chỉ mới</option>
 							</select>			
+						</div>
+						<div class="Address_Text">
+							<input type="text" class="input_text" name="address" id="input_address">
 						</div>	
 						<div class="BuyNow_Button">
-							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+							<?php
+								if(isset($_SESSION['username'])){
+									echo '<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">';
+								}
+								else{
+									echo '<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">';
+								}
+							?>
 						</div>
 
 					</div>
@@ -154,6 +183,8 @@
 				for (i = 0; i < sl; i++) {
 				if (s.options[i].innerHTML == this.innerHTML) {
 					s.selectedIndex = i;
+					var event = new Event('change');
+					s.dispatchEvent(event);;
 					h.innerHTML = this.innerHTML;
 					y = this.parentNode.getElementsByClassName("same-as-selected");
 					yl = y.length;

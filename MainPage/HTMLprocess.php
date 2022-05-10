@@ -204,7 +204,14 @@
 								<input type="submit" value="Thêm vào giỏ hàng" class="gio_hang" id="add_Cart" onClick="frmMua.action=\'addCart.php\'">
 							</form>
 							<div class="BuyNow_Button_Area">
-								<button id="BuyNow_Button" onclick="openPopupBuyNow()">Mua Ngay</button>
+				';	
+				if(isset($_SESSION['username'])){	
+					echo '<button id="BuyNow_Button" onclick="openPopupBuyNow()">Mua Ngay</button>';
+				}
+				else{
+					echo '<button id="BuyNow_Button" onclick="openPopup()">Mua Ngay</button>';
+				}
+				echo '			
 							</div>
 						</div>
 					</div>
