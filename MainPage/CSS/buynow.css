@@ -19,7 +19,7 @@
     font-weight: 400;
     line-height: 35px;
 }
-input[type=text] #address{
+input[type=address],#address{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -31,13 +31,12 @@ input[type=text] #address{
 .item_detail{
     display: flex;
     flex-direction: column;
-    width: 800px;
+    width: 1200px;
     height: 500px;
     float: left;
-    border: 1px black solid;
 }
 .Address_Info{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .Address_Text{
     width: 400px;
@@ -46,7 +45,7 @@ input[type=text] #address{
 .buynow-popup{
     position: absolute;
     background-color: white;
-    width: 1200px;
+    width: 1600px;
     height: 600px;
     border-radius: 25px;
     display: flex;
@@ -55,12 +54,12 @@ input[type=text] #address{
     padding: 30px;
 }
 .BuyNow_Button{
-    margin-top: 280px;
-    margin-left: 20px;
+    position: absolute;
+    margin-top: 160px;
 }
 .buynow-input-container{
     display: flex;
-    margin-top: 70px;
+    margin-top: 30px;
     flex-direction: row;
 }
 .buynow-input{
@@ -101,7 +100,7 @@ input[type=text] #address{
 .exit-btn{
     position: absolute;
     top: 10px;
-    left:1200px;
+    left:1600px;
     width: 50px;
     height: 50px;
     border: 0;
@@ -169,4 +168,99 @@ input[type=text] #address{
   
 .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+#table-wrapper {
+    position:relative;
+}
+#table-scroll {
+    height:500px;
+    overflow:auto;  
+    margin-top:20px;
+}
+#table-wrapper table {
+    width:100%;
+    margin: 0%;
+    padding-right: 10px;
+    text-align: center;
+}
+#table-wrapper table * {
+   padding: 0;
+   margin: 0%;
+}
+#table-wrapper thead tr{
+    background:#34495E;
+    color:white;
+    border: #34495E 1px solid;
+}
+#table-wrapper thead .Hinh_Text{
+    width: 100px;
+    display: block;
+}
+#table-wrapper thead .Ma_Text{
+    width: 100px;
+    display: block;
+}
+#table-wrapper thead .Ten_Text{
+    width: 400px;
+    display: block;
+}
+#table-wrapper thead .DonGia_Text{
+    width: 150px;
+    display: block;
+}
+#table-wrapper thead .SoLuong_Text{
+    width: 110px;
+    display: block;
+}
+#table-wrapper thead .ThanhTien_Text{
+    width: 150px;
+    display: block;
+}
+#table-wrapper thead .Xoa_Text{
+    width: 40px;
+    display: block;
+}
+#table-wrapper table td{
+    border-bottom:1px solid black;
+    border-left:1px solid black;
+}
+.address_area {
+  width: 95%;
+  display: block;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  height: 90px;
+  resize: none;
+}
+.dau{
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	align-items: center;
+}
+.so_luong{
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+	-moz-appearance: textfield;
+}
+.TongTien{
+    width: 370px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding-left: 20px;
+}
+.xoa_button {
+    text-decoration: none;
+    padding-top: 5px;
+    padding-top: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 20%;
 }

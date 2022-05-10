@@ -73,47 +73,132 @@
 		</div>
 	</div>
 	<div class="buynow-container hidden" id="hidden-popup-buynow">
-			<div class="buynow-popup hidden" id="hidden-buynow">
-				<form action="" method="POST" class="buynow-input-container">
-					<div class="item_detail">
-							Tên
-							mã
-							<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-					</div>					
-					<div class="Address_Info">
-						<div class="custom-select">
-							<select onChange="showAddressText()" id="select_address">
-								<option value="0">Chọn địa chỉ: </option>
-								<?php
-									$connect = connectDB();
-									$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
-									$result = mysqli_query($connect, $query);
-									$address = array();
-									while($row = mysqli_fetch_array($result, 1)){
-										$address[] = $row;
-									}
-									for($i=0;$i<count($address);$i++){
-										echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
-									}
-									closeDB($connect);
-								?>
-								<option value="1">Thêm địa chỉ mới</option>
-							</select>			
-						</div>
-						<div class="Address_Text">
-							<input type="text"  name="address">
-						</div>	
-						<div class="BuyNow_Button">
-							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
-						</div>
-
+		<div class="buynow-popup hidden" id="hidden-buynow">
+			<form action="" method="POST" class="buynow-input-container">
+				<div class="item_detail">
+					<?php						
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+												<th><label class="Xoa_Text"> <label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>2</td> 
+												<td>CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)</td>
+												<td>5970000</td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
+													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
+												</td>
+												<td>5970000</td>
+												<td>
+												<p class="xoa_button" onclick=""> Xóa </p>
+												</td>  
+											</tr>
+											<tr> 
+												<td>
+													<img src="../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>2</td> 
+												<td>CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)</td>
+												<td>5970000</td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
+													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
+												</td>
+												<td>5970000</td>
+												<td>
+												<p class="xoa_button" onclick=""> Xóa </p>
+												</td>  
+											</tr>
+											<tr> 
+												<td>
+													<img src="../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>2</td> 
+												<td>CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)</td>
+												<td>5970000</td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
+													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
+												</td>
+												<td>5970000</td>
+												<td>
+												<p class="xoa_button" onclick=""> Xóa </p>
+												</td>  
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						
+					?>
+				</div>					
+				<div class="Address_Info">
+					<div class="custom-select">
+						<select onChange="showAddressText()" id="select_address">
+							<option value="0">Chọn địa chỉ: </option>
+							<?php
+								$connect = connectDB();
+								$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
+								$result = mysqli_query($connect, $query);
+								$address = array();
+								while($row = mysqli_fetch_array($result, 1)){
+									$address[] = $row;
+								}
+								for($i=0;$i<count($address);$i++){
+									echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
+								}
+								closeDB($connect);
+							?>
+							<option value="1">Thêm địa chỉ mới</option>
+						</select>			
 					</div>
+					<div class="Address_Text">
+						<!--<input type="text" class="input_text hidden" name="address" id="input_address">-->
+						<textarea rows="6" class="address_area"></textarea>
+						<div class="BuyNow_Button">
+						<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+						</div>
+						<div class="TongTien">
+							<div class="TongTien1">
+								<span>Tổng Tiền Hàng:<span>
+								<span>32000000đ<span>
+							</div>
+							<div class="TongTien2">
+								<span>Phí Vẫn Chuyển:<span>
+								<span>30000đ<span>
+							</div>
+							<div class="TongTien3">
+								<span>Tổng Hoá Đơn:<span>
+								<span>32030000đ<span>
+							</div>
+						</div>	
+					</div>	
 					
-				</form>
-				
-				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
-			</div>
+				</div>	
+			</form>
+			<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
 		</div>
+	</div>
 	<div class="nav_bar">
 		<a href="index.php">Trang chủ</a>
 		<a href="">Giới thiệu</a>

@@ -120,14 +120,43 @@
 							$tenSP = $data[0]['Ten_LK'];
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);
+							closeDB($connect);							
 							
 							echo '
-								<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
-								Mã sản phẩm: '.$idSP.'
-								Tên sản phẩm: '.$tenSP.'
-								Đơn giá: '.$donGia.'
-								+ <input type="number" id="sl_mua_popup" min="1"> -
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td>'.$donGia.'</td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
+													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
+												</td>
+												<td>'.$donGia.'</td>
+												<td>
+												</td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
 							';
 						}
 					?>
@@ -153,11 +182,27 @@
 						</select>			
 					</div>
 					<div class="Address_Text">
-						<input type="text" class="input_text hidden" name="address" id="input_address">
-					</div>	
-					<div class="BuyNow_Button">
+						<!--<input type="text" class="input_text hidden" name="address" id="input_address">-->
+						<textarea rows="6" class="address_area"></textarea>
+						<div class="BuyNow_Button">
 						<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
-					</div>
+						</div>
+						<div class="TongTien">
+							<div class="TongTien1">
+								<span>Tổng Tiền Hàng:<span>
+								<span>32000000đ<span>
+							</div>
+							<div class="TongTien2">
+								<span>Phí Vẫn Chuyển:<span>
+								<span>30000đ<span>
+							</div>
+							<div class="TongTien3">
+								<span>Tổng Hoá Đơn:<span>
+								<span>32030000đ<span>
+							</div>
+						</div>	
+					</div>	
+					
 				</div>	
 			</form>
 			<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
