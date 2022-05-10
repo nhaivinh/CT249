@@ -15,103 +15,54 @@
 	<title>Thông tin sản phẩm</title>
 </head>
 <body>
-<script>
-			function openPopup(){
-				document.getElementById("hidden-popup").classList.remove("hidden");
-				document.getElementById("hidden-login").classList.remove("hidden");
+	<script>
+		function openPopup(){
+			document.getElementById("hidden-popup").classList.remove("hidden");
+			document.getElementById("hidden-login").classList.remove("hidden");
+		}
+		function openLogin(){
+			document.getElementById("hidden-login").classList.remove("hidden");
+			document.getElementById("hidden-register").classList.add("hidden");
+		}
+		function closeLogin(){
+			document.getElementById("hidden-popup").classList.add("hidden");
+			document.getElementById("hidden-login").classList.add("hidden");
+		}
+		function openPopupBuyNow(){
+			document.getElementById("hidden-popup-buynow").classList.remove("hidden");
+			document.getElementById("hidden-buynow").classList.remove("hidden");
+		}
+		function openBuyNow(){
+			document.getElementById("hidden-buynow").classList.remove("hidden");
+		}
+		function closeBuyNow(){
+			document.getElementById("hidden-popup-buynow").classList.add("hidden");
+			document.getElementById("hidden-buynow").classList.add("hidden");
+		}
+		function showAddressText(){
+			value = document.getElementById("select_address").value;
+			if(value == 1){
+				document.getElementById("input_address").classList.remove("hidden");
+				document.getElementById("input_address").value = "";
 			}
-			function openLogin(){
-				document.getElementById("hidden-login").classList.remove("hidden");
-				document.getElementById("hidden-register").classList.add("hidden");
+			else{
+				document.getElementById("input_address").classList.add("hidden");
+				document.getElementById("input_address").value = value;
 			}
-			function closeLogin(){
-				document.getElementById("hidden-popup").classList.add("hidden");
-				document.getElementById("hidden-login").classList.add("hidden");
-			}
-			function openPopupBuyNow(){
-				document.getElementById("hidden-popup-buynow").classList.remove("hidden");
-				document.getElementById("hidden-buynow").classList.remove("hidden");
-			}
-			function openBuyNow(){
-				document.getElementById("hidden-buynow").classList.remove("hidden");
-			}
-			function closeBuyNow(){
-				document.getElementById("hidden-popup-buynow").classList.add("hidden");
-				document.getElementById("hidden-buynow").classList.add("hidden");
-			}
-			function showAddressText(){
-				value = document.getElementById("select_address").value;
-				if(value == 1){
-					document.getElementById("input_address").classList.remove("hidden");
-					document.getElementById("input_address").value = "";
-				}
-				else{
-					document.getElementById("input_address").classList.add("hidden");
-					document.getElementById("input_address").value = value;
-				}
-			}
-		</script>
-		<div class="login-container hidden" id="hidden-popup">
-			<div class="login-popup hidden" id="hidden-login">
-				<form action="" method="POST" class="login-input-container">
-					<input type="username" class="login-input" name="username" pattern="[a-zA-Z0-9]+$" placeholder="Tên người dùng">
-					<input type="password" class="login-input" name="password" placeholder="Mật khẩu">
-					<input type="submit" value="ĐĂNG NHẬP" class="login-login-btn">
-				</form>
-				<p class="login-forgot-password">Quên mật khẩu?</p>
-				<p class="login-no-account">Bạn là người dùng mới? <button onclick="">Tạo tài khoản</button></p>
-				<button class="exit-btn" onClick="closeLogin()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
-			</div>
+		}
+	</script>
+	<div class="login-container hidden" id="hidden-popup">
+		<div class="login-popup hidden" id="hidden-login">
+			<form action="" method="POST" class="login-input-container">
+				<input type="username" class="login-input" name="username" pattern="[a-zA-Z0-9]+$" placeholder="Tên người dùng">
+				<input type="password" class="login-input" name="password" placeholder="Mật khẩu">
+				<input type="submit" value="ĐĂNG NHẬP" class="login-login-btn">
+			</form>
+			<p class="login-forgot-password">Quên mật khẩu?</p>
+			<p class="login-no-account">Bạn là người dùng mới? <button onclick="">Tạo tài khoản</button></p>
+			<button class="exit-btn" onClick="closeLogin()"><img src="./img/x_button.png" alt="exit-btn" style="width: 100px;"></button>
 		</div>
-		<div class="buynow-container hidden" id="hidden-popup-buynow">
-			<div class="buynow-popup hidden" id="hidden-buynow">
-				<form action="" method="POST" class="buynow-input-container">
-					<div class="item_detail">
-							Tên
-							mã
-							<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-					</div>					
-					<div class="Address_Info">
-						<div class="custom-select">
-							<select onChange="showAddressText()" id="select_address">
-								<option value="0">Chọn địa chỉ: </option>
-								<?php
-									$connect = connectDB();
-									$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
-									$result = mysqli_query($connect, $query);
-									$address = array();
-									while($row = mysqli_fetch_array($result, 1)){
-										$address[] = $row;
-									}
-									for($i=0;$i<count($address);$i++){
-										echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
-									}
-									closeDB($connect);
-								?>
-								<option value="1">Thêm địa chỉ mới</option>
-							</select>			
-						</div>
-						<div class="Address_Text">
-							<input type="text" class="input_text" name="address" id="input_address">
-						</div>	
-						<div class="BuyNow_Button">
-							<?php
-								if(isset($_SESSION['username'])){
-									echo '<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">';
-								}
-								else{
-									echo '<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">';
-								}
-							?>
-						</div>
-
-					</div>
-					
-				</form>
-				
-				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
-			</div>
-		</div>
+	</div>
 	<div class="page_Header">
 		<div class="Account">
 			<ul>
@@ -150,6 +101,66 @@
 	<div class="page_body">
 		<div class="hang_doc">
 			<?php showChiTietSP(); ?>
+		</div>
+	</div>
+	<div class="buynow-container hidden" id="hidden-popup-buynow">
+		<div class="buynow-popup hidden" id="hidden-buynow">
+			<form action="" method="POST" class="buynow-input-container">
+				<div class="item_detail">
+					<?php
+						if(isset($_GET['id_lk']) && isset($_GET['loai_lk'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where Sale_Status='Đang bán' and ID_LK = ".$_GET['id_lk'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $_GET['id_lk'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);
+							
+							echo '
+								<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+								Mã sản phẩm: '.$idSP.'
+								Tên sản phẩm: '.$tenSP.'
+								Đơn giá: '.$donGia.'
+								+ <input type="number" id="sl_mua_popup" min="1"> -
+							';
+						}
+					?>
+				</div>					
+				<div class="Address_Info">
+					<div class="custom-select">
+						<select onChange="showAddressText()" id="select_address">
+							<option value="0">Chọn địa chỉ: </option>
+							<?php
+								$connect = connectDB();
+								$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
+								$result = mysqli_query($connect, $query);
+								$address = array();
+								while($row = mysqli_fetch_array($result, 1)){
+									$address[] = $row;
+								}
+								for($i=0;$i<count($address);$i++){
+									echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
+								}
+								closeDB($connect);
+							?>
+							<option value="1">Thêm địa chỉ mới</option>
+						</select>			
+					</div>
+					<div class="Address_Text">
+						<input type="text" class="input_text hidden" name="address" id="input_address">
+					</div>	
+					<div class="BuyNow_Button">
+						<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+					</div>
+				</div>	
+			</form>
+			<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
 		</div>
 	</div>
 	<script>
