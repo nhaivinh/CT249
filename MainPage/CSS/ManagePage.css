@@ -359,4 +359,17 @@ body{
 	border-right: 1px black solid;
 	padding-top: 20px;
 }
-
+#BuyNow_Button {
+    background-color: #4d6985;
+    border-radius: 5%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 200px;
+}
