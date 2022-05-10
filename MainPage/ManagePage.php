@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="./CSS/BuyNow.css" />
+	<link rel="stylesheet" href="./CSS/buynow.css" />
 	<link rel="stylesheet" href="./CSS/ManagePage.css" />
 
 	<title>Shop linh kiện Demo</title>
@@ -26,6 +26,17 @@
 			function closeBuyNow(){
 				document.getElementById("hidden-popup-buynow").classList.add("hidden");
 				document.getElementById("hidden-buynow").classList.add("hidden");
+			}
+			function showAddressText(){
+				value = document.getElementById("select_address").value;
+				if(value == 1){
+					document.getElementById("input_address").classList.remove("hidden");
+					document.getElementById("input_address").value = "";
+				}
+				else{
+					document.getElementById("input_address").classList.add("hidden");
+					document.getElementById("input_address").value = value;
+				}
 			}
 		</script>
 	<div class="page_Header">
@@ -70,16 +81,27 @@
 							<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
 					</div>					
 					<div class="Address_Info">
+						<div class="custom-select">
+							<select onChange="showAddressText()" id="select_address">
+								<option value="0">Chọn địa chỉ: </option>
+								<?php
+									$connect = connectDB();
+									$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
+									$result = mysqli_query($connect, $query);
+									$address = array();
+									while($row = mysqli_fetch_array($result, 1)){
+										$address[] = $row;
+									}
+									for($i=0;$i<count($address);$i++){
+										echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
+									}
+									closeDB($connect);
+								?>
+								<option value="1">Thêm địa chỉ mới</option>
+							</select>			
+						</div>
 						<div class="Address_Text">
 							<input type="text"  name="address">
-						</div>
-						<div class="custom-select">
-							<select>
-								<option value="0">Chọn Địa Chỉ:</option>
-								<option value="1">Địa Chỉ 1</option>
-								<option value="3">Địa Chỉ 2</option>
-								<option value="2">Địa Chỉ Mới</option>
-							</select>			
 						</div>	
 						<div class="BuyNow_Button">
 							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">

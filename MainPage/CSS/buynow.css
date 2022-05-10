@@ -116,7 +116,8 @@ input[type=text] #address{
 }
   
 .custom-select select {
-    display: none; /*hide original SELECT element:*/
+    /*hide original SELECT element:*/
+    display: none; 
 }
   
 .select-selected {
