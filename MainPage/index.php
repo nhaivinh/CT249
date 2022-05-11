@@ -127,5 +127,10 @@
 		echo $alert;
 		unset($_SESSION['buy_status']);
 	}
+	if(isset($_SESSION['cart_status'])){
+		$alert = "<script>alert('".$_SESSION['cart_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['cart_status']);
+	}
 ?>
 

@@ -4,6 +4,18 @@
 	if(!isset($_SESSION['username'])){
 		header("Location: index.php");
 	}
+	$connect = connectDB();
+	$query = "Select * from user_cart where ID_user = ".$_SESSION['id_user'];
+	$result = mysqli_query($connect, $query);
+	$detail_cart = array();
+	while($row = mysqli_fetch_array($result, 1)){
+		$detail_cart[] = $row;
+	}	
+	closeDB($connect);
+	if(count($detail_cart) == 0){
+		$_SESSION['cart_status'] = "Giỏ hàng rỗng, hãy chọn sản phẩm";
+		header("Location: index.php");
+	}
 ?>
 <!doctype html>
 <html>
@@ -14,29 +26,58 @@
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
-		<script>		
-			function openPopupBuyNow(){
-				document.getElementById("hidden-popup-buynow").classList.remove("hidden");
-				document.getElementById("hidden-buynow").classList.remove("hidden");
+	<script>		
+		Tong_tien = 0;
+		function openPopupBuyNow(){
+			document.getElementById("hidden-popup-buynow").classList.remove("hidden");
+			document.getElementById("hidden-buynow").classList.remove("hidden");
+		}
+		function openBuyNow(){
+			document.getElementById("hidden-buynow").classList.remove("hidden");
+		}
+		function closeBuyNow(){
+			document.getElementById("hidden-popup-buynow").classList.add("hidden");
+			document.getElementById("hidden-buynow").classList.add("hidden");
+		}
+		function updateAddress(){
+			document.getElementById("input_address_user").value = document.getElementById("input_address").value;
+		}
+		function showAddressText(){
+			value = document.getElementById("select_address").value;
+			if(value == 1){
+				document.getElementById("input_address").classList.remove("hidden");
+				document.getElementById("input_address").value = "";
 			}
-			function openBuyNow(){
-				document.getElementById("hidden-buynow").classList.remove("hidden");
+			else{
+				document.getElementById("input_address").classList.add("hidden");
+				document.getElementById("input_address").value = value;
+				updateAddress();
 			}
-			function closeBuyNow(){
-				document.getElementById("hidden-popup-buynow").classList.add("hidden");
-				document.getElementById("hidden-buynow").classList.add("hidden");
+		}
+		function updateSL(index){
+			var elementForm_ID = 'frm_GioHang_' + index;
+			document.getElementById(elementForm_ID).action= "Capnhat_soluong_Cart.php";
+			document.getElementById(elementForm_ID).submit();
+		}
+		function updateMinusSL(index){
+			var elementSL_ID = 'soluong_sp_' + index;
+			var elementForm_ID = 'frm_GioHang_' + index;
+			if(document.getElementById(elementSL_ID).value > 1){
+				document.getElementById(elementSL_ID).value--;
+				updateSL(index);
 			}
-			function showAddressText(){
-				value = document.getElementById("select_address").value;
-				if(value == 1){
-					document.getElementById("input_address").classList.remove("hidden");
-					document.getElementById("input_address").value = "";
-				}
-				else{
-					document.getElementById("input_address").classList.add("hidden");
-					document.getElementById("input_address").value = value;
-				}
-			}
+		}
+		function updatePlusSL(index){
+			var elementSL_ID = 'soluong_sp_' + index;
+			document.getElementById(elementSL_ID).value++;
+			updateSL(index);
+		}
+		function updateTotalCost(tien){
+			// document.getElementById("tong_tien").innerHTML = tien;
+			// document.getElementById("tong_tien_hang").innerHTML = tien;
+			// document.getElementById("tong_hoa_don").innerHTML = tien + 30000;
+			// document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
+		}
 		</script>
 	<div class="page_Header">
 		<div class="Account">
@@ -76,85 +117,82 @@
 		<a href="">Khuyến mãi</a>
 		<a href="">Liên hệ</a>
 	</div>
+	<?php
+	?>
     <div class="buynow-container" id="hidden-popup-buynow">
 		<div class="buynow-popup" id="hidden-buynow">
-			<form action="" method="POST" class="buynow-input-container">
-				<div class="item_detail">
-					<?php						
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-												<th><label class="Xoa_Text"> <label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
-												<td>
-													<img src="../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp" alt="exit-btn" style="width: 200px;">
-												</td> 
-												<td>2</td> 
-												<td>CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)</td>
-												<td>5970000</td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
-													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-												</td>
-												<td>5970000</td>
-												<td>
-												<p class="xoa_button" onclick=""> Xóa </p>
-												</td>  
-											</tr>
-											<tr> 
-												<td>
-													<img src="../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp" alt="exit-btn" style="width: 200px;">
-												</td> 
-												<td>2</td> 
-												<td>CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)</td>
-												<td>5970000</td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
-													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-												</td>
-												<td>5970000</td>
-												<td>
-												<p class="xoa_button" onclick=""> Xóa </p>
-												</td>  
-											</tr>
-											<tr> 
-												<td>
-													<img src="../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp" alt="exit-btn" style="width: 200px;">
-												</td> 
-												<td>2</td> 
-												<td>CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)</td>
-												<td>5970000</td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
-													<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-												</td>
-												<td>5970000</td>
-												<td>
-												<p class="xoa_button" onclick=""> Xóa </p>
-												</td>  
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
-						
-					?>
+			<div action="" method="POST" class="buynow-input-container">
+				<div class="item_detail">						
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="SoLuong_Text">Số Lượng<label></th>
+										<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+										<th><label class="Xoa_Text"> <label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from user_cart where ID_user = ".$_SESSION['id_user'];
+										$result = mysqli_query($connect, $query);
+										$detail_cart = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$detail_cart[] = $row;
+										}	
+										for($i=0;$i<count($detail_cart);$i++){
+											$id_lk = $detail_cart[$i]['ID_LK'];
+											$sl_mua = $detail_cart[$i]['So_luong'];
+
+											$query = "Select * from linhkien where ID_LK = ".$id_lk;
+											$result = mysqli_query($connect, $query);
+											$detail_lk = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$detail_lk[] = $row;
+											}	
+											$imgSRC = $detail_lk[0]['Hinh_anh'];
+											$tenSP = $detail_lk[0]['Ten_LK'];
+											$donGia = $detail_lk[0]['Gia_LK'] * (1 - $detail_lk[0]['Giam_gia']);
+											$sl_tonkho = $detail_lk[0]['So_luong'];
+
+											echo '
+												<form method="POST" id="frm_GioHang_'.$i.'" action="">
+													<input type="text" name="id_lk" class="hidden_input" value="'.$id_lk.'">
+													<tr> 
+														<td>
+															<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+														</td> 
+														<td>'.$id_lk.'</td> 
+														<td>'.$tenSP.'</td>
+														<td><label id="donGia_SP_'.$i.'">'.$donGia.'</label></td> 
+														<td>
+															<input type="button" class="dau" value="-" onClick="updateMinusSL('.$i.');">
+															<input type="number" name="sl_sp" class="so_luong" value="'.$sl_mua.'" min="1" onChange="updateSL('.$i.');" id="soluong_sp_'.$i.'">
+															<input type="button" class="dau" value="+" onClick="updatePlusSL('.$i.');">
+														</td>
+														<td><label id="thanh_tien_'.$i.'"></label></td>
+														<script>
+															document.getElementById("thanh_tien_'.$i.'").innerHTML = ('.$donGia.' * document.getElementById("soluong_sp_'.$i.'").value);
+														</script>
+														<td>
+														<p class="xoa_button" onClick="frm_GioHang_'.$i.'.action=\'Xoa_sp_Cart.php\';document.getElementById(\'frm_GioHang_'.$i.'\').submit();"> Xóa </p>
+														</td>  
+													</tr>
+												</form>
+											';
+										}
+										closeDB($connect);
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>					
 				<div class="Address_Info">
 					<div class="custom-select">
@@ -177,29 +215,53 @@
 						</select>			
 					</div>
 					<div class="Address_Text">
-						<!--<input type="text" class="input_text hidden" name="address" id="input_address">-->
-						<textarea rows="6" class="address_area"></textarea>
+						<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
 						<div class="BuyNow_Button">
-						<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+						<form action="MuaNgay_Cart.php" method="post">
+							<input type="text" name="address" class="hidden_input" id="input_address_user">
+							<input type="text" name="tong_tien" class="hidden_input" id="input_tong_tien">
+							<script>
+								document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
+							</script>
+							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+						</form>
 						</div>
 						<div class="TongTien">
-							<div class="TongTien1">
-								<span>Tổng Tiền Hàng:<span>
-								<span>32000000đ<span>
-							</div>
-							<div class="TongTien2">
-								<span>Phí Vẫn Chuyển:<span>
-								<span>30000đ<span>
-							</div>
 							<div class="TongTien3">
-								<span>Tổng Hoá Đơn:<span>
-								<span>32030000đ<span>
+								<span>Tổng Hoá Đơn:</span>
+								<span id="tong_hoa_don"></span>
+								<span>đ</span>
 							</div>
+							<?php
+								$connect = connectDB();
+								$query = "Select count(*) as SL from user_cart where ID_user = ".$_SESSION['id_user'];
+								$result = mysqli_query($connect, $query);
+								$data = array();
+								while($row = mysqli_fetch_array($result, 1)){
+									$data[] = $row;
+								}	
+								$sl_sp = $data[0]['SL'];
+								for($i=0;$i<$sl_sp;$i++){
+									echo '
+										<script>
+											var elementThanhTien_ID = "thanh_tien_'.$i.'";
+											Tong_tien += parseInt(document.getElementById(elementThanhTien_ID).innerHTML);
+										</script>
+									';
+								}
+								echo '
+									<script>
+										document.getElementById("tong_hoa_don").innerHTML = Tong_tien;
+										document.getElementById("input_tong_tien").value = Tong_tien;
+									</script>
+								';
+								closeDB($connect);
+							?>
 						</div>	
 					</div>	
 					
 				</div>	
-			</form>
+			</div>
 		</div>
 	</div>
     <script>
@@ -284,3 +346,22 @@
 		then close all select boxes:*/
 		document.addEventListener("click", closeAllSelect);
 	</script>
+</body>
+
+<?php
+	if(isset($_SESSION['edit_amount_status'])){
+		$alert = "<script>alert('".$_SESSION['edit_amount_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['edit_amount_status']);
+	}
+	if(isset($_SESSION['cart_buy_status'])){
+		$alert = "<script>alert('".$_SESSION['cart_buy_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['cart_buy_status']);
+	}
+	if(isset($_SESSION['xoa_sp_cart'])){
+		$alert = "<script>alert('".$_SESSION['xoa_sp_cart']."');</script>";
+		echo $alert;
+		unset($_SESSION['xoa_sp_cart']);
+	}
+?>

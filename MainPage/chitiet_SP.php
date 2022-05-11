@@ -50,7 +50,7 @@
 				document.getElementById("input_address").value = "";
 			}
 			else{
-				//document.getElementById("input_address").classList.add("hidden");
+				document.getElementById("input_address").classList.add("hidden");
 				document.getElementById("input_address").value = value;
 				updateAddress();
 			}
@@ -67,8 +67,7 @@
 		}
 		function updateTotalCostPopup(tien){
 			document.getElementById("tong_tien").innerHTML = tien;
-			document.getElementById("tong_tien_hang").innerHTML = tien;
-			document.getElementById("tong_hoa_don").innerHTML = tien + 30000;
+			document.getElementById("tong_hoa_don").innerHTML = tien;
 			document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
 		}
 	</script>
@@ -218,21 +217,13 @@
 							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
 						</div>
 						<div class="TongTien">
-							<div class="TongTien1">
-								<span>Tổng Tiền Hàng:<span>
-								<span id="tong_tien_hang"><span>
-							</div>
-							<div class="TongTien2">
-								<span>Phí Vận Chuyển:<span>
-								<span id="phi_van_chuyen">30000đ<span>
-							</div>
 							<div class="TongTien3">
-								<span>Tổng Hoá Đơn:<span>
-								<span id="tong_hoa_don"><span>
+								<span>Tổng Hoá Đơn:</span>
+								<span id="tong_hoa_don"></span>
+								<span>đ</span>
 							</div>
 							<script>
-								document.getElementById("tong_tien_hang").innerHTML = document.getElementById("tong_tien").innerHTML;
-								document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML) + 30000;
+								document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
 							</script>
 						</div>	
 					</div>	

@@ -28,6 +28,17 @@
 			}
 			$id_dh = $data[0]['max'] + 1;
 
+			$query = "Select *  from address_user where id_user='".$id_user."' and Diachi='".$address."'";	
+			$result = mysqli_query($connect, $query);
+			$data = array();
+			while($row = mysqli_fetch_array($result, 1)){
+				$data[] = $row;
+			}
+			if(count($data) == 0){
+				$query = "INSERT INTO address_user values($id_user, '$address')";
+				mysqli_query($connect, $query);
+			}
+
 			$query = "INSERT INTO `donhang` (ID_DH, `ID_User_KH`, Diachi_DH, `Status_DH`, `Ngay_Dat`, `Tong_tien`) 
 				VALUES ($id_dh,'".$_SESSION['id_user']."', '".$address."','Chờ xử lý', sysdate(), '".$tong_tien."')";
 			mysqli_query($connect, $query);
@@ -38,17 +49,21 @@
 						
 			$query = "update linhkien set so_luong='".($sl_tonkho - $sl_mua)."' WHERE id_lk='".$id_lk."'";	
 			mysqli_query($connect, $query);
-				
+			
+			
 			$_SESSION['buy_status'] = "Đã mua thành công.";
+			closeDB($connect);
 			header("Location: index.php");
 		}
 		else{
 			$_SESSION['buy_status'] = "Số lượng vượt quá số hàng tồn kho";
+			closeDB($connect);
 			header("Location: chitiet_SP.php?id_lk=".$id_lk."&loai_lk=".$loai_lk);
 		}
 	}
 	else{
 		$_SESSION['buy_status'] = "Hãy đăng nhập trước khi thực hiện mua hàng";
+		closeDB($connect);
 		header("Location: chitiet_SP.php?id_lk=".$id_lk."&loai_lk=".$loai_lk);
 	}
 ?>
