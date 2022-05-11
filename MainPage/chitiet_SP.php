@@ -31,6 +31,7 @@
 		function openPopupBuyNow(){
 			document.getElementById("hidden-popup-buynow").classList.remove("hidden");
 			document.getElementById("hidden-buynow").classList.remove("hidden");
+			document.getElementById("soluong_sp_popup").value = document.getElementById("soluong_sp").value;
 		}
 		function openBuyNow(){
 			document.getElementById("hidden-buynow").classList.remove("hidden");
@@ -68,7 +69,7 @@
 			document.getElementById("tong_tien").innerHTML = tien;
 			document.getElementById("tong_tien_hang").innerHTML = tien;
 			document.getElementById("tong_hoa_don").innerHTML = tien + 30000;
-			document.getElementById("don_gia").value = document.getElementById("tong_tien").innerHTML
+			document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
 		}
 	</script>
 	<div class="login-container hidden" id="hidden-popup">
@@ -125,7 +126,7 @@
 	</div>
 	<div class="buynow-container hidden" id="hidden-popup-buynow">
 		<div class="buynow-popup hidden" id="hidden-buynow">
-			<form action="" method="POST" class="buynow-input-container">
+			<form action="muaNgay.php" method="POST" class="buynow-input-container">
 				<div class="item_detail">
 					<?php
 						if(isset($_GET['id_lk']) && isset($_GET['loai_lk'])){
@@ -203,33 +204,38 @@
 					<div class="Address_Text">
 						<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
 						<div class="BuyNow_Button">
-						<form action="muaNgay" method="post">
-							<input type="text" name="username" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
+							<input type="text" name="user_id" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
 							<input type="text" name="id_LK" class="hidden_input_popup" value="<?php echo $_GET['id_lk']; ?>">
-							<input type="text" name="don_gia" class="hidden_input_popup" id="so_luong_mua">
+							<input type="text" name="loai_lk" class="hidden_input_popup" value="<?php echo $_GET['loai_lk']; ?>">
+							<input type="text" name="so_luong_mua" class="hidden_input_popup" id="so_luong_mua">
 							<input type="text" name="don_gia" class="hidden_input_popup" id="don_gia">
+							<input type="text" name="address" class="hidden_input_popup" id="input_address_user">
+							<input type="text" name="tong_tien" class="hidden_input_popup" id="input_tong_tien">
 							<script>
 								document.getElementById("so_luong_mua").value = document.getElementById("soluong_sp_popup").value;
 								document.getElementById("don_gia").value = document.getElementById("donGiaLK").innerHTML;
+								document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
+								document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
 							</script>
-							<input type="text" name="address" class="hidden_input_popup" id="input_address_user">
-							<input type="text" name="tong_tien" class="hidden_input_popup" id="input_tong_tien">
 							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
-						</form>
 						</div>
 						<div class="TongTien">
 							<div class="TongTien1">
 								<span>Tổng Tiền Hàng:<span>
-								<span id="tong_tien_hang">32000000đ<span>
+								<span id="tong_tien_hang"><span>
 							</div>
 							<div class="TongTien2">
-								<span>Phí Vẫn Chuyển:<span>
+								<span>Phí Vận Chuyển:<span>
 								<span id="phi_van_chuyen">30000đ<span>
 							</div>
 							<div class="TongTien3">
 								<span>Tổng Hoá Đơn:<span>
-								<span id="tong_hoa_don">32030000đ<span>
+								<span id="tong_hoa_don"><span>
 							</div>
+							<script>
+								document.getElementById("tong_tien_hang").innerHTML = document.getElementById("tong_tien").innerHTML;
+								document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML) + 30000;
+							</script>
 						</div>	
 					</div>	
 					
