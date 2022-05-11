@@ -47,12 +47,10 @@
 				<?php
 					if(isset($_SESSION['username'])){
 				?>
-						<li id="Welcome">
-							<a href="ManagePage.php">
-								<?php echo "Welcome ".$_SESSION['username']; ?> 
-							</a>
-						</li>
-						<li><a href ="Logout.php">Đăng xuất</a></li>
+						<li id="Welcome"><?php echo "Welcome ".$_SESSION['username']; ?> </li>
+					 	<li><a href="ManagePage.php">Vào trang cá nhân</a></li>
+						<li><a href="ManagePage.php">Xem giỏ hàng</a></li>
+						<li><a href ="Logout.php" id="Logout">Đăng xuất</a></li>
 				<?php
 					}
 					else{
