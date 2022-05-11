@@ -9,8 +9,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="./CSS/buynow.css" />
-	<link rel="stylesheet" href="./CSS/ManagePage.css" />
+	<link rel="stylesheet" href="./CSS/Cart.css" />
 
 	<title>Shop linh kiện Demo</title>
 </head>
@@ -70,8 +69,15 @@
 			</ul>
 		</div>
 	</div>
-	<div class="buynow-container hidden" id="hidden-popup-buynow">
-		<div class="buynow-popup hidden" id="hidden-buynow">
+    <div class="nav_bar">
+		<a href="index.php">Trang chủ</a>
+		<a href="">Giới thiệu</a>
+		<a href="">Tin tức</a>
+		<a href="">Khuyến mãi</a>
+		<a href="">Liên hệ</a>
+	</div>
+    <div class="buynow-container" id="hidden-popup-buynow">
+		<div class="buynow-popup" id="hidden-buynow">
 			<form action="" method="POST" class="buynow-input-container">
 				<div class="item_detail">
 					<?php						
@@ -194,47 +200,9 @@
 					
 				</div>	
 			</form>
-			<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
 		</div>
 	</div>
-	<div class="nav_bar">
-		<a href="index.php">Trang chủ</a>
-		<a href="">Giới thiệu</a>
-		<a href="">Tin tức</a>
-		<a href="">Khuyến mãi</a>
-		<a href="">Liên hệ</a>
-	</div>
-	<br>
-	<div class="hang_ngang">
-		<div class="danh_muc">
-			<a href="ManagePage.php?info=userInfo" id="userInfo"> Thông tin tài khoản </a>
-			<a href="ManagePage.php?info=changePass" id="changePass"> Thay đổi mật khẩu </a>
-			<a href="Cart.php?info=GioHang" id="gioHang"> Xem giỏ hàng </a>
-			<a href="ManagePage.php?info=hoaDon" id="hoaDon"> Xem hóa đơn </a>
-<?php
-			if(strcmp($_SESSION['privilege'],"Owner") == 0 || strcmp($_SESSION['privilege'],"Senior Staff") == 0 || strcmp($_SESSION['privilege'],"Staff") == 0){
-				echo "<a href=\"../AdminPage/mainpage.php\"> Đến trang quản lý </a>";
-			}
-?>
-		</div>
-<?php
-		if(isset($_GET['info'])){
-			if($_GET['info'] == "userInfo"){
-				showUserInfo();
-			}
-			if($_GET['info'] == "changePass"){
-				showChangePass();
-			}
-			if($_GET['info'] == "GioHang"){
-				showCart();
-			}
-			if($_GET['info'] == "hoaDon"){
-				showHoaDon();
-			}
-		}
-		else showUserInfo();
-?>
-	<script>
+    <script>
 		var x, i, j, l, ll, selElmnt, a, b, c;
 		/*look for any elements with the class "custom-select":*/
 		x = document.getElementsByClassName("custom-select");
@@ -316,18 +284,3 @@
 		then close all select boxes:*/
 		document.addEventListener("click", closeAllSelect);
 	</script>
-</body>
-</html>
-
-<?php
-	if(isset($_SESSION['changePass_status'])){
-		$alert = "<script>alert('".$_SESSION['changePass_status']."');</script>";
-		echo $alert;
-		unset($_SESSION['changePass_status']);
-	}
-	if(isset($_SESSION['cart_buy_status'])){
-		$alert = "<script>alert('".$_SESSION['cart_buy_status']."');</script>";
-		echo $alert;
-		unset($_SESSION['cart_buy_status']);
-	}
-?>
