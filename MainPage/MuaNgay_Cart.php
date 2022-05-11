@@ -36,6 +36,17 @@
 			}
 		}
 		if($ableToAdd == true){
+			$query = "Select *  from address_user where id_user='".$id_user."' and Diachi='".$address."'";	
+			$result = mysqli_query($connect, $query);
+			$address_array = array();
+			while($row = mysqli_fetch_array($result, 1)){
+				$address_array[] = $row;
+			}
+			if(count($address_array) == 0){
+				$query = "INSERT INTO address_user values($id_user, '$address')";
+				mysqli_query($connect, $query);
+			}
+
 			$query = "INSERT INTO `donhang` (ID_DH,`ID_User_KH`, `Status_DH`, `Ngay_Dat`, Tong_tien) 
 					VALUES ('".$id_dh."','".$id_user."', 'Chờ xử lý', sysdate(), '".$tong_tien."')";
 			mysqli_query($connect, $query);
