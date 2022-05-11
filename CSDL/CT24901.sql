@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 23, 2022 lúc 02:39 PM
+-- Thời gian đã tạo: Th5 11, 2022 lúc 08:36 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.2
 
@@ -61,7 +61,8 @@ CREATE TABLE `address_user` (
 
 INSERT INTO `address_user` (`ID_User`, `Diachi`) VALUES
 (1, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ'),
-(2, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ');
+(2, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ'),
+(1, '123 Nguyễn Trãi');
 
 -- --------------------------------------------------------
 
@@ -338,10 +339,16 @@ INSERT INTO `ram` (`ID_LK`, `HangSX`, `DDR`, `Dung_luong`, `Bus`) VALUES
 CREATE TABLE `user_cart` (
   `ID_User` int(11) NOT NULL,
   `ID_LK` int(11) NOT NULL,
-  `So_luong` int(11) NOT NULL CHECK (`So_luong` > 0),
-  `Don_gia` int(11) NOT NULL CHECK (`Don_gia` > 0),
-  `Tong` int(11) NOT NULL CHECK (`Don_gia` > 0)
+  `So_luong` int(11) NOT NULL CHECK (`So_luong` > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_cart`
+--
+
+INSERT INTO `user_cart` (`ID_User`, `ID_LK`, `So_luong`) VALUES
+(1, 1, 1),
+(1, 2, 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
