@@ -1,6 +1,12 @@
 .hidden{
     visibility: hidden;
 }
+.hidden_input_popup{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    border: 0px;
+}
 .buynow-container{
     position: fixed;
     top:0;
