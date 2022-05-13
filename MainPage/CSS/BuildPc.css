@@ -2,6 +2,12 @@
 	margin:0px;
 	padding:0px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
 .hidden_input{
 	display: none;
     width: 0px;
@@ -137,7 +143,9 @@ body{
     ALIGN-ITEMS: CENTER;
 }
 .page_body .total_price{
-    flex-basis: 25%;
+	margin-top: 0px;
+	flex-basis: 25%;
+	height: 1100px;
 	flex-direction: row;
 }
 .page_body .choose_item .cpu,.main,.gpu,.ram,.ssd,.hdd,.case{
@@ -190,19 +198,29 @@ body{
     text-align: left;
 }
 .page_body .choose_item .quantity_item{
-	width: 105px;
+	padding: 10px;
+    display: flex;
+    width: 110px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
 }
 .page_body .choose_item .quantity_item .dau {
-    width: 30px;
+	width: 30px;
     height: 30px;
     font-size: 20px;
     align-items: center;
+    border: none;
+    border-radius: 10px;
 }
 .page_body .choose_item .quantity_item .so_luong {
 	width: 30px;
     height: 30px;
     font-size: 16px;
     text-align: center;
+	border: none;
 }
 .page_body .choose_item .price_item{
 	display: flex;

@@ -97,7 +97,7 @@
     font-size: 25px;
 }
 
-.exit-btn{
+.exit-btn-info{
     position: absolute;
     top: 10px;
     left:1200px;
@@ -169,6 +169,7 @@
 	height: 30px;
 	font-size: 20px;
 	align-items: center;
+    z-index: 2;
 }
 .so_luong{
 	width: 30px;
@@ -198,4 +199,15 @@
     float: left;
     font-size: 26px;
     font-weight: 800;
+}
+#thungrac{
+    -webkit-mask: url(../img/thungrac.svg) center center / contain no-repeat;
+    mask: url(../img/thungrac.svg);
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    color: gray;
+    background-color: var(--button-icon-color, gray);
+    position: absolute;
+    z-index: 1;
 }

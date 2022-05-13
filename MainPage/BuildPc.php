@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="./CSS/BuildPc.css" />
 	<link rel="stylesheet" href="./CSS/login.css" />
 	<link rel="stylesheet" href="./CSS/chooseitem.css" />
+	<link rel="stylesheet" href="./CSS/buynow.css" />
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
@@ -38,6 +39,81 @@
 			function closePopupCPUChooseItem(){
 				document.getElementById("hidden-popup-chooseitem-CPU").classList.add("hidden");
 				document.getElementById("hidden-chooseitem-CPU").classList.add("hidden");
+			}
+			function openPopupMainChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-Main").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-Main").classList.remove("hidden");
+			}
+			function closePopupMainChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-Main").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-Main").classList.add("hidden");
+			}
+			function openPopupRamChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-Ram").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-Ram").classList.remove("hidden");
+			}
+			function closePopupRamChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-Ram").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-Ram").classList.add("hidden");
+			}
+			function openPopupGPUChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-GPU").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-GPU").classList.remove("hidden");
+			}
+			function closePopupGPUChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-GPU").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-GPU").classList.add("hidden");
+			}
+			function openPopupSSDChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-SSD").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-SSD").classList.remove("hidden");
+			}
+			function closePopupSSDChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-SSD").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-SSD").classList.add("hidden");
+			}
+			function openPopupHDDChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-HDD").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-HDD").classList.remove("hidden");
+			}
+			function closePopupHDDChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-HDD").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-HDD").classList.add("hidden");
+			}
+			function openPopupCaseChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-Case").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-Case").classList.remove("hidden");
+			}
+			function closePopupCaseChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-Case").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-Case").classList.add("hidden");
+			}
+			function openPopupBuyNow(){
+			document.getElementById("hidden-popup-buynow").classList.remove("hidden");
+			document.getElementById("hidden-buynow").classList.remove("hidden");
+			document.getElementById("soluong_sp_popup").value = document.getElementById("soluong_sp").value;
+			}
+			function openBuyNow(){
+				document.getElementById("hidden-buynow").classList.remove("hidden");
+			}
+			function closeBuyNow(){
+				document.getElementById("hidden-popup-buynow").classList.add("hidden");
+				document.getElementById("hidden-buynow").classList.add("hidden");
+			}
+			function updateAddress(){
+				document.getElementById("input_address_user").value = document.getElementById("input_address").value;
+			}
+			function showAddressText(){
+				value = document.getElementById("select_address").value;
+				if(value == 1){
+					document.getElementById("input_address").classList.remove("hidden");
+					document.getElementById("input_address").value = "";
+				}
+				else{
+					document.getElementById("input_address").classList.add("hidden");
+					document.getElementById("input_address").value = value;
+					updateAddress();
+				}
 			}
 		</script>
 	<div class="login-container hidden" id="hidden-popup">
@@ -120,7 +196,7 @@
 						$donGia = $giaGoc * (1 - $giamGia);
 						echo '
 							<div class="title">
-								<span class="title_text">Bo mạch chủ</span>
+								<span class="title_text">Vi xử lý</span>
 								<div class="img_item">
 									<img src="'.$imgSRC.'" style="">
 								</div>
@@ -130,12 +206,13 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
+								<span hidden id="thungrac"></span>
 									<input type="button" class="dau" id="CPUMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_CPU\').value--;">
 									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_CPU">
 									<script>
 										var sl_sp = document.getElementById("soluong_sp_CPU").value;
 										if(sl_sp == "1"){
-											//document.getElementById("CPUMinusButton").value = "Rác";
+											document.getElementById("CPUMinusButton").classList.add("hidden");
 										}
 									</script>
 									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_CPU\').value++;">
@@ -166,7 +243,7 @@
 								</div>
 								<span>Vui lòng chọn linh kiện</span>
 							</div>
-                			<button class="add_button" onclick="">Chọn</button>
+                			<button class="add_button" onclick="openPopupMainChooseItem()">Chọn</button>
 						';
 					}
 					else {
@@ -214,7 +291,7 @@
 									</div>
 								</div>					
 							</div>
-							<button class="add_button" onclick="openPopupGPUChooseItem()">Chỉnh sửa</button>
+							<button class="add_button" onclick="openPopupMainChooseItem()">Chỉnh sửa</button>
 						';
 						closeDB($connect);
 					}
@@ -231,7 +308,7 @@
 								</div>
 								<span>Vui lòng chọn linh kiện</span>
 							</div>
-                			<button class="add_button" onclick="">Chọn</button>
+                			<button class="add_button" onclick="openPopupRamChooseItem()">Chọn</button>
 						';
 					}
 					else {
@@ -279,7 +356,7 @@
 									</div>
 								</div>					
 							</div>
-							<button class="add_button" onclick="openPopupRAMChooseItem()">Chỉnh sửa</button>
+							<button class="add_button" onclick="openPopupRamChooseItem()">Chỉnh sửa</button>
 						';
 						closeDB($connect);
 					}
@@ -296,7 +373,7 @@
 								</div>
 								<span>Vui lòng chọn linh kiện</span>
 							</div>
-                			<button class="add_button" onclick="">Chọn</button>
+                			<button class="add_button" onclick="openPopupGPUChooseItem()">Chọn</button>
 						';
 					}
 					else {
@@ -361,7 +438,7 @@
 								</div>
 								<span>Vui lòng chọn linh kiện</span>
 							</div>
-                			<button class="add_button" onclick="">Chọn</button>
+                			<button class="add_button" onclick="openPopupSSDChooseItem()">Chọn</button>
 						';
 					}
 					else {
@@ -426,7 +503,7 @@
 								</div>
 								<span>Vui lòng chọn linh kiện</span>
 							</div>
-                			<button class="add_button" onclick="">Chọn</button>
+                			<button class="add_button" onclick="openPopupHDDChooseItem()">Chọn</button>
 						';
 					}
 					else {
@@ -491,7 +568,7 @@
 								</div>
 								<span>Vui lòng chọn linh kiện</span>
 							</div>
-                			<button class="add_button" onclick="">Chọn</button>
+                			<button class="add_button" onclick="openPopupCaseChooseItem()">Chọn</button>
 						';
 					}
 					else {
@@ -549,7 +626,7 @@
         <div class="total_price">
             <div class="total_price_item">
                 <span class="total_price_text">Tổng Cộng: 25000000 đ</span>
-				<input type="button" class="buy_now_button" value="Mua Ngay" onClick="">
+				<input type="button" class="buy_now_button" value="Mua Ngay" onClick="openPopupBuyNow()">
 				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="">
         </div>
 		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-CPU">
@@ -587,7 +664,7 @@
 													<td>
 														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
 													</td> 
-													<td>1</td> 
+													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
@@ -610,10 +687,630 @@
 						</div>
 					</div>
 				</div>
-				<button class="exit-btn" onClick="closePopupCPUChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+				<button class="exit-btn-info" onClick="closePopupCPUChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
 			</div>
 		</div>
-    </div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-Main">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-Main">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn Bo Mạnh Chủ</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='Mainboard'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupMainChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-Ram">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-Ram">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn Ram</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='RAM'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupRamChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-GPU">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-GPU">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn Card đồ hoạ</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='GPU'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupGPUChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-Ram">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-Ram">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn Ram</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='RAM'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupRamChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-SSD">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-SSD">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn SSD</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='disk'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupSSDChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-HDD">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-HDD">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn HDD</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='disk'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupHDDChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-Case">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-Case">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn Case</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='Case'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>'.$idLK.'</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<button class="exit-btn-info" onClick="closePopupCaseChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
+		<div class="buynow-container hidden" id="hidden-popup-buynow">
+		<div class="buynow-popup hidden" id="hidden-buynow">
+			<form action="muaNgay.php" method="POST" class="buynow-input-container">
+				<div class="item_detail">
+					<?php
+						if(isset($_GET['id_lk']) && isset($_GET['loai_lk'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where Sale_Status='Đang bán' and ID_LK = ".$_GET['id_lk'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $_GET['id_lk'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup();updateTotalCostPopup(document.getElementById(\'soluong_sp_popup\').value*'.$donGia.');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup">
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup();updateTotalCostPopup(document.getElementById(\'soluong_sp_popup\').value*'.$donGia.');">
+												</td>
+												<td><label id="tong_tien">'.$donGia.'</label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+					?>
+				</div>					
+				<div class="Address_Info">
+					<div class="custom-select">
+						<select onChange="showAddressText()" id="select_address">
+							<option value="0">Chọn địa chỉ: </option>
+							<?php
+								$connect = connectDB();
+								$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
+								$result = mysqli_query($connect, $query);
+								$address = array();
+								while($row = mysqli_fetch_array($result, 1)){
+									$address[] = $row;
+								}
+								for($i=0;$i<count($address);$i++){
+									echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
+								}
+								closeDB($connect);
+							?>
+							<option value="1">Thêm địa chỉ mới</option>
+						</select>			
+					</div>
+					<div class="Address_Text">
+						<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
+						<div class="BuyNow_Button">
+							<input type="text" name="user_id" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
+							<input type="text" name="id_LK" class="hidden_input_popup" value="<?php echo $_GET['id_lk']; ?>">
+							<input type="text" name="loai_lk" class="hidden_input_popup" value="<?php echo $_GET['loai_lk']; ?>">
+							<input type="text" name="so_luong_mua" class="hidden_input_popup" id="so_luong_mua">
+							<input type="text" name="don_gia" class="hidden_input_popup" id="don_gia">
+							<input type="text" name="address" class="hidden_input_popup" id="input_address_user">
+							<input type="text" name="tong_tien" class="hidden_input_popup" id="input_tong_tien">
+							<script>
+								document.getElementById("so_luong_mua").value = document.getElementById("soluong_sp_popup").value;
+								document.getElementById("don_gia").value = document.getElementById("donGiaLK").innerHTML;
+								document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
+								document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
+							</script>
+							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+						</div>
+						<div class="TongTien">
+							<div class="TongTien3">
+								<span>Tổng Hoá Đơn:</span>
+								<span id="tong_hoa_don"></span>
+								<span>đ</span>
+							</div>
+							<script>
+								document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
+							</script>
+						</div>	
+					</div>	
+						
+					</div>	
+				</form>
+				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>								
+	<script>
+		var x, i, j, l, ll, selElmnt, a, b, c;
+		/*look for any elements with the class "custom-select":*/
+		x = document.getElementsByClassName("custom-select");
+		l = x.length;
+		for (i = 0; i < l; i++) {
+		selElmnt = x[i].getElementsByTagName("select")[0];
+		ll = selElmnt.length;
+		/*for each element, create a new DIV that will act as the selected item:*/
+		a = document.createElement("DIV");
+		a.setAttribute("class", "select-selected");
+		a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+		x[i].appendChild(a);
+		/*for each element, create a new DIV that will contain the option list:*/
+		b = document.createElement("DIV");
+		b.setAttribute("class", "select-items select-hide");
+		for (j = 1; j < ll; j++) {
+			/*for each option in the original select element,
+			create a new DIV that will act as an option item:*/
+			c = document.createElement("DIV");
+			c.innerHTML = selElmnt.options[j].innerHTML;
+			c.addEventListener("click", function(e) {
+				/*when an item is clicked, update the original select box,
+				and the selected item:*/
+				var y, i, k, s, h, sl, yl;
+				s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+				sl = s.length;
+				h = this.parentNode.previousSibling;
+				for (i = 0; i < sl; i++) {
+				if (s.options[i].innerHTML == this.innerHTML) {
+					s.selectedIndex = i;
+					var event = new Event('change');
+					s.dispatchEvent(event);;
+					h.innerHTML = this.innerHTML;
+					y = this.parentNode.getElementsByClassName("same-as-selected");
+					yl = y.length;
+					for (k = 0; k < yl; k++) {
+					y[k].removeAttribute("class");
+					}
+					this.setAttribute("class", "same-as-selected");
+					break;
+				}
+				}
+				h.click();
+			});
+			b.appendChild(c);
+		}
+		x[i].appendChild(b);
+		a.addEventListener("click", function(e) {
+			/*when the select box is clicked, close any other select boxes,
+			and open/close the current select box:*/
+			e.stopPropagation();
+			closeAllSelect(this);
+			this.nextSibling.classList.toggle("select-hide");
+			this.classList.toggle("select-arrow-active");
+			});
+		}
+		function closeAllSelect(elmnt) {
+		/*a function that will close all select boxes in the document,
+		except the current select box:*/
+		var x, y, i, xl, yl, arrNo = [];
+		x = document.getElementsByClassName("select-items");
+		y = document.getElementsByClassName("select-selected");
+		xl = x.length;
+		yl = y.length;
+		for (i = 0; i < yl; i++) {
+			if (elmnt == y[i]) {
+			arrNo.push(i)
+			} else {
+			y[i].classList.remove("select-arrow-active");
+			}
+		}
+		for (i = 0; i < xl; i++) {
+			if (arrNo.indexOf(i)) {
+			x[i].classList.add("select-hide");
+			}
+		}
+		}
+		/*if the user clicks anywhere outside the select box,
+		then close all select boxes:*/
+		document.addEventListener("click", closeAllSelect);
+	</script>
 </body>
 </html>
 
