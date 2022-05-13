@@ -4,6 +4,9 @@
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
 	}
+	if(isset($_POST['idChosenCPU'])){
+		$_SESSION['idChosenCPU'] = $_POST['idChosenCPU'];
+	}
 ?>
 <!doctype html>
 <html>
@@ -28,17 +31,14 @@
 				document.getElementById("hidden-popup").classList.add("hidden");
 				document.getElementById("hidden-login").classList.add("hidden");
 			}
-			function openPopupChooseItem(){
-			document.getElementById("hidden-popup-chooseitem").classList.remove("hidden");
-			document.getElementById("hidden-chooseitem").classList.remove("hidden");
-		}
-		function openChooseItem(){
-			document.getElementById("hidden-chooseitem").classList.remove("hidden");
-		}
-		function closeChooseItem(){
-			document.getElementById("hidden-popup-chooseitem").classList.add("hidden");
-			document.getElementById("hidden-chooseitem").classList.add("hidden");
-		}
+			function openPopupCPUChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-CPU").classList.remove("hidden");
+				document.getElementById("hidden-chooseitem-CPU").classList.remove("hidden");
+			}
+			function closePopupCPUChooseItem(){
+				document.getElementById("hidden-popup-chooseitem-CPU").classList.add("hidden");
+				document.getElementById("hidden-chooseitem-CPU").classList.add("hidden");
+			}
 		</script>
 	<div class="login-container hidden" id="hidden-popup">
 			<div class="login-popup hidden" id="hidden-login">
@@ -91,109 +91,459 @@
 	<div class="page_body">
         <div class="choose_item">
             <div class="cpu">
-                <div class="title">
-					<span class="title_text">Vi xử lý</span>
-					<div class="img_item">
-						<img src="../img/cpu.svg" style="">
-					</div>
-					<span>Vui lòng chọn linh kiện</span>
-                </div>
-                <button class="add_button" onclick="openPopupChooseItem()">Chọn</button>
+				<?php
+					if(!isset($_SESSION['idChosenCPU'])){
+						echo '
+							<div class="title">
+								<span class="title_text">Vi xử lý</span>
+								<div class="img_item">
+									<img src="../img/cpu.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="openPopupCPUChooseItem()">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenCPU'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">Bo mạch chủ</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="CPUMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_CPU\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_CPU">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_CPU").value;
+										if(sl_sp == "1"){
+											//document.getElementById("CPUMinusButton").value = "Rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_CPU\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupCPUChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
             <div class="main">
-				<div class="title">
-					<span class="title_text">Bo mạch chủ</span>
-					<div class="img_item">
-						<img src="../img/Mainboard ASUS ROG STRIX B350-F GAMING.webp" style="">
-					</div>
-					<div class="info_item">
-						<span class="info_item_name">Mainboard ASUS ROG STRIX B350-F GAMING</span>
-						<br>
-						<span>Mã LK: 6</span>
-					</div>
-					<div class="quantity_item">
-						<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
-						<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
-						<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-					</div>
-					<div class="price_item">
-						<span class="price_item_1">2632000đ</span>
-						<div class="price_item_discount">
-							<span class="price_item_3">3290000đ</span>
-							<span> </span>
-							<span class="price_item_2">20%</span>
-						</div>
-						
-					</div>					
-                </div>
-                <button class="add_button" onclick="">Chọn</button>
+				<?php
+					if(!isset($_SESSION['idChosenMain'])){
+						echo '
+							<div class="title">
+								<span class="title_text">Bo mạch chủ</span>
+								<div class="img_item">
+									<img src="../img/main.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenMain'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">Bo mạch chủ</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="MainMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_Main\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_Main">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_Main").value;
+										if(sl_sp == 1){
+											document.getElementById("MainMinusButton").value = "Thùng rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_Main\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupGPUChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
             <div class="ram">
-				<div class="title">
-				<span class="title_text">Ram</span>
-					<div class="img_item">
-						<img src="../img/RAM desktop KINGMAX Zeus Dragon Heatsink (1 x 32GB) DDR4 3200MHz.webp" style="">
-					</div>
-					<div class="info_item">
-						<span class="info_item_name">RAM desktop KINGMAX Zeus Dragon Heatsink (1 x 32GB) DDR4 3200MHz</span>
-						<br>
-						<span>Mã LK: 6</span>
-					</div>
-					<div class="quantity_item">
-						<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
-						<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
-						<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-					</div>
-					<div class="price_item">
-						<span class="price_item_1">3832000đ</span>
-						<div class="price_item_discount">
-							<span class="price_item_3">4790000đ</span>
-							<span> </span>
-							<span class="price_item_2">20%</span>
-						</div>
-					</div>					
-                </div>
-                <button class="add_button" onclick="">Chọn</button>
+				<?php
+					if(!isset($_SESSION['idChosenRAM'])){
+						echo '
+							<div class="title">
+								<span class="title_text">RAM</span>
+								<div class="img_item">
+									<img src="../img/ram.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenRAM'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">RAM</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="RAMMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_RAM\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_RAM">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_RAM").value;
+										if(sl_sp == 1){
+											document.getElementById("RAMMinusButton").value = "Thùng rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_RAM\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupRAMChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
             <div class="gpu">
-				<div class="title">
-					<span class="title_text">Card đồ hoạ</span>
-					<div class="img_item">
-						<img src="../img/gpu.svg" style="">
-					</div>
-					<span>Vui lòng chọn linh kiện</span>
-                </div>
-                <button class="add_button" onclick="">Chọn</button>
+				<?php
+					if(!isset($_SESSION['idChosenGPU'])){
+						echo '
+							<div class="title">
+								<span class="title_text">Card đồ hoạ</span>
+								<div class="img_item">
+									<img src="../img/gpu.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenGPU'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">Card đồ hoạ</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="GPUMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_GPU\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_GPU">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_GPU").value;
+										if(sl_sp == 1){
+											document.getElementById("GPUMinusButton").value = "Thùng rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_GPU\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupGPUChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
             <div class="ssd">
-				<div class="title">
-					<span class="title_text">SSD</span>
-					<div class="img_item">
-						<img src="../img/ssd.svg" style="">
-					</div>
-					<span>Vui lòng chọn linh kiện</span>
-                </div>
-                <button class="add_button" onclick="">Chọn</button> 
+				<?php
+					if(!isset($_SESSION['idChosenSSD'])){
+						echo '
+							<div class="title">
+								<span class="title_text">SSD</span>
+								<div class="img_item">
+									<img src="../img/ssd.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenSSD'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">SSD</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="SSDMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_SSD\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_SSD">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_SSD").value;
+										if(sl_sp == 1){
+											document.getElementById("SSDMinusButton").value = "Thùng rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_SSD\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupSSDChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
             <div class="hdd">
-				<div class="title">
-					<span class="title_text">HDD</span>
-					<div class="img_item">
-						<img src="../img/hdd.svg" style="">
-					</div>
-					<span>Vui lòng chọn linh kiện</span>
-                </div>
-                <button class="add_button" onclick="">Chọn</button>  
+				<?php
+					if(!isset($_SESSION['idChosenHDD'])){
+						echo '
+							<div class="title">
+								<span class="title_text">HDD</span>
+								<div class="img_item">
+									<img src="../img/hdd.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenHDD'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">HDD</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="HDDMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_HDD\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_HDD">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_HDD").value;
+										if(sl_sp == 1){
+											document.getElementById("HDDMinusButton").value = "Thùng rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_HDD\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupHDDChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
             <div class="case">
-				<div class="title">
-					<span class="title_text">Case</span>
-					<div class="img_item">
-						<img src="../img/case.svg" style="">
-					</div>
-					<span>Vui lòng chọn linh kiện</span>
-                </div>
-                <button class="add_button" onclick="">Chọn</button>
+				<?php
+					if(!isset($_SESSION['idChosenCase'])){
+						echo '
+							<div class="title">
+								<span class="title_text">Case</span>
+								<div class="img_item">
+									<img src="../img/case.svg" style="">
+								</div>
+								<span>Vui lòng chọn linh kiện</span>
+							</div>
+                			<button class="add_button" onclick="">Chọn</button>
+						';
+					}
+					else {
+						$connect = connectDB();
+						$query = "Select * from linhkien where ID_LK=".$_SESSION['idChosenCase'];
+						$result = mysqli_query($connect, $query);
+						$data = array();
+						while($row = mysqli_fetch_array($result, 1)){
+							$data[] = $row;
+						}
+						$imgSRC = $data[0]['Hinh_anh'];
+						$idLK = $data[0]['ID_LK'];
+						$tenLK = $data[0]['Ten_LK'];
+						$giaGoc = $data[0]['Gia_LK'];
+						$giamGia = $data[0]['Giam_gia'];
+						$donGia = $giaGoc * (1 - $giamGia);
+						echo '
+							<div class="title">
+								<span class="title_text">Case</span>
+								<div class="img_item">
+									<img src="'.$imgSRC.'" style="">
+								</div>
+								<div class="info_item">
+									<span class="info_item_name">'.$tenLK.'</span>
+									<br>
+									<span>Mã LK: '.$idLK.'</span>
+								</div>
+								<div class="quantity_item">
+									<input type="button" class="dau" id="CaseMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_Case\').value--;">
+									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_Case">
+									<script>
+										var sl_sp = document.getElementById("soluong_sp_Case").value;
+										if(sl_sp == 1){
+											document.getElementById("CaseMinusButton").value = "Thùng rác";
+										}
+									</script>
+									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_Case\').value++;">
+								</div>
+								<div class="price_item">
+									<span class="price_item_1">'.$donGia.'</span>
+									<div class="price_item_discount">
+										<span class="price_item_3">'.$giaGoc.'</span>
+										<span> </span>
+										<span class="price_item_2">'.($giamGia*100).'%</span>
+									</div>
+								</div>					
+							</div>
+							<button class="add_button" onclick="openPopupCaseChooseItem()">Chỉnh sửa</button>
+						';
+						closeDB($connect);
+					}
+				?>
             </div>
         </div>
         <div class="total_price">
@@ -202,96 +552,65 @@
 				<input type="button" class="buy_now_button" value="Mua Ngay" onClick="">
 				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="">
         </div>
-		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem">
-			<div class="chooseitem-popup hidden" id="hidden-chooseitem">
-				<form action="" method="POST" class="chooseitem-input-container">
-					<div class="item_detail">
-						<span class="choose_item_title">Chọn CPU</span>
-						<div id="table-wrapper">
-							<div id="table-scroll">
-								<table>
-									<thead>
-										<tr>
-											<th><label class="Hinh_Text">Hình Ảnh<label></th>
-											<th><label class="Ma_Text">Mã<label></th>
-											<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-											<th><label class="DonGia_Text">Đơn Giá<label></th>
-											<th><label class="DonGia_Text"><label></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr> 
-											<td>
-												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-											</td> 
-											<td>1</td> 
-											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
-											<td><label id="donGiaLK">3350000</label></td> 
-											<td>
-											<div class=chooseitem-btn>	
-												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
-											</div>
-											</td>  																	
-										</tr>	
-										<tr> 
-											<td>
-												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-											</td> 
-											<td>1</td> 
-											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
-											<td><label id="donGiaLK">3350000</label></td> 
-											<td>
-											<div class=chooseitem-btn>	
-												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
-											</div>
-											</td>  																	
-										</tr>
-										<tr> 
-											<td>
-												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-											</td> 
-											<td>1</td> 
-											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
-											<td><label id="donGiaLK">3350000</label></td> 
-											<td>
-											<div class=chooseitem-btn>	
-												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
-											</div>
-											</td>  																	
-										</tr>
-										<tr> 
-											<td>
-												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-											</td> 
-											<td>1</td> 
-											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
-											<td><label id="donGiaLK">3350000</label></td> 
-											<td>
-											<div class=chooseitem-btn>	
-												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
-											</div>
-											</td>  																	
-										</tr>
-										<tr> 
-											<td>
-												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
-											</td> 
-											<td>1</td> 
-											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
-											<td><label id="donGiaLK">3350000</label></td> 
-											<td>
-											<div class=chooseitem-btn>	
-												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
-											</div>
-											</td>  																	
-										</tr>					
-									</tbody>
-								</table>
-							</div>
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-CPU">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem-CPU">
+				<div class="item_detail">
+					<span class="choose_item_title">Chọn CPU</span>
+					<div id="table-wrapper">
+						<div id="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th><label class="Hinh_Text">Hình Ảnh<label></th>
+										<th><label class="Ma_Text">Mã<label></th>
+										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+										<th><label class="DonGia_Text">Đơn Giá<label></th>
+										<th><label class="DonGia_Text"><label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$connect = connectDB();
+										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='CPU'";
+										$result = mysqli_query($connect, $query);
+										$dataCPU = array();
+										while($row = mysqli_fetch_array($result, 1)){
+											$dataCPU[] = $row;
+										}
+										for($i=0;$i<count($dataCPU);$i++){
+											$imgSRC = $dataCPU[$i]['Hinh_anh'];
+											$idLK = $dataCPU[$i]['ID_LK'];
+											$tenLK = $dataCPU[$i]['Ten_LK'];
+											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+													</td> 
+													<td>1</td> 
+													<td>'.$tenLK.'</td>
+													<td><label id="donGiaLK">'.$donGia.'</label></td> 
+													<td>
+													<div class=chooseitem-btn>	
+														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
+															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														</form>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+													</div>
+													</td>  																	
+												</tr>	
+											';
+										}
+
+										closeDB($connect);
+									?>
+												
+								</tbody>
+							</table>
 						</div>
 					</div>
-					</form>
-				<button class="exit-btn" onClick="closeChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+				</div>
+				<button class="exit-btn" onClick="closePopupCPUChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
 			</div>
 		</div>
     </div>
