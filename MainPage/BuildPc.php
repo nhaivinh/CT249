@@ -202,7 +202,98 @@
 				<input type="button" class="buy_now_button" value="Mua Ngay" onClick="">
 				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="">
         </div>
-		
+		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem">
+			<div class="chooseitem-popup hidden" id="hidden-chooseitem">
+				<form action="" method="POST" class="chooseitem-input-container">
+					<div class="item_detail">
+						<span class="choose_item_title">Chọn CPU</span>
+						<div id="table-wrapper">
+							<div id="table-scroll">
+								<table>
+									<thead>
+										<tr>
+											<th><label class="Hinh_Text">Hình Ảnh<label></th>
+											<th><label class="Ma_Text">Mã<label></th>
+											<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+											<th><label class="DonGia_Text">Đơn Giá<label></th>
+											<th><label class="DonGia_Text"><label></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr> 
+											<td>
+												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
+											</td> 
+											<td>1</td> 
+											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
+											<td><label id="donGiaLK">3350000</label></td> 
+											<td>
+											<div class=chooseitem-btn>	
+												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
+											</div>
+											</td>  																	
+										</tr>	
+										<tr> 
+											<td>
+												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
+											</td> 
+											<td>1</td> 
+											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
+											<td><label id="donGiaLK">3350000</label></td> 
+											<td>
+											<div class=chooseitem-btn>	
+												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
+											</div>
+											</td>  																	
+										</tr>
+										<tr> 
+											<td>
+												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
+											</td> 
+											<td>1</td> 
+											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
+											<td><label id="donGiaLK">3350000</label></td> 
+											<td>
+											<div class=chooseitem-btn>	
+												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
+											</div>
+											</td>  																	
+										</tr>
+										<tr> 
+											<td>
+												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
+											</td> 
+											<td>1</td> 
+											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
+											<td><label id="donGiaLK">3350000</label></td> 
+											<td>
+											<div class=chooseitem-btn>	
+												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
+											</div>
+											</td>  																	
+										</tr>
+										<tr> 
+											<td>
+												<img src="../img/CPU Intel Core I3-7100 (3.9GHz).webp" alt="exit-btn" style="width: 100px;">
+											</td> 
+											<td>1</td> 
+											<td>CPU Intel Core I3-7100 (3.9GHz)</td>
+											<td><label id="donGiaLK">3350000</label></td> 
+											<td>
+											<div class=chooseitem-btn>	
+												<button class="chooseitem-chooseitem-btn" onClick="">Chọn</button></div>
+											</div>
+											</td>  																	
+										</tr>					
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					</form>
+				<button class="exit-btn" onClick="closeChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
+		</div>
     </div>
 </body>
 </html>
