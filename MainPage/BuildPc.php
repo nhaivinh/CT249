@@ -922,8 +922,16 @@
 					</label>
 					đ
 				</span>
-				<input type="button" class="buy_now_button" value="Mua Ngay" onClick="openPopupBuyNow()">
-				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="">
+				<?php
+					if(isset($_SESSION['username'])){	
+						echo '<input type="button" class="buy_now_button" value="Mua Ngay" onClick="openPopupBuyNow()">';
+					}
+					else{
+						echo '<input type="button" class="buy_now_button" value="Mua Ngay" onClick="openPopup()">';
+					}
+				?>
+				<form action="addCart_BuildPC.php" method="post" id="addCart_BuildPC"></form>
+				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="document.getElementById('addCart_BuildPC').submit();">
         </div>
 		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-CPU">
 			<div class="chooseitem-popup hidden" id="hidden-chooseitem-CPU">
@@ -1881,6 +1889,11 @@
 		$alert = "<script>alert('".$_SESSION['cart_status']."');</script>";
 		echo $alert;
 		unset($_SESSION['cart_status']);
+	}
+	if(isset($_SESSION['addToCart_BuildPC'])){
+		$alert = "<script>alert('".$_SESSION['addToCart_BuildPC']."');</script>";
+		echo $alert;
+		unset($_SESSION['addToCart_BuildPC']);
 	}
 ?>
 
