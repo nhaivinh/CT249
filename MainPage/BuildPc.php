@@ -4,8 +4,104 @@
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		login();	
 	}
+
 	if(isset($_POST['idChosenCPU'])){
 		$_SESSION['idChosenCPU'] = $_POST['idChosenCPU'];
+		unset($_SESSION['slCPU']);
+	}
+	if(isset($_SESSION['idChosenCPU'])){
+		if(isset($_SESSION['slCPU'])){
+			if(isset($_POST['sl_sp_CPU'])){
+				$_SESSION['slCPU'] = $_POST['sl_sp_CPU'];
+			}
+		}
+		else{
+			$_SESSION['slCPU'] = 1;
+		}
+	}
+
+	if(isset($_POST['idChosenMain'])){
+		$_SESSION['idChosenMain'] = $_POST['idChosenMain'];
+	}
+	if(isset($_SESSION['idChosenMain'])){
+		if(isset($_SESSION['slMain'])){
+			if(isset($_POST['sl_sp_Main'])){
+				$_SESSION['slMain'] = $_POST['sl_sp_Main'];
+			}
+		}
+		else{
+			$_SESSION['slMain'] = 1;
+		}
+	}
+
+	if(isset($_POST['idChosenRAM'])){
+		$_SESSION['idChosenRAM'] = $_POST['idChosenRAM'];
+	}
+	if(isset($_SESSION['idChosenRAM'])){
+		if(isset($_SESSION['slRAM'])){
+			if(isset($_POST['sl_sp_RAM'])){
+				$_SESSION['slRAM'] = $_POST['sl_sp_RAM'];
+			}
+		}
+		else{
+			$_SESSION['slRAM'] = 1;
+		}
+	}
+
+	if(isset($_POST['idChosenGPU'])){
+		$_SESSION['idChosenGPU'] = $_POST['idChosenGPU'];
+	}
+	if(isset($_SESSION['idChosenGPU'])){
+		if(isset($_SESSION['slGPU'])){
+			if(isset($_POST['sl_sp_GPU'])){
+				$_SESSION['slGPU'] = $_POST['sl_sp_GPU'];
+			}
+		}
+		else{
+			$_SESSION['slGPU'] = 1;
+		}
+	}
+
+	if(isset($_POST['idChosenSSD'])){
+		$_SESSION['idChosenSSD'] = $_POST['idChosenSSD'];
+	}
+	if(isset($_SESSION['idChosenSSD'])){
+		if(isset($_SESSION['slSSD'])){
+			if(isset($_POST['sl_sp_SSD'])){
+				$_SESSION['slSSD'] = $_POST['sl_sp_SSD'];
+			}
+		}
+		else{
+			$_SESSION['slSSD'] = 1;
+		}
+	}
+
+	if(isset($_POST['idChosenHDD'])){
+		$_SESSION['idChosenHDD'] = $_POST['idChosenHDD'];
+	}
+	if(isset($_SESSION['idChosenHDD'])){
+		if(isset($_SESSION['slHDD'])){
+			if(isset($_POST['sl_sp_HDD'])){
+				$_SESSION['slHDD'] = $_POST['sl_sp_HDD'];
+			}
+		}
+		else{
+			$_SESSION['slHDD'] = 1;
+		}
+	}
+
+	if(isset($_POST['idChosenCase'])){
+		$_SESSION['idChosenCase'] = $_POST['idChosenCase'];
+	}
+	if(isset($_SESSION['idChosenCase'])){
+		if(isset($_SESSION['slCase'])){
+			if(isset($_POST['sl_sp_Case'])){
+				$_SESSION['slCase'] = $_POST['sl_sp_Case'];
+			}
+		}
+		else{
+			$_SESSION['slCase'] = 1;
+		}
 	}
 ?>
 <!doctype html>
@@ -19,103 +115,216 @@
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
-		<script>
-			function openPopup(){
-				document.getElementById("hidden-popup").classList.remove("hidden");
-				document.getElementById("hidden-login").classList.remove("hidden");
-			}
-			function openLogin(){
-				document.getElementById("hidden-login").classList.remove("hidden");
-				document.getElementById("hidden-register").classList.add("hidden");
-			}
-			function closeLogin(){
-				document.getElementById("hidden-popup").classList.add("hidden");
-				document.getElementById("hidden-login").classList.add("hidden");
-			}
-			function openPopupCPUChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-CPU").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-CPU").classList.remove("hidden");
-			}
-			function closePopupCPUChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-CPU").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-CPU").classList.add("hidden");
-			}
-			function openPopupMainChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-Main").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-Main").classList.remove("hidden");
-			}
-			function closePopupMainChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-Main").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-Main").classList.add("hidden");
-			}
-			function openPopupRamChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-Ram").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-Ram").classList.remove("hidden");
-			}
-			function closePopupRamChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-Ram").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-Ram").classList.add("hidden");
-			}
-			function openPopupGPUChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-GPU").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-GPU").classList.remove("hidden");
-			}
-			function closePopupGPUChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-GPU").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-GPU").classList.add("hidden");
-			}
-			function openPopupSSDChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-SSD").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-SSD").classList.remove("hidden");
-			}
-			function closePopupSSDChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-SSD").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-SSD").classList.add("hidden");
-			}
-			function openPopupHDDChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-HDD").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-HDD").classList.remove("hidden");
-			}
-			function closePopupHDDChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-HDD").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-HDD").classList.add("hidden");
-			}
-			function openPopupCaseChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-Case").classList.remove("hidden");
-				document.getElementById("hidden-chooseitem-Case").classList.remove("hidden");
-			}
-			function closePopupCaseChooseItem(){
-				document.getElementById("hidden-popup-chooseitem-Case").classList.add("hidden");
-				document.getElementById("hidden-chooseitem-Case").classList.add("hidden");
-			}
-			function openPopupBuyNow(){
+	<script>
+		function openPopup(){
+			document.getElementById("hidden-popup").classList.remove("hidden");
+			document.getElementById("hidden-login").classList.remove("hidden");
+		}
+		function openLogin(){
+			document.getElementById("hidden-login").classList.remove("hidden");
+			document.getElementById("hidden-register").classList.add("hidden");
+		}
+		function closeLogin(){
+			document.getElementById("hidden-popup").classList.add("hidden");
+			document.getElementById("hidden-login").classList.add("hidden");
+		}
+		function openPopupCPUChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-CPU").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-CPU").classList.remove("hidden");
+		}
+		function closePopupCPUChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-CPU").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-CPU").classList.add("hidden");
+		}
+		function openPopupMainChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-Main").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-Main").classList.remove("hidden");
+		}
+		function closePopupMainChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-Main").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-Main").classList.add("hidden");
+		}
+		function openPopupRamChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-Ram").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-Ram").classList.remove("hidden");
+		}
+		function closePopupRamChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-Ram").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-Ram").classList.add("hidden");
+		}
+		function openPopupGPUChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-GPU").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-GPU").classList.remove("hidden");
+		}
+		function closePopupGPUChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-GPU").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-GPU").classList.add("hidden");
+		}
+		function openPopupSSDChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-SSD").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-SSD").classList.remove("hidden");
+		}
+		function closePopupSSDChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-SSD").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-SSD").classList.add("hidden");
+		}
+		function openPopupHDDChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-HDD").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-HDD").classList.remove("hidden");
+		}
+		function closePopupHDDChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-HDD").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-HDD").classList.add("hidden");
+		}
+		function openPopupCaseChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-Case").classList.remove("hidden");
+			document.getElementById("hidden-chooseitem-Case").classList.remove("hidden");
+		}
+		function closePopupCaseChooseItem(){
+			document.getElementById("hidden-popup-chooseitem-Case").classList.add("hidden");
+			document.getElementById("hidden-chooseitem-Case").classList.add("hidden");
+		}
+		function openPopupBuyNow(){
 			document.getElementById("hidden-popup-buynow").classList.remove("hidden");
 			document.getElementById("hidden-buynow").classList.remove("hidden");
-			document.getElementById("soluong_sp_popup").value = document.getElementById("soluong_sp").value;
+			let tongHoaDon = 0;
+			if(document.getElementById("soluong_sp_CPU") != null){
+				document.getElementById("soluong_sp_popup_CPU").value = document.getElementById("soluong_sp_CPU").value;
+				let donGia = document.getElementById("donGiaLK_CPU").innerHTML;
+				let sl = document.getElementById("soluong_sp_CPU").value;
+				document.getElementById("tong_tien_CPU").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
 			}
-			function openBuyNow(){
-				document.getElementById("hidden-buynow").classList.remove("hidden");
+			if(document.getElementById("soluong_sp_Main") != null){
+				document.getElementById("soluong_sp_popup_Main").value = document.getElementById("soluong_sp_Main").value;
+				let donGia = document.getElementById("donGiaLK_Main").innerHTML;
+				let sl = document.getElementById("soluong_sp_Main").value;
+				document.getElementById("tong_tien_Main").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
 			}
-			function closeBuyNow(){
-				document.getElementById("hidden-popup-buynow").classList.add("hidden");
-				document.getElementById("hidden-buynow").classList.add("hidden");
+			if(document.getElementById("soluong_sp_RAM") != null){
+				document.getElementById("soluong_sp_popup_RAM").value = document.getElementById("soluong_sp_RAM").value;
+				let donGia = document.getElementById("donGiaLK_RAM").innerHTML;
+				let sl = document.getElementById("soluong_sp_RAM").value;
+				document.getElementById("tong_tien_RAM").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
 			}
-			function updateAddress(){
-				document.getElementById("input_address_user").value = document.getElementById("input_address").value;
+			if(document.getElementById("soluong_sp_GPU") != null){
+				document.getElementById("soluong_sp_popup_GPU").value = document.getElementById("soluong_sp_GPU").value;
+				let donGia = document.getElementById("donGiaLK_GPU").innerHTML;
+				let sl = document.getElementById("soluong_sp_GPU").value;
+				document.getElementById("tong_tien_GPU").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
 			}
-			function showAddressText(){
-				value = document.getElementById("select_address").value;
-				if(value == 1){
-					document.getElementById("input_address").classList.remove("hidden");
-					document.getElementById("input_address").value = "";
-				}
-				else{
-					document.getElementById("input_address").classList.add("hidden");
-					document.getElementById("input_address").value = value;
-					updateAddress();
-				}
+			if(document.getElementById("soluong_sp_SSD") != null){
+				document.getElementById("soluong_sp_popup_SSD").value = document.getElementById("soluong_sp_SSD").value;
+				let donGia = document.getElementById("donGiaLK_SSD").innerHTML;
+				let sl = document.getElementById("soluong_sp_SSD").value;
+				document.getElementById("tong_tien_SSD").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
 			}
-		</script>
+			if(document.getElementById("soluong_sp_HDD") != null){
+				document.getElementById("soluong_sp_popup_HDD").value = document.getElementById("soluong_sp_HDD").value;
+				let donGia = document.getElementById("donGiaLK_HDD").innerHTML;
+				let sl = document.getElementById("soluong_sp_HDD").value;
+				document.getElementById("tong_tien_HDD").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
+			}
+			if(document.getElementById("soluong_sp_Case") != null){
+				document.getElementById("soluong_sp_popup_Case").value = document.getElementById("soluong_sp_Case").value;
+				let donGia = document.getElementById("donGiaLK_Case").innerHTML;
+				let sl = document.getElementById("soluong_sp_Case").value;
+				document.getElementById("tong_tien_Case").innerHTML = parseInt(donGia) * sl;
+				tongHoaDon += parseInt(donGia) * sl;
+			}
+			document.getElementById("tong_hoa_don").innerHTML = tongHoaDon;
+		}
+		function openBuyNow(){
+			document.getElementById("hidden-buynow").classList.remove("hidden");
+		}
+		function closeBuyNow(){
+			document.getElementById("hidden-popup-buynow").classList.add("hidden");
+			document.getElementById("hidden-buynow").classList.add("hidden");
+		}
+		function updateAddress(){
+			document.getElementById("input_address_user").value = document.getElementById("input_address").value;
+		}
+		function showAddressText(){
+			value = document.getElementById("select_address").value;
+			if(value == 1){
+				document.getElementById("input_address").classList.remove("hidden");
+				document.getElementById("input_address").value = "";
+			}
+			else{
+				document.getElementById("input_address").classList.add("hidden");
+				document.getElementById("input_address").value = value;
+				updateAddress();
+			}
+		}
+		function updateAmount(idFormSubmit){
+			document.getElementById(idFormSubmit).submit();
+		}
+		function minusAmount(idInput){
+			var event = new Event('change');
+			document.getElementById(idInput).value--;
+			document.getElementById(idInput).dispatchEvent(event);
+		}
+		function plusAmount(idInput){
+			var event = new Event('change');
+			document.getElementById(idInput).value++;
+			document.getElementById(idInput).dispatchEvent(event);
+		}
+		function updateMinusSLPopup(loaiLK){
+			let elementID = 'soluong_sp_popup_' + loaiLK;
+			if(document.getElementById(elementID).value > 1){
+				document.getElementById(elementID).value--;
+				//document.getElementById("so_luong_mua").value = document.getElementById(elementID).value;
+				var event = new Event('change');
+				document.getElementById(elementID).dispatchEvent(event);
+			}
+		}
+		function updatePlusSLPopup(loaiLK){
+			let elementID = 'soluong_sp_popup_' + loaiLK;
+			document.getElementById(elementID).value++;
+			//document.getElementById("so_luong_mua").value = document.getElementById(elementID).value;
+			var event = new Event('change');
+			document.getElementById(elementID).dispatchEvent(event);
+		}
+		function updateCostPopup(loaiLK){
+			let idDonGia = 'donGiaLK_' + loaiLK;
+			let idSL = 'soluong_sp_popup_' + loaiLK;
+			let idTongTien = 'tong_tien_' + loaiLK;
+			let donGia = document.getElementById(idDonGia).innerHTML;
+			let slSP = document.getElementById(idSL).value;
+			document.getElementById(idTongTien).innerHTML = (donGia)*(slSP);
+			updateTongHoaDon();
+		}
+		function updateTongHoaDon(){
+			let tien = 0;
+			if(document.getElementById("tong_tien_CPU") != null){
+				tien += parseInt(document.getElementById("tong_tien_CPU").innerHTML);
+			}
+			if(document.getElementById("tong_tien_Main") != null){
+				tien += parseInt(document.getElementById("tong_tien_Main").innerHTML);
+			}
+			if(document.getElementById("tong_tien_RAM") != null){
+				tien += parseInt(document.getElementById("tong_tien_RAM").innerHTML);
+			}
+			if(document.getElementById("tong_tien_GPU") != null){
+				tien += parseInt(document.getElementById("tong_tien_GPU").innerHTML);
+			}
+			if(document.getElementById("tong_tien_SSD") != null){
+				tien += parseInt(document.getElementById("tong_tien_SSD").innerHTML);
+			}
+			if(document.getElementById("tong_tien_HDD") != null){
+				tien += parseInt(document.getElementById("tong_tien_HDD").innerHTML);
+			}
+			if(document.getElementById("tong_tien_Case") != null){
+				tien += parseInt(document.getElementById("tong_tien_Case").innerHTML);
+			}
+			document.getElementById("tong_hoa_don").innerHTML = tien;
+		}
+	</script>
 	<div class="login-container hidden" id="hidden-popup">
 			<div class="login-popup hidden" id="hidden-login">
 				<form action="" method="POST" class="login-input-container">
@@ -206,19 +415,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-								<span hidden id="thungrac"></span>
-									<input type="button" class="dau" id="CPUMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_CPU\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_CPU">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_CPU").value;
-										if(sl_sp == "1"){
-											document.getElementById("CPUMinusButton").classList.add("hidden");
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_CPU\').value++;">
+						';
+						if($_SESSION['slCPU'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelCPU">
+									<input type="text" name="del_CPU" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelCPU\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_CPU\');">';
+						}
+						echo '		
+									<form method="POST" action="" id="frmAmountCPU">
+										<input type="number" name="sl_sp_CPU" class="so_luong" value="'.$_SESSION['slCPU'].'" min="1" id="soluong_sp_CPU" onChange="updateAmount(\'frmAmountCPU\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_CPU\');">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaCPU">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -272,18 +488,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-									<input type="button" class="dau" id="MainMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_Main\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_Main">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_Main").value;
-										if(sl_sp == 1){
-											document.getElementById("MainMinusButton").value = "Thùng rác";
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_Main\').value++;">
+						';
+						if($_SESSION['slMain'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelMain">
+									<input type="text" name="del_Main" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelMain\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_Main\');">';
+						}
+						echo '
+									<form method="POST" action="" id="frmAmountMain">
+										<input type="number" name="sl_sp_Main" class="so_luong" value="'.$_SESSION['slMain'].'" min="1" id="soluong_sp_Main" onChange="updateAmount(\'frmAmountMain\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_Main\')">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaMain">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -337,18 +561,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-									<input type="button" class="dau" id="RAMMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_RAM\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_RAM">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_RAM").value;
-										if(sl_sp == 1){
-											document.getElementById("RAMMinusButton").value = "Thùng rác";
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_RAM\').value++;">
+						';
+						if($_SESSION['slRAM'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelRAM">
+									<input type="text" name="del_RAM" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelRAM\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_RAM\');">';
+						}
+						echo '
+									<form method="POST" action="" id="frmAmountRAM">
+										<input type="number" name="sl_sp_RAM" class="so_luong" value="'.$_SESSION['slRAM'].'" min="1" id="soluong_sp_RAM" onChange="updateAmount(\'frmAmountRAM\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_RAM\')">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaRAM">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -402,18 +634,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-									<input type="button" class="dau" id="GPUMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_GPU\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_GPU">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_GPU").value;
-										if(sl_sp == 1){
-											document.getElementById("GPUMinusButton").value = "Thùng rác";
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_GPU\').value++;">
+						';
+						if($_SESSION['slGPU'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelGPU">
+									<input type="text" name="del_GPU" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelGPU\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_GPU\');">';
+						}
+						echo '
+									<form method="POST" action="" id="frmAmountGPU">
+										<input type="number" name="sl_sp_GPU" class="so_luong" value="'.$_SESSION['slGPU'].'" min="1" id="soluong_sp_GPU" onChange="updateAmount(\'frmAmountGPU\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_GPU\')">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaGPU">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -467,18 +707,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-									<input type="button" class="dau" id="SSDMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_SSD\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_SSD">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_SSD").value;
-										if(sl_sp == 1){
-											document.getElementById("SSDMinusButton").value = "Thùng rác";
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_SSD\').value++;">
+						';
+						if($_SESSION['slSSD'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelSSD">
+									<input type="text" name="del_SSD" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelSSD\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_SSD\');">';
+						}
+						echo '
+									<form method="POST" action="" id="frmAmountSSD">
+										<input type="number" name="sl_sp_SSD" class="so_luong" value="'.$_SESSION['slSSD'].'" min="1" id="soluong_sp_SSD" onChange="updateAmount(\'frmAmountSSD\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_SSD\')">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaSSD">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -532,18 +780,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-									<input type="button" class="dau" id="HDDMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_HDD\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_HDD">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_HDD").value;
-										if(sl_sp == 1){
-											document.getElementById("HDDMinusButton").value = "Thùng rác";
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_HDD\').value++;">
+						';
+						if($_SESSION['slHDD'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelHDD">
+									<input type="text" name="del_HDD" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelHDD\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_HDD\');">';
+						}
+						echo '
+									<form method="POST" action="" id="frmAmountHDD">
+										<input type="number" name="sl_sp_HDD" class="so_luong" value="'.$_SESSION['slHDD'].'" min="1" id="soluong_sp_HDD" onChange="updateAmount(\'frmAmountHDD\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_HDD\')">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaHDD">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -597,18 +853,26 @@
 									<span>Mã LK: '.$idLK.'</span>
 								</div>
 								<div class="quantity_item">
-									<input type="button" class="dau" id="CaseMinusButton" value="-" onClick="document.getElementById(\'soluong_sp_Case\').value--;">
-									<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_Case">
-									<script>
-										var sl_sp = document.getElementById("soluong_sp_Case").value;
-										if(sl_sp == 1){
-											document.getElementById("CaseMinusButton").value = "Thùng rác";
-										}
-									</script>
-									<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp_Case\').value++;">
+						';
+						if($_SESSION['slCase'] == 1){
+							echo '
+								<form method="POST" action="Xoa_SP_BuildPC.php" id="frmDelCase">
+									<input type="text" name="del_Case" class="hidden_input" value="1" >
+								</form>
+							';
+							echo '<img class="thungrac" src="../img/thungrac.svg" onClick="document.getElementById(\'frmDelCase\').submit();">';
+						}
+						else{
+							echo '<input type="button" class="dau" value="-" onClick="minusAmount(\'soluong_sp_Case\');">';
+						}
+						echo '
+									<form method="POST" action="" id="frmAmountCase">
+										<input type="number" name="sl_sp_Case" class="so_luong" value="'.$_SESSION['slCase'].'" min="1" id="soluong_sp_Case" onChange="updateAmount(\'frmAmountCase\');">
+									</form>
+									<input type="button" class="dau" value="+" onClick="plusAmount(\'soluong_sp_Case\')">
 								</div>
 								<div class="price_item">
-									<span class="price_item_1">'.$donGia.'</span>
+									<span class="price_item_1" id="donGiaCase">'.$donGia.'</span>
 									<div class="price_item_discount">
 										<span class="price_item_3">'.$giaGoc.'</span>
 										<span> </span>
@@ -623,9 +887,41 @@
 				?>
             </div>
         </div>
-        <div class="total_price">
-            <div class="total_price_item">
-                <span class="total_price_text">Tổng Cộng: 25000000 đ</span>
+        <div class="total_price" >
+            <div class="total_price_item" id="total_price_flexbox">
+                <span class="total_price_text">Tổng Cộng:
+					<label id="tongTienBuildPC">
+						<script>
+							let tongTien = 0;
+							if(document.getElementById("donGiaCPU") != null){
+								tongTien += parseInt(document.getElementById("donGiaCPU").innerHTML) * document.getElementById("soluong_sp_CPU").value;
+							}
+							if(document.getElementById("donGiaMain") != null){
+								tongTien += parseInt(document.getElementById("donGiaMain").innerHTML) * document.getElementById("soluong_sp_Main").value;
+							}
+							if(document.getElementById("donGiaRAM") != null){
+								tongTien += parseInt(document.getElementById("donGiaRAM").innerHTML) * document.getElementById("soluong_sp_RAM").value;
+							}
+							if(document.getElementById("donGiaGPU") != null){
+								tongTien += parseInt(document.getElementById("donGiaGPU").innerHTML) * document.getElementById("soluong_sp_GPU").value;
+							}
+							if(document.getElementById("donGiaSSD") != null){
+								tongTien += parseInt(document.getElementById("donGiaSSD").innerHTML) * document.getElementById("soluong_sp_SSD").value;
+							}
+							if(document.getElementById("donGiaHDD") != null){
+								tongTien += parseInt(document.getElementById("donGiaHDD").innerHTML) * document.getElementById("soluong_sp_HDD").value;
+							}
+							if(document.getElementById("donGiaCase") != null){
+								tongTien += parseInt(document.getElementById("donGiaCase").innerHTML) * document.getElementById("soluong_sp_Case").value;
+							}
+							document.getElementById("tongTienBuildPC").innerHTML = tongTien;
+							if(tongTien == 0){
+								document.getElementById("total_price_flexbox").classList.add("hidden");
+							}
+						</script>
+					</label>
+					đ
+				</span>
 				<input type="button" class="buy_now_button" value="Mua Ngay" onClick="openPopupBuyNow()">
 				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="">
         </div>
@@ -730,10 +1026,10 @@
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
 													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														<form method="POST" action="" id="frmChooseMain_'.$i.'">
+															<input type="text" name="idChosenMain" class="hidden_input" value="'.$idLK.'">
 														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseMain_'.$i.'\').submit();">Chọn</button></div>
 													</div>
 													</td>  																	
 												</tr>	
@@ -791,10 +1087,10 @@
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
 													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														<form method="POST" action="" id="frmChooseRAM_'.$i.'">
+															<input type="text" name="idChosenRAM" class="hidden_input" value="'.$idLK.'">
 														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseRAM_'.$i.'\').submit();">Chọn</button></div>
 													</div>
 													</td>  																	
 												</tr>	
@@ -852,10 +1148,10 @@
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
 													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														<form method="POST" action="" id="frmChooseGPU_'.$i.'">
+															<input type="text" name="idChosenGPU" class="hidden_input" value="'.$idLK.'">
 														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseGPU_'.$i.'\').submit();">Chọn</button></div>
 													</div>
 													</td>  																	
 												</tr>	
@@ -871,67 +1167,6 @@
 					</div>
 				</div>
 				<button class="exit-btn-info" onClick="closePopupGPUChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
-			</div>
-		</div>
-		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-Ram">
-			<div class="chooseitem-popup hidden" id="hidden-chooseitem-Ram">
-				<div class="item_detail">
-					<span class="choose_item_title">Chọn Ram</span>
-					<div id="table-wrapper">
-						<div id="table-scroll">
-							<table>
-								<thead>
-									<tr>
-										<th><label class="Hinh_Text">Hình Ảnh<label></th>
-										<th><label class="Ma_Text">Mã<label></th>
-										<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-										<th><label class="DonGia_Text">Đơn Giá<label></th>
-										<th><label class="DonGia_Text"><label></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-										$connect = connectDB();
-										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='RAM'";
-										$result = mysqli_query($connect, $query);
-										$dataCPU = array();
-										while($row = mysqli_fetch_array($result, 1)){
-											$dataCPU[] = $row;
-										}
-										for($i=0;$i<count($dataCPU);$i++){
-											$imgSRC = $dataCPU[$i]['Hinh_anh'];
-											$idLK = $dataCPU[$i]['ID_LK'];
-											$tenLK = $dataCPU[$i]['Ten_LK'];
-											$donGia = $dataCPU[$i]['Gia_LK'] * (1 - $dataCPU[$i]['Giam_gia']);
-											echo '
-												<tr> 
-													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
-													</td> 
-													<td>'.$idLK.'</td> 
-													<td>'.$tenLK.'</td>
-													<td><label id="donGiaLK">'.$donGia.'</label></td> 
-													<td>
-													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
-														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
-													</div>
-													</td>  																	
-												</tr>	
-											';
-										}
-
-										closeDB($connect);
-									?>
-												
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<button class="exit-btn-info" onClick="closePopupRamChooseItem()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
 			</div>
 		</div>
 		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-SSD">
@@ -953,7 +1188,7 @@
 								<tbody>
 									<?php
 										$connect = connectDB();
-										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='disk'";
+										$query = "Select * from linhkien join disk on linhkien.id_lk = disk.id_lk where Sale_Status='Đang bán' && Loai='SSD'";
 										$result = mysqli_query($connect, $query);
 										$dataCPU = array();
 										while($row = mysqli_fetch_array($result, 1)){
@@ -974,10 +1209,10 @@
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
 													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														<form method="POST" action="" id="frmChooseSSD_'.$i.'">
+															<input type="text" name="idChosenSSD" class="hidden_input" value="'.$idLK.'">
 														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseSSD_'.$i.'\').submit();">Chọn</button></div>
 													</div>
 													</td>  																	
 												</tr>	
@@ -1014,7 +1249,7 @@
 								<tbody>
 									<?php
 										$connect = connectDB();
-										$query = "Select * from linhkien where Sale_Status='Đang bán' && Loai_LK='disk'";
+										$query = "Select * from linhkien join disk on linhkien.id_lk = disk.id_lk where Sale_Status='Đang bán' && Loai='HDD'";
 										$result = mysqli_query($connect, $query);
 										$dataCPU = array();
 										while($row = mysqli_fetch_array($result, 1)){
@@ -1035,10 +1270,10 @@
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
 													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														<form method="POST" action="" id="frmChooseHDD_'.$i.'">
+															<input type="text" name="idChosenHDD" class="hidden_input" value="'.$idLK.'">
 														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseHDD_'.$i.'\').submit();">Chọn</button></div>
 													</div>
 													</td>  																	
 												</tr>	
@@ -1096,10 +1331,10 @@
 													<td><label id="donGiaLK">'.$donGia.'</label></td> 
 													<td>
 													<div class=chooseitem-btn>	
-														<form method="POST" action="" id="frmChooseCPU_'.$i.'">
-															<input type="text" name="idChosenCPU" class="hidden_input" value="'.$idLK.'">
+														<form method="POST" action="" id="frmChooseCase_'.$i.'">
+															<input type="text" name="idChosenCase" class="hidden_input" value="'.$idLK.'">
 														</form>
-														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCPU_'.$i.'\').submit();">Chọn</button></div>
+														<button class="chooseitem-chooseitem-btn" onClick="document.getElementById(\'frmChooseCase_'.$i.'\').submit();">Chọn</button></div>
 													</div>
 													</td>  																	
 												</tr>	
@@ -1122,20 +1357,19 @@
 			<form action="muaNgay.php" method="POST" class="buynow-input-container">
 				<div class="item_detail">
 					<?php
-						if(isset($_GET['id_lk']) && isset($_GET['loai_lk'])){
+						if(isset($_SESSION['idChosenCPU'])){
 							$connect = connectDB();
-							$query = "Select * from linhkien where Sale_Status='Đang bán' and ID_LK = ".$_GET['id_lk'];
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenCPU'];
 							$result = mysqli_query($connect, $query);
 							$data = array();
 							while($row = mysqli_fetch_array($result, 1)){
 								$data[] = $row;
 							}	
-							$idSP = $_GET['id_lk'];
+							$idSP = $data[0]['ID_LK'];
 							$tenSP = $data[0]['Ten_LK'];
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							
 							echo '
 							<div id="table-wrapper">
 								<div id="table-scroll">
@@ -1157,13 +1391,313 @@
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK">'.$donGia.'</label></td> 
+												<td><label id="donGiaLK_CPU">'.$donGia.'</label></td> 
 												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup();updateTotalCostPopup(document.getElementById(\'soluong_sp_popup\').value*'.$donGia.');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup">
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup();updateTotalCostPopup(document.getElementById(\'soluong_sp_popup\').value*'.$donGia.');">
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'CPU\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_CPU" onChange="updateCostPopup(\'CPU\')">
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'CPU\');">
 												</td>
-												<td><label id="tong_tien">'.$donGia.'</label></td>
+												<td><label id="tong_tien_CPU"></label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+
+						if(isset($_SESSION['idChosenMain'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenMain'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $data[0]['ID_LK'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK_Main">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'Main\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_Main" onChange="updateCostPopup(\'Main\')>
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'Main\');">
+												</td>
+												<td><label id="tong_tien_Main"></label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+
+						if(isset($_SESSION['idChosenRAM'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenRAM'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $data[0]['ID_LK'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK_RAM">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'RAM\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_RAM" onChange="updateCostPopup(\'RAM\')>
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'RAM\');">
+												</td>
+												<td><label id="tong_tien_RAM"></label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+
+						if(isset($_SESSION['idChosenGPU'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenGPU'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $data[0]['ID_LK'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK_GPU">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'GPU\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_GPU" onChange="updateCostPopup(\'GPU\')>
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'GPU\');">
+												</td>
+												<td><label id="tong_tien_GPU"></label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+
+						if(isset($_SESSION['idChosenSSD'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenSSD'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $data[0]['ID_LK'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK_SSD">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'SSD\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_SSD" onChange="updateCostPopup(\'SSD\')>
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'SSD\');">
+												</td>
+												<td><label id="tong_tien_SSD"></label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+
+						if(isset($_SESSION['idChosenHDD'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenHDD'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $data[0]['ID_LK'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK_HDD">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'HDD\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_HDD" onChange="updateCostPopup(\'HDD\')>
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'HDD\');">
+												</td>
+												<td><label id="tong_tien_HDD"></label></td>
+												<td></td>  
+											</tr>										
+										</tbody>
+									</table>
+								</div>
+							</div>
+							';
+						}
+
+						if(isset($_SESSION['idChosenCase'])){
+							$connect = connectDB();
+							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenCase'];
+							$result = mysqli_query($connect, $query);
+							$data = array();
+							while($row = mysqli_fetch_array($result, 1)){
+								$data[] = $row;
+							}	
+							$idSP = $data[0]['ID_LK'];
+							$tenSP = $data[0]['Ten_LK'];
+							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+							$imgSRC = $data[0]['Hinh_anh'];
+							closeDB($connect);							
+							echo '
+							<div id="table-wrapper">
+								<div id="table-scroll">
+									<table>
+										<thead>
+											<tr>
+												<th><label class="Hinh_Text">Hình Ảnh<label></th>
+												<th><label class="Ma_Text">Mã<label></th>
+												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+												<th><label class="DonGia_Text">Đơn Giá<label></th>
+												<th><label class="SoLuong_Text">Số Lượng<label></th>
+												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr> 
+												<td>
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+												</td> 
+												<td>'.$idSP.'</td> 
+												<td>'.$tenSP.'</td>
+												<td><label id="donGiaLK_Case">'.$donGia.'</label></td> 
+												<td>
+													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'Case\');">
+													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_Case" onChange="updateCostPopup(\'Case\')>
+													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'Case\');">
+												</td>
+												<td><label id="tong_tien_Case">'.$donGia.'</label></td>
 												<td></td>  
 											</tr>										
 										</tbody>
@@ -1198,17 +1732,17 @@
 						<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
 						<div class="BuyNow_Button">
 							<input type="text" name="user_id" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
-							<input type="text" name="id_LK" class="hidden_input_popup" value="<?php echo $_GET['id_lk']; ?>">
-							<input type="text" name="loai_lk" class="hidden_input_popup" value="<?php echo $_GET['loai_lk']; ?>">
+							<!-- <input type="text" name="id_LK" class="hidden_input_popup" value="<?php echo $_GET['id_lk']; ?>">
+							<input type="text" name="loai_lk" class="hidden_input_popup" value="<?php echo $_GET['loai_lk']; ?>"> -->
 							<input type="text" name="so_luong_mua" class="hidden_input_popup" id="so_luong_mua">
 							<input type="text" name="don_gia" class="hidden_input_popup" id="don_gia">
 							<input type="text" name="address" class="hidden_input_popup" id="input_address_user">
 							<input type="text" name="tong_tien" class="hidden_input_popup" id="input_tong_tien">
 							<script>
-								document.getElementById("so_luong_mua").value = document.getElementById("soluong_sp_popup").value;
-								document.getElementById("don_gia").value = document.getElementById("donGiaLK").innerHTML;
-								document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
-								document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
+								// document.getElementById("so_luong_mua").value = document.getElementById("soluong_sp_popup").value;
+								// document.getElementById("don_gia").value = document.getElementById("donGiaLK").innerHTML;
+								// document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
+								// document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
 							</script>
 							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
 						</div>
@@ -1216,10 +1750,13 @@
 							<div class="TongTien3">
 								<span>Tổng Hoá Đơn:</span>
 								<span id="tong_hoa_don"></span>
+								<script>
+									updateTongHoaDon();
+								</script>
 								<span>đ</span>
 							</div>
 							<script>
-								document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
+								// document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
 							</script>
 						</div>	
 					</div>	

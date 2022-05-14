@@ -200,14 +200,10 @@
     font-size: 26px;
     font-weight: 800;
 }
-#thungrac{
-    -webkit-mask: url(../img/thungrac.svg) center center / contain no-repeat;
-    mask: url(../img/thungrac.svg);
+.thungrac{
     display: inline-block;
     width: 25px;
     height: 25px;
     color: gray;
-    background-color: var(--button-icon-color, gray);
-    position: absolute;
     z-index: 1;
 }

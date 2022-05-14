@@ -32,6 +32,10 @@
 			document.getElementById("hidden-popup-buynow").classList.remove("hidden");
 			document.getElementById("hidden-buynow").classList.remove("hidden");
 			document.getElementById("soluong_sp_popup").value = document.getElementById("soluong_sp").value;
+			let donGia = document.getElementById("donGiaLK").innerHTML;
+			let sl = document.getElementById("soluong_sp").value;
+			document.getElementById("tong_tien").innerHTML = parseInt(donGia) * sl;
+			document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
 		}
 		function openBuyNow(){
 			document.getElementById("hidden-buynow").classList.remove("hidden");
@@ -167,7 +171,7 @@
 													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup">
 													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup();updateTotalCostPopup(document.getElementById(\'soluong_sp_popup\').value*'.$donGia.');">
 												</td>
-												<td><label id="tong_tien">'.$donGia.'</label></td>
+												<td><label id="tong_tien"></label></td>
 												<td></td>  
 											</tr>										
 										</tbody>
@@ -222,9 +226,6 @@
 								<span id="tong_hoa_don"></span>
 								<span>đ</span>
 							</div>
-							<script>
-								document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
-							</script>
 						</div>	
 					</div>	
 					
