@@ -9,10 +9,11 @@ body{
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	background-color: aliceblue;
 }
 
 .page_Header{
-	width: auto;
+	width: 1920px;
 	height:50px;
 	background-color:#34495E;
 	line-height:50px;
@@ -21,7 +22,7 @@ body{
 }
 
 .page_Header .Account{
-	float:right;
+	float:left;
 }
 
 .page_Header .Account ul{
@@ -33,10 +34,11 @@ body{
 .page_Header .Account ul li{
 	display:inline-block;
 	border-left: 1px solid;
-	width: 199px;
+	width: 200px;
 	text-align: center;	
 }
 #Welcome{
+	margin-left: 910px;
 	width: 290px;
 }
 #Money{
@@ -50,56 +52,78 @@ body{
 }
 .page_Header .Account ul li a:hover{
 	transition-duration:0s;
-	color:#D8A70C;
+	color:#1594fc;
 }
 
-.page_Header .Account ul li #Login{
+.page_Header .Account ul li #Login_Button{
+	text-align: left;
 	text-decoration:none;
 	color:white;
 	font-size: 20px;
+	background-color:#34495E;
+	border: none;
+}
+#Login_Item{
+	margin-left: 1005px;
+}
+#Register_Item{
 }
 .page_Header .Account ul li #Login:hover{
 	transition-duration:0s;
-	color:#D8A70C;
+	color:#1594fc;
 }
-
 .nav_bar{
 	display: flex;
 	color: red;
-	width : 1365px;
+	width : 1920px;
 	height: 40px;
 	align-items: center;
-	background-color: yellow;
+	background-color: #4d6985;
 }
 .nav_bar a{
 	text-decoration: none;
-	flex-basis:25%;
-	border-right: 2px solid;
-	border-bottom: 2px solid;
+	flex-basis:20%;
+	border-right: 2px solid white;
+	border-bottom: 2px solid white;
 	line-height:40px;
 	justify-content: center;
+	color: white;
 }
 .nav_bar a:hover{
-	background-color: #77ceb1;
+	color:#1594fc;
 }
-
 .sua_thongtin{
-	display: flex;
-	justify-content: right;
+	top: 500px;
+    display: flex;
+    justify-content: right;
+    position: absolute;
+    left: 1400px;
 }
 .sua_thongtin a{
 	text-decoration: none;
-	color: black;
-	width: 200px;
-	text-align: center;
+    color: white;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    background-color: #34495E;
+    margin-right: 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 20px;
+    margin-top: 10px;
 }
 .sua_thongtin #frmSuaSale input:not(.hidden_input){
-	display: flex;
-	width: 200px;
-	justify-content: center;
-	border: 0px;
-	background-color: white;
-	font-size: 18px;
+	text-decoration: none;
+    color: white;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    background-color: #34495E;
+    margin-right: 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    height: 40px;
 }
 .sua_thongtin #frmSuaSale p{
 	width: 200px;
@@ -107,8 +131,8 @@ body{
 	cursor: pointer;
 }
 .admin_content{
-	margin-left: 50px;
-	margin-right: 30px;
+    display: flex;
+    justify-content: center;
 }
 .admin_content .content{
 	
@@ -116,6 +140,12 @@ body{
 .admin_content .content .hang_ngang{
 	display: flex;
 	text-align: left;
+}
+.admin_content .content .hang_ngang .Chi_tiet_SP{
+	display: flex;
+    margin-left: 30px;
+    flex-direction: column;
+    justify-content: center;
 }
 .admin_content .content .hang_ngang img{
 	width: 400px;
@@ -134,7 +164,22 @@ body{
 }
 .admin_content .content .hang_ngang input:not(.hidden_input){
 	display: flex;
-	width: 400px;
+    width: 400px;
+    justify-content: center;
+}
+input[type=submit]{
+	background-color:#34495E;
+	border-radius: 10px;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+  	margin: 4px 2px;
+  	cursor: pointer;
+	margin-top: 10px;
 }
 .admin_content .content .hang_ngang .Chi_tiet_SP .ten_sp{
 	padding-top: 20px;
@@ -148,7 +193,10 @@ body{
 
 .admin_content .hang_ngang2{
 	display: flex;
-	flex-direction: column:
+    flex-direction: row;
+    width: 400px;
+    justify-content: center;
+    margin-top: 20px;
 }
 .admin_content .hang_ngang2 .gia_giam{
 	font-size:30px;
@@ -160,4 +208,5 @@ body{
 	color: red;
 	text-align: left;
 }
+
 

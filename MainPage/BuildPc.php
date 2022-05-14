@@ -932,6 +932,7 @@
 				?>
 				<form action="addCart_BuildPC.php" method="post" id="addCart_BuildPC"></form>
 				<input type="button" class="add_cart_button" value="Thêm vào giỏ hàng" onClick="document.getElementById('addCart_BuildPC').submit();">
+			</div>
         </div>
 		<div class="chooseitem-container hidden" id="hidden-popup-chooseitem-CPU">
 			<div class="chooseitem-popup hidden" id="hidden-chooseitem-CPU">
@@ -966,7 +967,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1027,7 +1028,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1088,7 +1089,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1149,7 +1150,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1210,7 +1211,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1271,7 +1272,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1332,7 +1333,7 @@
 											echo '
 												<tr> 
 													<td>
-														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px;">
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 100px; height: 100px;">
 													</td> 
 													<td>'.$idLK.'</td> 
 													<td>'.$tenLK.'</td>
@@ -1395,7 +1396,7 @@
 										<tbody>
 											<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1407,12 +1408,7 @@
 												</td>
 												<td><label id="tong_tien_CPU"></label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+											</tr>';
 						}
 
 						if(isset($_SESSION['idChosenMain'])){
@@ -1428,24 +1424,9 @@
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
+							echo '<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1457,12 +1438,7 @@
 												</td>
 												<td><label id="tong_tien_Main"></label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+											</tr>';
 						}
 
 						if(isset($_SESSION['idChosenRAM'])){
@@ -1478,24 +1454,9 @@
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
+							echo '<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1507,12 +1468,7 @@
 												</td>
 												<td><label id="tong_tien_RAM"></label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+											</tr>';
 						}
 
 						if(isset($_SESSION['idChosenGPU'])){
@@ -1528,24 +1484,9 @@
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
+							echo '<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1557,12 +1498,7 @@
 												</td>
 												<td><label id="tong_tien_GPU"></label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+											</tr>';
 						}
 
 						if(isset($_SESSION['idChosenSSD'])){
@@ -1578,24 +1514,9 @@
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
+							echo '<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1607,12 +1528,7 @@
 												</td>
 												<td><label id="tong_tien_SSD"></label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+											</tr>';
 						}
 
 						if(isset($_SESSION['idChosenHDD'])){
@@ -1628,24 +1544,9 @@
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
+							echo '<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1657,12 +1558,7 @@
 												</td>
 												<td><label id="tong_tien_HDD"></label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+									</tr>';
 						}
 
 						if(isset($_SESSION['idChosenCase'])){
@@ -1678,24 +1574,9 @@
 							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
 							$imgSRC = $data[0]['Hinh_anh'];
 							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
+							echo '<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -1707,15 +1588,16 @@
 												</td>
 												<td><label id="tong_tien_Case">'.$donGia.'</label></td>
 												<td></td>  
-											</tr>										
-										</tbody>
-									</table>
-								</div>
-							</div>
-							';
+									</tr>';
 						}
+						echo '
+									</tbody>
+								</table>
+							</div>
+						</div>
+						';
 					?>
-				</div>					
+				</div>			
 				<div class="Address_Info">
 					<div class="custom-select">
 						<select onChange="showAddressText()" id="select_address">
@@ -1763,17 +1645,16 @@
 								</script>
 								<span>đ</span>
 							</div>
-							<script>
-								// document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
-							</script>
+								<script>
+									// document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
+								</script>
 						</div>	
-					</div>	
-						
-					</div>	
+					</div>			
+				</div>	
 				</form>
 				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
-			</div>
-		</div>								
+		</div>
+	</div>								
 	<script>
 		var x, i, j, l, ll, selElmnt, a, b, c;
 		/*look for any elements with the class "custom-select":*/

@@ -106,7 +106,7 @@
 	<div class="page_Header">
 		<div class="Account">
 			<ul>
-				<li style="border-left-width: 0px;width:500px;"><a href="../MainPage/index.php">Shop linh kiện DEMO - bán tất cả loại linh kiện máy tính</a></li>
+				<li style="border-left-width: 0px;width:500px;"><a href="../MainPage/index.php">Shop linh kiện DEMO - Admin</a></li>
 <?php
 				if(isset($_SESSION['username'])){
 ?>

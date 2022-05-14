@@ -22,7 +22,6 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="./CSS/Cart.css" />
-
 	<title>Shop linh kiện Demo</title>
 </head>
 <body>
@@ -166,7 +165,7 @@
 													<input type="text" name="id_lk" class="hidden_input" value="'.$id_lk.'">
 													<tr> 
 														<td>
-															<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+															<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 														</td> 
 														<td>'.$id_lk.'</td> 
 														<td>'.$tenSP.'</td>
@@ -181,7 +180,9 @@
 															document.getElementById("thanh_tien_'.$i.'").innerHTML = ('.$donGia.' * document.getElementById("soluong_sp_'.$i.'").value);
 														</script>
 														<td>
-														<p class="xoa_button" onClick="frm_GioHang_'.$i.'.action=\'Xoa_sp_Cart.php\';document.getElementById(\'frm_GioHang_'.$i.'\').submit();"> Xóa </p>
+															<div class="final_columm">
+																<p class="xoa_button" onClick="frm_GioHang_'.$i.'.action=\'Xoa_sp_Cart.php\';document.getElementById(\'frm_GioHang_'.$i.'\').submit();"> Xóa </p>
+															</div>
 														</td>  
 													</tr>
 												</form>

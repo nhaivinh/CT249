@@ -186,7 +186,16 @@
 				$current_index=0;
 				echo '
 					<div class="hang_ngang">
-						<img src="'.getThongTinSPAt($linhkien, $current_index, "Hinh_anh").'" class="img_sp">
+						<div class="Info">
+							<img src="'.getThongTinSPAt($linhkien, $current_index, "Hinh_anh").'" class="img_sp">
+							<div class="hang_ngang2">
+								<p class="gia_giam">'.getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia")).' đ</p>
+								<div class="hang_doc2">
+									<p>-'.(100*getThongTinSPAt($linhkien, $current_index, "Giam_gia")).'%</p>
+									<del class="gia_goc">'.getThongTinSPAt($linhkien, $current_index, "Gia_LK").' đ</del>
+								</div>
+							</div>
+						</div>
 						<div class="Chi_tiet_SP">
 							<p class="ten_sp">'.getThongTinSPAt($linhkien, $current_index, "Ten_LK").'</p>
 							<p class="thongso_sp">Hãng sản xuất: '.getThongTinSPAt($thongso, $current_index, "HangSX").'  </p>
@@ -198,12 +207,18 @@
 								<input type="text" name="id_lk" class="hidden_input" value="'.$_GET['id_lk'].'">
 								<input type="text" name="loai_lk" class="hidden_input" value="'.$_GET['loai_lk'].' ">
 								<input type="text" name="sl_ton" class="hidden_input" value="'.getThongTinSPAt($linhkien, $current_index, "So_luong").'">
-								<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
-								<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
-								<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
-								<input type="submit" value="Thêm vào giỏ hàng" class="gio_hang" id="add_Cart" onClick="frmMua.action=\'addCart.php\'">
-							</form>
-							<div class="BuyNow_Button_Area">
+								<div class="Quantity">
+									<div class="Quantity_Input">
+										<input type="button" class="dau" value="-" onClick="document.getElementById(\'soluong_sp\').value--;">
+										<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp">
+										<input type="button" class="dau" value="+" onClick="document.getElementById(\'soluong_sp\').value++;">
+									</div>
+								</div>
+								<div class="AddCart_Button">
+									<input type="submit" value="Thêm vào giỏ hàng" class="gio_hang" id="add_Cart" onClick="frmMua.action=\'addCart.php\'">
+								</div>
+								</form>
+								<div class="Buynow_Button">
 				';	
 				if(isset($_SESSION['username'])){	
 					echo '<button id="BuyNow_Button" onclick="openPopupBuyNow()">Mua Ngay</button>';
@@ -213,13 +228,6 @@
 				}
 				echo '			
 							</div>
-						</div>
-					</div>
-					<div class="hang_ngang2">
-						<p class="gia_giam">'.getThongTinSPAt($linhkien, $current_index, "Gia_LK")*(1 - getThongTinSPAt($linhkien, $current_index, "Giam_gia")).'</p>
-						<div class="hang_doc2">
-							<p>-'.(100*getThongTinSPAt($linhkien, $current_index, "Giam_gia")).'%</p>
-							<del class="gia_goc">'.getThongTinSPAt($linhkien, $current_index, "Gia_LK").'</del>
 						</div>
 					</div>
 				';		
@@ -454,13 +462,16 @@
 							<p class="Date">'.$ngay_giao.'</p>
 							<p class="Status">'.$tinh_trang.'</p>
 							<p class="Total">'.$tong_tien.'</p>
-						</summary>
-						
+						</summary>	
+						<div class="Xoa_Button_Area">
+							<p class="xoa_button" onClick="frm_GioHang_'.$i.'.action=\'Xoa_sp_Cart.php\';document.getElementById(\'frm_GioHang_'.$i.'\').submit();"> Xóa Đơn Hàng '.$id_dh.' </p>
+						</div>
 						<div class="Chitiet_HD_header">
 							<label class="ID_LK"> ID LK</label>
 							<label class="Ten_LK"> Tên LK</label>
 							<label class="SL_LK"> Số lượng</label>
 							<label class="Don_gia"> Đơn giá</label>
+							
 						</div>
 						
 				';

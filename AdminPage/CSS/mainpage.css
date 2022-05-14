@@ -98,12 +98,19 @@ body{
 	align-items: center;
 }
 .admin_content .content{
-	background-color: #e8dbe1;
-	display: flex;
-	flex-direction: column;
-	width: 700px;
+	background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    border: 1px solid;
 }
 .admin_content .content .header_content{
-	line-height: 40px;
-	
+	font-size: 24px;
+    line-height: 40px;
+    background-color: #4d6985;
+    color: white;
+}
+.admin_content .content .chitiet_content{
+    line-height: 40px;
+    color: black;
 }

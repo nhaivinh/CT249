@@ -98,10 +98,39 @@ body{
 	align-items: center;
 }
 .admin_content .content_DH{
-	
+	border: 1px solid black;
+	background-color: white;
+}
+.admin_content .content_DH .DH_ngang_Header {
+	display: flex;
+	background-color: #4d6985;
+	padding: 20px 0px;
+	color: white;
+}
+.admin_content .content_DH .DH_ngang_Header a{
+	text-decoration: none;
+	color: black;
+}
+.admin_content .content_DH .DH_ngang_Header .ID_DH{
+	width: 100px;
+	height: 30px;
+}
+.admin_content .content_DH .DH_ngang_Header .Date{
+	width: 180px;
+}
+.admin_content .content_DH .DH_ngang_Header .Status, .Status_ChoXuLy, .Status_DaXuLy, .Total{
+	width: 200px;
+}
+.admin_content .content_DH .DH_ngang_Header .Status_ChoXuLy{
+	color: red;
+}
+.admin_content .content_DH .DH_ngang_Header .Status_DaXuLy{
+	color: #1a38dd;
 }
 .admin_content .content_DH .DH_ngang {
 	display: flex;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .admin_content .content_DH .DH_ngang a{
 	text-decoration: none;
@@ -123,27 +152,33 @@ body{
 	color: #1a38dd;
 }
 .admin_content .content_chitiet_dh{
-	width: 700px;
-	background-color: #e8dbe1;
+	width: 1000px;
+    background-color: white;
+    border: 1px solid black;
 }
+
 .admin_content .content_chitiet_dh .header_chitiet_dh{
-	font-weight: bold;
-	padding-bottom: 2px;
-	border-bottom: 2px black solid;
-	text-align: left;
-	background-color: #67ce64;
+    border-bottom: 2px black solid;
+    text-align: left;
+    background-color: #4d6985;
+    color: white;
+    padding: 10px;
 }
 .admin_content .content_chitiet_dh .chitiet_dh{
 	
+}
+.admin_content .content_chitiet_dh .chitiet_dh p{
+	line-height: 40px;
 }
 .admin_content .content_chitiet_dh .tbl_chitiet_dh {
 	
 }
 .admin_content .content_chitiet_dh .tbl_chitiet_dh .id_lk, .sl_lk, .dg_lk{
-	width: 100px;
+	width: 200px;
+	height: 30px;
 }
 .admin_content .content_chitiet_dh .tbl_chitiet_dh .ten_lk{
-	width: 400px;
+	width: 600px;
 }
 .admin_content .content_chitiet_dh .frmXuLy{
 

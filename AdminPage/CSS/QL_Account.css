@@ -98,17 +98,17 @@ body{
 	align-items: center;
 }
 .admin_content .content{
-	background-color: #e8dbe1;
-	display: flex;
-	flex-direction: column;
-	width: 700px;
-	border-top: 2px black solid;
-	border-right: 2px black solid;
-	border-left: 2px black solid;
-	border-bottom: 1px black solid;
+	background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    border: 1px solid
 }
 .admin_content .content .header_content{
 	display: flex;
+    line-height: 40px;
+    background-color: #4d6985;
+    color: white;
 }
 .admin_content .content .header_content p{
 	font-weight: bold;
@@ -128,27 +128,56 @@ body{
 	color: black;
 	width: 350px;
 	border-bottom: 1px black solid;
+	line-height: 40px;
 }
 .admin_content .content .noidung .trai{
 	border-right: 1px black solid;
 }
 .admin_content .content_chitiet_account{
+	border: 1px solid black;
 	width: 700px;
-	background-color: #e8dbe1;
+	background-color: white;
 }
 .admin_content .content_chitiet_account .header_chitiet_account{
-	font-weight: bold;
 	padding-bottom: 2px;
+	padding-left: 20px;
 	border-bottom: 2px black solid;
 	text-align: left;
-	background-color: #67ce64;
+	display: flex;
+	font-size: 24px;
+    line-height: 40px;
+    background-color: #4d6985;
+    color: white;
 }
 .admin_content .content_chitiet_account .chitiet_account{
-	
+	display: flex;
+    flex-direction: column;
+}
+
+.admin_content .content_chitiet_account .chitiet_account p{
+	line-height: 40px;
 }
 .admin_content .content_chitiet_account .chitiet_account .frmQuyenHan{
 	
 }
 .admin_content .content_chitiet_account .chitiet_account .frmQuyenHan .hidden_input{
 	display: none;
+}
+input[type=submit]{
+	background-color:#34495E;
+	border-radius: 10px;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+  	margin: 4px 2px;
+  	cursor: pointer;
+	margin-top: 10px;
+}
+input[type=submit]:hover{
+	background-color: #1594fc;
+	color:white;
 }

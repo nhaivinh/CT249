@@ -52,7 +52,7 @@ body{
 }
 .page_Header .Account ul li a:hover{
 	transition-duration:0s;
-	background-color: #1594fc;
+	color: #1594fc;
 }
 
 .page_Header .Account ul li #Login_Button{
@@ -65,7 +65,7 @@ body{
 }
 .page_Header .Account ul li #Login:hover{
 	transition-duration:0s;
-	background-color: #1594fc;
+	color: #1594fc;
 }
 .nav_bar{
 	display: flex;
@@ -85,7 +85,7 @@ body{
 	color: white;
 }
 .nav_bar a:hover{
-	background-color: #1594fc;
+	color: #1594fc;
 }
 .hang_ngang{
 	width: 1920px;
@@ -120,11 +120,11 @@ body{
 .buynow-container{
     top:0;
     left:0;
-    width: 100vw;
-    height: 100vh;
+    width: 1920px;
+    height: 900px;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items:flex-start;    
     background-color: rgba(21, 21, 21, 0.1);
     color:#34495E;
 	
@@ -157,10 +157,11 @@ input[type=address],#address{
     margin-left: 20px;
 }
 .buynow-popup{
+    margin-top: 50px;
     position: absolute;
-    background-color: white;
+    background-color: aliceblue;
     width: 1600px;
-    height: 600px;
+    height: 750px;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -169,7 +170,7 @@ input[type=address],#address{
 }
 .BuyNow_Button{
     position: absolute;
-    margin-top: 160px;
+    margin-top: 50px;
 }
 .buynow-input-container{
     display: flex;
@@ -190,7 +191,7 @@ input[type=address],#address{
     padding-left: 20px;
     font-size: 25px;
     color: white;
-    border-radius: 999px;
+    border-radius: 10px;
     border:0;
     background-color:#34495E;
     cursor: pointer;
@@ -199,7 +200,7 @@ input[type=address],#address{
 
 .buynow-buynow-btn:hover{
     border: 1px #34495E solid;
-    background-color: white;
+    background-color: #1594fc;
     color: white;
     transition: .2s;
 }
@@ -288,9 +289,8 @@ input[type=address],#address{
     position:relative;
 }
 #table-scroll {
-    height:500px;
+    height:700px;
     overflow:auto;  
-    margin-top:20px;
 }
 #table-wrapper table {
     width:100%;
@@ -343,7 +343,7 @@ input[type=address],#address{
   width: 95%;
   display: block;
   font-size: 20px;
-  margin-top: 20px;
+  
   padding: 10px;
   height: 90px;
   resize: none;
@@ -377,4 +377,14 @@ input[type=address],#address{
     color: white;
     cursor: pointer;
     border-radius: 20%;
+    width: 40px;
+    height: 40px;
+}
+.final_columm{
+    display:flex;
+    height: 212.5px;
+    width: 50px;
+    border-right: 1px solid black;
+    align-items: center;
+    justify-content: center;
 }

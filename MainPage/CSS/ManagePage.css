@@ -222,7 +222,7 @@ body{
 	background-color: red;
 	color: white;
 	cursor: pointer;
-	border-radius: 20%;
+	border-radius: 10px;
 }
 .hang_ngang .divCart .MuaNgay_Cart{
 	display: flex;
@@ -372,4 +372,8 @@ body{
     margin: 4px 2px;
     cursor: pointer;
     width: 200px;
+}
+.Xoa_Button_Area{
+	display: flex;
+    flex-direction: row-reverse;
 }

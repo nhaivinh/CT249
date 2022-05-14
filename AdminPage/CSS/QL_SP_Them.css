@@ -111,13 +111,15 @@ body{
 	margin: 5px;
 }
 .header_chitiet{
-	display:flex;
-	background-color: #67ce64;
-	width: 700px;
-	font-size: 25px;
-	height: 30px;
-	align-items: center;
-	border-bottom: 2px black solid;
+	display: flex;
+    background-color: #34495E;
+    width: 700px;
+    font-size: 25px;
+    height: 30px;
+    align-items: center;
+    border-bottom: 2px black solid;
+    color: white;
+    padding-left: 30px;
 }
 .hidden_input{
 	display: none;
@@ -139,4 +141,18 @@ body{
 }
 .admin_content #frmThemSP .chitiet_them select{
 	width: 300px;
+}
+input[type=submit]{
+	background-color:#34495E;
+	border-radius: 10px;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 16px;
+  	margin: 4px 2px;
+  	cursor: pointer;
+	margin-top: 10px;
 }

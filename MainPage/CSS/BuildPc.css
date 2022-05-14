@@ -62,8 +62,8 @@ body{
 	font-size: 20px;
 }
 .page_Header .Account ul li a:hover{
-	transition-duration:0s;
-	color:#1594fc;
+	opacity: 90%;
+	color: #1594fc;
 }
 
 .page_Header .Account ul li #Login_Button{
@@ -80,8 +80,8 @@ body{
 #Register_Item{
 }
 .page_Header .Account ul li #Login:hover{
-	transition-duration:0s;
-	color:#1594fc;
+	opacity: 90%;
+	color: #1594fc;
 }
 .nav_bar{
 	display: flex;
@@ -101,7 +101,8 @@ body{
 	color: white;
 }
 .nav_bar a:hover{
-	color:#1594fc;
+	opacity: 90%;
+	color: #1594fc;
 }
 .search_bar{
 	text-align: center;	
@@ -187,6 +188,13 @@ body{
     cursor: pointer;
     transition: .2s;
 }
+.page_body .choose_item .add_button:hover{
+    opacity: 90%;
+	color: #1594fc;
+    border:0;
+    cursor: pointer;
+    transition: .2s;
+}
 .page_body .choose_item .info_item{
 	display: flex;
 	width: 400px;
@@ -263,4 +271,12 @@ body{
     background-color: #34495E;
     cursor: pointer;
     transition: .2s;
+}
+.page_body .total_price .total_price_item .buy_now_button:hover{
+	opacity: 90%;
+	color: #1594fc;
+}
+.add_cart_button:hover{
+	opacity: 90%;
+	color: #1594fc;
 }

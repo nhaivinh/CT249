@@ -161,7 +161,7 @@
 										<tbody>
 											<tr> 
 												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px;">
+													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
 												</td> 
 												<td>'.$idSP.'</td> 
 												<td>'.$tenSP.'</td>
@@ -205,6 +205,7 @@
 					<div class="Address_Text">
 						<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
 						<div class="BuyNow_Button">
+							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
 							<input type="text" name="user_id" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
 							<input type="text" name="id_LK" class="hidden_input_popup" value="<?php echo $_GET['id_lk']; ?>">
 							<input type="text" name="loai_lk" class="hidden_input_popup" value="<?php echo $_GET['loai_lk']; ?>">
@@ -218,7 +219,7 @@
 								document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
 								document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
 							</script>
-							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+							
 						</div>
 						<div class="TongTien">
 							<div class="TongTien3">
