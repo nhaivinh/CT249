@@ -50,9 +50,13 @@ body{
 	display:block;
 	font-size: 20px;
 }
+.page_Header .Account ul li #Login_Button:hover {
+    cursor: pointer;
+    color: #1594fc;
+}
 .page_Header .Account ul li a:hover{
-	transition-duration:0s;
-	color:#1594fc;
+	opacity: 90%;
+	color: #1594fc;
 }
 
 .page_Header .Account ul li #Login_Button{
@@ -70,8 +74,8 @@ body{
 }
 
 .page_Header .Account ul li #Login:hover{
-	transition-duration:0s;
-	color:#1594fc;
+	opacity: 90%;
+	color: #1594fc;
 }
 .BuyNow_Button_Area{
 	display: flex;

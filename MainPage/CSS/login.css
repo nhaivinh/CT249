@@ -88,7 +88,7 @@
     cursor: pointer;
 }
 
-.exit-btn{
+.login-popup .exit-btn{
     position: absolute;
     top: 20px;
     left:530px;
