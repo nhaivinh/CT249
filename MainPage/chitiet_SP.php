@@ -36,6 +36,7 @@
 			let sl = document.getElementById("soluong_sp").value;
 			document.getElementById("tong_tien").innerHTML = parseInt(donGia) * sl;
 			document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
+			document.getElementById("input_tong_tien").value = parseInt(document.getElementById("tong_tien").innerHTML);
 		}
 		function openBuyNow(){
 			document.getElementById("hidden-buynow").classList.remove("hidden");

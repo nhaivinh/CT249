@@ -194,6 +194,8 @@
 				let sl = document.getElementById("soluong_sp_CPU").value;
 				document.getElementById("tong_tien_CPU").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_CPU").value = document.getElementById("soluong_sp_CPU").value;
+				document.getElementById("input_dg_CPU").value = parseInt(document.getElementById("donGiaCPU").innerHTML);
 			}
 			if(document.getElementById("soluong_sp_Main") != null){
 				document.getElementById("soluong_sp_popup_Main").value = document.getElementById("soluong_sp_Main").value;
@@ -201,6 +203,8 @@
 				let sl = document.getElementById("soluong_sp_Main").value;
 				document.getElementById("tong_tien_Main").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_Main").value = document.getElementById("soluong_sp_Main").value;
+				document.getElementById("input_dg_Main").value = parseInt(document.getElementById("donGiaMain").innerHTML);
 			}
 			if(document.getElementById("soluong_sp_RAM") != null){
 				document.getElementById("soluong_sp_popup_RAM").value = document.getElementById("soluong_sp_RAM").value;
@@ -208,6 +212,8 @@
 				let sl = document.getElementById("soluong_sp_RAM").value;
 				document.getElementById("tong_tien_RAM").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_RAM").value = document.getElementById("soluong_sp_RAM").value;
+				document.getElementById("input_dg_RAM").value = parseInt(document.getElementById("donGiaRAM").innerHTML);
 			}
 			if(document.getElementById("soluong_sp_GPU") != null){
 				document.getElementById("soluong_sp_popup_GPU").value = document.getElementById("soluong_sp_GPU").value;
@@ -215,6 +221,8 @@
 				let sl = document.getElementById("soluong_sp_GPU").value;
 				document.getElementById("tong_tien_GPU").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_GPU").value = document.getElementById("soluong_sp_GPU").value;
+				document.getElementById("input_dg_GPU").value = parseInt(document.getElementById("donGiaGPU").innerHTML);
 			}
 			if(document.getElementById("soluong_sp_SSD") != null){
 				document.getElementById("soluong_sp_popup_SSD").value = document.getElementById("soluong_sp_SSD").value;
@@ -222,6 +230,8 @@
 				let sl = document.getElementById("soluong_sp_SSD").value;
 				document.getElementById("tong_tien_SSD").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_SSD").value = document.getElementById("soluong_sp_SSD").value;
+				document.getElementById("input_dg_SSD").value = parseInt(document.getElementById("donGiaSSD").innerHTML);
 			}
 			if(document.getElementById("soluong_sp_HDD") != null){
 				document.getElementById("soluong_sp_popup_HDD").value = document.getElementById("soluong_sp_HDD").value;
@@ -229,6 +239,8 @@
 				let sl = document.getElementById("soluong_sp_HDD").value;
 				document.getElementById("tong_tien_HDD").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_HDD").value = document.getElementById("soluong_sp_HDD").value;
+				document.getElementById("input_dg_HDD").value = parseInt(document.getElementById("donGiaHDD").innerHTML);
 			}
 			if(document.getElementById("soluong_sp_Case") != null){
 				document.getElementById("soluong_sp_popup_Case").value = document.getElementById("soluong_sp_Case").value;
@@ -236,8 +248,11 @@
 				let sl = document.getElementById("soluong_sp_Case").value;
 				document.getElementById("tong_tien_Case").innerHTML = parseInt(donGia) * sl;
 				tongHoaDon += parseInt(donGia) * sl;
+				document.getElementById("input_sl_Case").value = document.getElementById("soluong_sp_Case").value;
+				document.getElementById("input_dg_Case").value = parseInt(document.getElementById("donGiaCase").innerHTML);
 			}
 			document.getElementById("tong_hoa_don").innerHTML = tongHoaDon;
+			document.getElementById("input_tong_tien").value = document.getElementById("tongTienBuildPC").innerHTML;
 		}
 		function openBuyNow(){
 			document.getElementById("hidden-buynow").classList.remove("hidden");
@@ -276,17 +291,17 @@
 		}
 		function updateMinusSLPopup(loaiLK){
 			let elementID = 'soluong_sp_popup_' + loaiLK;
+			let sl_LoaiLK = 'input_sl_' + loaiLK
 			if(document.getElementById(elementID).value > 1){
 				document.getElementById(elementID).value--;
-				//document.getElementById("so_luong_mua").value = document.getElementById(elementID).value;
 				var event = new Event('change');
 				document.getElementById(elementID).dispatchEvent(event);
 			}
 		}
 		function updatePlusSLPopup(loaiLK){
 			let elementID = 'soluong_sp_popup_' + loaiLK;
+			let sl_LoaiLK = 'input_sl_' + loaiLK
 			document.getElementById(elementID).value++;
-			//document.getElementById("so_luong_mua").value = document.getElementById(elementID).value;
 			var event = new Event('change');
 			document.getElementById(elementID).dispatchEvent(event);
 		}
@@ -296,8 +311,12 @@
 			let idTongTien = 'tong_tien_' + loaiLK;
 			let donGia = document.getElementById(idDonGia).innerHTML;
 			let slSP = document.getElementById(idSL).value;
+			let sl_LoaiLK = 'input_sl_' + loaiLK;
+			let elementID = 'soluong_sp_popup_' + loaiLK;
+			document.getElementById(sl_LoaiLK).value = document.getElementById(elementID).value;
 			document.getElementById(idTongTien).innerHTML = (donGia)*(slSP);
 			updateTongHoaDon();
+			document.getElementById("input_tong_tien").value = document.getElementById("tong_hoa_don").innerHTML;
 		}
 		function updateTongHoaDon(){
 			let tien = 0;
@@ -887,8 +906,8 @@
 				?>
             </div>
         </div>
-        <div class="total_price" >
-            <div class="total_price_item" id="total_price_flexbox">
+        <div class="total_price" id="total_price_flexbox">
+            <div class="total_price_item">
                 <span class="total_price_text">Tổng Cộng:
 					<label id="tongTienBuildPC">
 						<script>
@@ -1362,297 +1381,343 @@
 			</div>
 		</div>
 		<div class="buynow-container hidden" id="hidden-popup-buynow">
-		<div class="buynow-popup hidden" id="hidden-buynow">
-			<form action="muaNgay.php" method="POST" class="buynow-input-container">
-				<div class="item_detail">
-					<?php
-						if(isset($_SESSION['idChosenCPU'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenCPU'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '
-							<div id="table-wrapper">
-								<div id="table-scroll">
-									<table>
-										<thead>
-											<tr>
-												<th><label class="Hinh_Text">Hình Ảnh<label></th>
-												<th><label class="Ma_Text">Mã<label></th>
-												<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
-												<th><label class="DonGia_Text">Đơn Giá<label></th>
-												<th><label class="SoLuong_Text">Số Lượng<label></th>
-												<th><label class="ThanhTien_Text">Thành Tiền<label></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_CPU">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'CPU\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_CPU" onChange="updateCostPopup(\'CPU\')">
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'CPU\');">
-												</td>
-												<td><label id="tong_tien_CPU"></label></td>
-												<td></td>  
-											</tr>';
-						}
+			<div class="buynow-popup hidden" id="hidden-buynow">
+				<form action="muaNgay_BuildPC.php" method="POST" class="buynow-input-container">
+					<div class="item_detail">
+						<div id="table-wrapper">
+							<div id="table-scroll">
+								<table>
+									<thead>
+										<tr>
+											<th><label class="Hinh_Text">Hình Ảnh<label></th>
+											<th><label class="Ma_Text">Mã<label></th>
+											<th><label class="Ten_Text">Tên Sản Phẩm<label></th>
+											<th><label class="DonGia_Text">Đơn Giá<label></th>
+											<th><label class="SoLuong_Text">Số Lượng<label></th>
+											<th><label class="ThanhTien_Text">Thành Tiền<label></th>
+										</tr>
+									</thead>
+									<tbody>
+									<?php
+										if(isset($_SESSION['idChosenCPU'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenCPU'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_CPU">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'CPU\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_CPU" onChange="updateCostPopup(\'CPU\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'CPU\');">
+													</td>
+													<td><label id="tong_tien_CPU"></label></td>
+													<td></td>  
+												</tr>';
+										}
 
-						if(isset($_SESSION['idChosenMain'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenMain'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_Main">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'Main\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_Main" onChange="updateCostPopup(\'Main\')>
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'Main\');">
-												</td>
-												<td><label id="tong_tien_Main"></label></td>
-												<td></td>  
-											</tr>';
-						}
+										if(isset($_SESSION['idChosenMain'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenMain'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_Main">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'Main\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_Main" onChange="updateCostPopup(\'Main\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'Main\');">
+													</td>
+													<td><label id="tong_tien_Main"></label></td>
+													<td></td>  
+												</tr>';
+										}
 
-						if(isset($_SESSION['idChosenRAM'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenRAM'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_RAM">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'RAM\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_RAM" onChange="updateCostPopup(\'RAM\')>
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'RAM\');">
-												</td>
-												<td><label id="tong_tien_RAM"></label></td>
-												<td></td>  
-											</tr>';
-						}
+										if(isset($_SESSION['idChosenRAM'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenRAM'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_RAM">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'RAM\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_RAM" onChange="updateCostPopup(\'RAM\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'RAM\');">
+													</td>
+													<td><label id="tong_tien_RAM"></label></td>
+													<td></td>  
+												</tr>';
+										}
 
-						if(isset($_SESSION['idChosenGPU'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenGPU'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_GPU">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'GPU\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_GPU" onChange="updateCostPopup(\'GPU\')>
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'GPU\');">
-												</td>
-												<td><label id="tong_tien_GPU"></label></td>
-												<td></td>  
-											</tr>';
-						}
+										if(isset($_SESSION['idChosenGPU'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenGPU'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_GPU">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'GPU\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_GPU" onChange="updateCostPopup(\'GPU\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'GPU\');">
+													</td>
+													<td><label id="tong_tien_GPU"></label></td>
+													<td></td>  
+												</tr>';
+										}
 
-						if(isset($_SESSION['idChosenSSD'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenSSD'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_SSD">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'SSD\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_SSD" onChange="updateCostPopup(\'SSD\')>
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'SSD\');">
-												</td>
-												<td><label id="tong_tien_SSD"></label></td>
-												<td></td>  
-											</tr>';
-						}
+										if(isset($_SESSION['idChosenSSD'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenSSD'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_SSD">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'SSD\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_SSD" onChange="updateCostPopup(\'SSD\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'SSD\');">
+													</td>
+													<td><label id="tong_tien_SSD"></label></td>
+													<td></td>  
+												</tr>';
+										}
 
-						if(isset($_SESSION['idChosenHDD'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenHDD'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_HDD">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'HDD\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_HDD" onChange="updateCostPopup(\'HDD\')>
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'HDD\');">
-												</td>
-												<td><label id="tong_tien_HDD"></label></td>
-												<td></td>  
-									</tr>';
-						}
+										if(isset($_SESSION['idChosenHDD'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenHDD'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_HDD">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'HDD\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_HDD" onChange="updateCostPopup(\'HDD\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'HDD\');">
+													</td>
+													<td><label id="tong_tien_HDD"></label></td>
+													<td></td>  
+												</tr>';
+										}
 
-						if(isset($_SESSION['idChosenCase'])){
-							$connect = connectDB();
-							$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenCase'];
-							$result = mysqli_query($connect, $query);
-							$data = array();
-							while($row = mysqli_fetch_array($result, 1)){
-								$data[] = $row;
-							}	
-							$idSP = $data[0]['ID_LK'];
-							$tenSP = $data[0]['Ten_LK'];
-							$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
-							$imgSRC = $data[0]['Hinh_anh'];
-							closeDB($connect);							
-							echo '<tr> 
-												<td>
-													<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
-												</td> 
-												<td>'.$idSP.'</td> 
-												<td>'.$tenSP.'</td>
-												<td><label id="donGiaLK_Case">'.$donGia.'</label></td> 
-												<td>
-													<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'Case\');">
-													<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_Case" onChange="updateCostPopup(\'Case\')>
-													<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'Case\');">
-												</td>
-												<td><label id="tong_tien_Case">'.$donGia.'</label></td>
-												<td></td>  
-									</tr>';
-						}
-						echo '
+										if(isset($_SESSION['idChosenCase'])){
+											$connect = connectDB();
+											$query = "Select * from linhkien where ID_LK = ".$_SESSION['idChosenCase'];
+											$result = mysqli_query($connect, $query);
+											$data = array();
+											while($row = mysqli_fetch_array($result, 1)){
+												$data[] = $row;
+											}	
+											$idSP = $data[0]['ID_LK'];
+											$tenSP = $data[0]['Ten_LK'];
+											$donGia = $data[0]['Gia_LK']*(1-$data[0]['Giam_gia']);
+											$imgSRC = $data[0]['Hinh_anh'];
+											closeDB($connect);							
+											echo '
+												<tr> 
+													<td>
+														<img src="'.$imgSRC.'" alt="exit-btn" style="width: 200px; height: 200px;">
+													</td> 
+													<td>'.$idSP.'</td> 
+													<td>'.$tenSP.'</td>
+													<td><label id="donGiaLK_Case">'.$donGia.'</label></td> 
+													<td>
+														<input type="button" class="dau" value="-" onClick="updateMinusSLPopup(\'Case\');">
+														<input type="number" name="sl_sp" class="so_luong" value="1" min="1" id="soluong_sp_popup_Case" onChange="updateCostPopup(\'Case\')">
+														<input type="button" class="dau" value="+" onClick="updatePlusSLPopup(\'Case\');">
+													</td>
+													<td><label id="tong_tien_Case">'.$donGia.'</label></td>
+													<td></td>  
+												</tr>';
+										}
+									?>
 									</tbody>
 								</table>
 							</div>
-						</div>
-						';
-					?>
-				</div>			
-				<div class="Address_Info">
-					<div class="custom-select">
-						<select onChange="showAddressText()" id="select_address">
-							<option value="0">Chọn địa chỉ: </option>
-							<?php
-								$connect = connectDB();
-								$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
-								$result = mysqli_query($connect, $query);
-								$address = array();
-								while($row = mysqli_fetch_array($result, 1)){
-									$address[] = $row;
-								}
-								for($i=0;$i<count($address);$i++){
-									echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
-								}
-								closeDB($connect);
-							?>
-							<option value="1">Thêm địa chỉ mới</option>
-						</select>			
-					</div>
-					<div class="Address_Text">
-						<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
-						<div class="BuyNow_Button">
-							<input type="text" name="user_id" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
-							<!-- <input type="text" name="id_LK" class="hidden_input_popup" value="<?php echo $_GET['id_lk']; ?>">
-							<input type="text" name="loai_lk" class="hidden_input_popup" value="<?php echo $_GET['loai_lk']; ?>"> -->
-							<input type="text" name="so_luong_mua" class="hidden_input_popup" id="so_luong_mua">
-							<input type="text" name="don_gia" class="hidden_input_popup" id="don_gia">
-							<input type="text" name="address" class="hidden_input_popup" id="input_address_user">
-							<input type="text" name="tong_tien" class="hidden_input_popup" id="input_tong_tien">
-							<script>
-								// document.getElementById("so_luong_mua").value = document.getElementById("soluong_sp_popup").value;
-								// document.getElementById("don_gia").value = document.getElementById("donGiaLK").innerHTML;
-								// document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
-								// document.getElementById("input_tong_tien").value = document.getElementById("tong_tien").innerHTML;
-							</script>
-							<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
-						</div>
-						<div class="TongTien">
-							<div class="TongTien3">
-								<span>Tổng Hoá Đơn:</span>
-								<span id="tong_hoa_don"></span>
-								<script>
-									updateTongHoaDon();
-								</script>
-								<span>đ</span>
-							</div>
-								<script>
-									// document.getElementById("tong_hoa_don").innerHTML = parseInt(document.getElementById("tong_tien").innerHTML);
-								</script>
 						</div>	
 					</div>			
-				</div>	
-				</form>
-				<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+					<div class="Address_Info">
+						<div class="custom-select">
+							<select onChange="showAddressText()" id="select_address">
+								<option value="0">Chọn địa chỉ: </option>
+								<?php
+									$connect = connectDB();
+									$query = "Select * from address_user where id_user = '".$_SESSION['id_user']."'";
+									$result = mysqli_query($connect, $query);
+									$address = array();
+									while($row = mysqli_fetch_array($result, 1)){
+										$address[] = $row;
+									}
+									for($i=0;$i<count($address);$i++){
+										echo '<option value="'.$address[$i]['Diachi'].'">'.$address[$i]['Diachi'].'</option> ';
+									}
+									closeDB($connect);
+								?>
+								<option value="1">Thêm địa chỉ mới</option>
+							</select>			
+						</div>
+						<div class="Address_Text">
+							<textarea rows="6" class="address_area hidden" id="input_address" onchange="updateAddress()"></textarea>
+							<div class="BuyNow_Button">
+								<input type="text" name="user_id" class="hidden_input_popup" value="<?php echo $_SESSION['id_user']; ?>">
+								<input type="text" name="address" class="" id="input_address_user">
+								<script>
+									document.getElementById("input_address_user").value = document.getElementById("select_address").options[1].text;
+								</script>
+								<input type="text" name="tong_tien" class="hidden_input_popup" id="input_tong_tien">
+								<?php
+									if(isset($_SESSION['idChosenCPU'])){
+										echo '
+											<input type="text" name="id_CPU" class="hidden_input_popup" value="'.$_SESSION['idChosenCPU'].'">
+											<input type="text" name="sl_CPU" class="hidden_input_popup" id="input_sl_CPU">
+											<input type="text" name="dg_CPU" class="hidden_input_popup" id="input_dg_CPU">
+										';
+									}
+									if(isset($_SESSION['idChosenMain'])){
+										echo '
+											<input type="text" name="id_Main" class="hidden_input_popup" value="'.$_SESSION['idChosenMain'].'">
+											<input type="text" name="sl_Main" class="hidden_input_popup" id="input_sl_Main">
+											<input type="text" name="dg_Main" class="hidden_input_popup" id="input_dg_Main">
+										';
+									}
+									if(isset($_SESSION['idChosenRAM'])){
+										echo '
+											<input type="text" name="id_RAM" class="hidden_input_popup" value="'.$_SESSION['idChosenRAM'].'">
+											<input type="text" name="sl_RAM" class="hidden_input_popup" id="input_sl_RAM">
+											<input type="text" name="dg_RAM" class="hidden_input_popup" id="input_dg_RAM">
+										';
+									}
+									if(isset($_SESSION['idChosenGPU'])){
+										echo '
+											<input type="text" name="id_GPU" class="hidden_input_popup" value="'.$_SESSION['idChosenGPU'].'">
+											<input type="text" name="sl_GPU" class="hidden_input_popup" id="input_sl_GPU">
+											<input type="text" name="dg_GPU" class="hidden_input_popup" id="input_dg_GPU">
+										';
+									}
+									if(isset($_SESSION['idChosenSSD'])){
+										echo '
+											<input type="text" name="id_SSD" class="hidden_input_popup" value="'.$_SESSION['idChosenSSD'].'">
+											<input type="text" name="sl_SSD" class="hidden_input_popup" id="input_sl_SSD">
+											<input type="text" name="dg_SSD" class="hidden_input_popup" id="input_dg_SSD">
+										';
+									}
+									if(isset($_SESSION['idChosenHDD'])){
+										echo '
+											<input type="text" name="id_HDD" class="hidden_input_popup" value="'.$_SESSION['idChosenHDD'].'">
+											<input type="text" name="sl_HDD" class="hidden_input_popup" id="input_sl_HDD">
+											<input type="text" name="dg_HDD" class="hidden_input_popup" id="input_dg_HDD">
+										';
+									}
+									if(isset($_SESSION['idChosenCase'])){
+										echo '
+											<input type="text" name="id_Case" class="hidden_input_popup" value="'.$_SESSION['idChosenCase'].'">
+											<input type="text" name="sl_Case" class="hidden_input_popup" id="input_sl_Case">
+											<input type="text" name="dg_Case" class="hidden_input_popup" id="input_dg_Case">
+										';
+									}
+								?>
+								<input type="submit" value="Xác Nhận" class="buynow-buynow-btn">
+							</div>
+							<div class="TongTien">
+								<div class="TongTien3">
+									<span>Tổng Hoá Đơn:</span>
+									<span id="tong_hoa_don"></span>
+									<script>
+										updateTongHoaDon();
+									</script>
+									<span>đ</span>
+								</div>
+							</div>	
+						</div>			
+					</div>	
+					</form>
+					<button class="exit-btn" onClick="closeBuyNow()"><img src="./img/x_button.png" alt="exit-btn" style="width: 50px;"></button>
+			</div>
 		</div>
 	</div>								
 	<script>
