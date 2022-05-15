@@ -47,8 +47,8 @@
 				mysqli_query($connect, $query);
 			}
 
-			$query = "INSERT INTO `donhang` (ID_DH,`ID_User_KH`, `Status_DH`, `Ngay_Dat`, Tong_tien) 
-					VALUES ('".$id_dh."','".$id_user."', 'Chờ xử lý', sysdate(), '".$tong_tien."')";
+			$query = "INSERT INTO `donhang` (ID_DH,`ID_User_KH`, `Diachi_DH`, `Status_DH`, `Ngay_Dat`, Tong_tien) 
+					VALUES ('".$id_dh."','".$id_user."', '$address', 'Chờ xử lý', sysdate(), '".$tong_tien."')";
 			mysqli_query($connect, $query);
 
 			for($i=0;$i<count($data);$i++){
@@ -70,10 +70,10 @@
 			
 			$_SESSION['cart_buy_status'] = "Đặt hàng thành công.";
 			closeDB($connect);
-			header("Location: Cart.php");
+			header("Location: index.php");
 		}
 	}
 	else{
-		header("Location: Cart.php");
+		header("Location: index.php");
 	}
 ?>

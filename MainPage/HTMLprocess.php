@@ -329,7 +329,7 @@
 		';
 
 		if(!isset($_GET['edit_address_status']) || $_GET['edit_address_status'] == 'false'){
-			echo '<a href="ManagePage.php?edit_address_status=true">Chỉnh sửa thông tin địa chỉ </a>';
+			echo '<a href="">Chỉnh sửa thông tin địa chỉ </a>';
 		}
 		else{	
 			echo '<a href="ManagePage.php?edit_address_status=false">Hủy trạng thái chỉnh sửa </a>';
@@ -464,7 +464,11 @@
 							<p class="Total">'.$tong_tien.'</p>
 						</summary>	
 						<div class="Xoa_Button_Area">
-							<p class="xoa_button" onClick="frm_GioHang_'.$i.'.action=\'Xoa_sp_Cart.php\';document.getElementById(\'frm_GioHang_'.$i.'\').submit();"> Xóa Đơn Hàng '.$id_dh.' </p>
+							<form method="POST" action="huyDH.php" id="frmHuyDH_'.$i.'">
+								<input type="text" name="id_dh" value="'.$id_dh.'" class="hidden_input">
+								<input type="text" name="status_dh" value="'.$tinh_trang.'" class="hidden_input">
+							</form>
+							<p class="xoa_button" onClick="frmHuyDH_'.$i.'.submit();"> Huỷ Đơn Hàng </p>
 						</div>
 						<div class="Chitiet_HD_header">
 							<label class="ID_LK"> ID LK</label>

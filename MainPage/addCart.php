@@ -39,15 +39,18 @@
 				$query = "update `user_cart` set So_luong ='".($sl_sp + $old_sl)."' where ID_User = '".$_SESSION['id_user']."' and id_lk='".$id_lk."'";
 				mysqli_query($connect, $query);
 			}
+			closeDB($connect);
 			$_SESSION['addCart_status'] = "Thêm vào giỏ hàng thành công.";
 			header("Location: chitiet_SP.php?id_lk=".$id_lk."&loai_lk=".$loai_lk);
 		}
 		else{
+			closeDB($connect);
 			$_SESSION['addCart_status'] = "Số lượng vượt quá số hàng tồn kho";
 			header("Location: chitiet_SP.php?id_lk=".$id_lk."&loai_lk=".$loai_lk);
 		}
 	}
 	else{
+		closeDB($connect);
 		$_SESSION['addCart_status'] = "Hãy đăng nhập trước khi thực hiện thêm giỏ hàng";
 		header("Location: chitiet_SP.php?id_lk=".$id_lk."&loai_lk=".$loai_lk);
 	}

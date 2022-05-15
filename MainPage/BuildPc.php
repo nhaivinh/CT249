@@ -1841,5 +1841,15 @@
 		echo $alert;
 		unset($_SESSION['addToCart_BuildPC']);
 	}
+	if(isset($_SESSION['cart_buy_status'])){
+		$alert = "<script>alert('".$_SESSION['cart_buy_status']."');</script>";
+		echo $alert;
+		unset($_SESSION['cart_buy_status']);
+	}
+	if(isset($_SESSION['xoa_sp_cart'])){
+		$alert = "<script>alert('".$_SESSION['xoa_sp_cart']."');</script>";
+		echo $alert;
+		unset($_SESSION['xoa_sp_cart']);
+	}
 ?>
 

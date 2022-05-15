@@ -13,9 +13,15 @@
 	}	
 	closeDB($connect);
 	if(count($detail_cart) == 0){
-		$_SESSION['cart_status'] = "Giỏ hàng rỗng, hãy chọn sản phẩm";
+		if(!isset($_SESSION['xoa_sp_cart'])){
+			$_SESSION['cart_status'] = "Giỏ hàng rỗng, hãy chọn sản phẩm";
+		}
+		else{
+			$_SESSION['cart_status'] = "Xoá sản phẩm thành công và giỏ hàng rỗng, hãy chọn sản phẩm";
+		}
 		header("Location: index.php");
 	}
+
 ?>
 <!doctype html>
 <html>

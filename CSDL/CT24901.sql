@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2022 lúc 08:36 AM
+-- Thời gian đã tạo: Th5 15, 2022 lúc 08:21 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.2
 
@@ -110,7 +110,11 @@ CREATE TABLE `chitietdh` (
 INSERT INTO `chitietdh` (`ID_DH`, `ID_LK`, `So_luong`, `Don_gia`) VALUES
 (1, 2, 1, 4776000),
 (2, 2, 1, 4776000),
-(2, 1, 1, 2680000);
+(2, 1, 1, 2680000),
+(3, 3, 1, 3352000),
+(3, 7, 1, 520000),
+(3, 20, 1, 872000),
+(3, 23, 1, 799200);
 
 -- --------------------------------------------------------
 
@@ -175,7 +179,8 @@ CREATE TABLE `donhang` (
   `ID_User_KH` int(11) NOT NULL,
   `ID_User_QL` int(11) DEFAULT NULL,
   `Diachi_DH` varchar(500) NOT NULL,
-  `Status_DH` varchar(30) NOT NULL,
+  `Status_DH` varchar(30) DEFAULT NULL,
+  `Status_GiaoHang` varchar(30) DEFAULT NULL,
   `Ngay_Dat` date DEFAULT NULL,
   `Ngay_Giao` date DEFAULT NULL CHECK (`Ngay_Dat` <= `Ngay_Giao`),
   `Tong_tien` int(11) NOT NULL
@@ -185,9 +190,10 @@ CREATE TABLE `donhang` (
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`ID_DH`, `ID_User_KH`, `ID_User_QL`, `Diachi_DH`, `Status_DH`, `Ngay_Dat`, `Ngay_Giao`, `Tong_tien`) VALUES
-(1, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', '2022-04-23', NULL, 4776000),
-(2, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', '2022-04-23', NULL, 7456000);
+INSERT INTO `donhang` (`ID_DH`, `ID_User_KH`, `ID_User_QL`, `Diachi_DH`, `Status_DH`, `Status_GiaoHang`, `Ngay_Dat`, `Ngay_Giao`, `Tong_tien`) VALUES
+(1, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', NULL, '2022-04-23', NULL, 4776000),
+(2, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', NULL, '2022-04-23', NULL, 7456000),
+(3, 1, NULL, '18/64c Xô Viết Nghệ Tĩnh, phường Tân An, quận Ninh Kiều, TP Cần Thơ', 'Chờ xử lý', NULL, '2022-05-15', NULL, 5543200);
 
 -- --------------------------------------------------------
 
@@ -257,13 +263,13 @@ CREATE TABLE `linhkien` (
 --
 
 INSERT INTO `linhkien` (`ID_LK`, `Ten_LK`, `Loai_LK`, `Gia_LK`, `Giam_gia`, `So_luong`, `Hinh_anh`, `Sale_Status`) VALUES
-(1, 'CPU Intel Core I3-7100 (3.9GHz)', 'CPU', 3350000, 0.2, 2, '../img/CPU Intel Core I3-7100 (3.9GHz).webp', 'Đang bán'),
-(2, 'CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)', 'CPU', 5970000, 0.2, 2, '../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp', 'Đang bán'),
-(3, 'CPU INTEL i3-10100 (4C/8T, 3.60 GHz - 4.30 GHz, 6MB) - 1200', 'CPU', 4190000, 0.2, 5, '../img/CPU INTEL i3-10100 - 1200.webp', 'Đang bán'),
+(1, 'CPU Intel Core I3-7100 (3.9GHz)', 'CPU', 3350000, 0.2, 4, '../img/CPU Intel Core I3-7100 (3.9GHz).webp', 'Đang bán'),
+(2, 'CPU Intel Core I5-7500 (3.4GHz - 3.8GHz)', 'CPU', 5970000, 0.2, 4, '../img/CPU Intel Core I5-7500 (3.4GHz - 3.8GHz).webp', 'Đang bán'),
+(3, 'CPU INTEL i3-10100 (4C/8T, 3.60 GHz - 4.30 GHz, 6MB) - 1200', 'CPU', 4190000, 0.2, 2, '../img/CPU INTEL i3-10100 - 1200.webp', 'Đang bán'),
 (4, 'CPU Intel Core I3-8100 (3.6GHz)', 'CPU', 3290000, 0.2, 6, '../img/CPU Intel Core I3-8100 (3.6GHz).webp', 'Đang bán'),
 (5, 'CPU AMD Ryzen R5 1600 (3.2GHz - 3.6GHz)', 'CPU', 4990000, 0.2, 7, '../img/CPU AMD Ryzen R5 1600 (3.2GHz - 3.6GHz).webp', 'Đang bán'),
-(6, 'Mainboard ASUS ROG STRIX B350-F GAMING', 'Mainboard', 3290000, 0.2, 8, '../img/Mainboard ASUS ROG STRIX B350-F GAMING.webp', 'Đang bán'),
-(7, 'RAM desktop KINGMAX (1x4GB) DDR4 2400MHz', 'RAM', 650000, 0.2, 4, '../img/RAM desktop KINGMAX (1x4GB) DDR4 2400MHz.webp', 'Đang bán'),
+(6, 'Mainboard ASUS ROG STRIX B350-F GAMING', 'Mainboard', 3290000, 0.2, 7, '../img/Mainboard ASUS ROG STRIX B350-F GAMING.webp', 'Đang bán'),
+(7, 'RAM desktop KINGMAX (1x4GB) DDR4 2400MHz', 'RAM', 650000, 0.2, 8, '../img/RAM desktop KINGMAX (1x4GB) DDR4 2400MHz.webp', 'Đang bán'),
 (8, 'RAM desktop KINGMAX Zeus Dragon (1x16GB) DDR4 3000MHz', 'RAM', 2350000, 0.2, 2, '../img/RAM desktop KINGMAX Zeus Dragon (1x16GB) DDR4 3000MHz.webp', 'Đang bán'),
 (9, 'RAM desktop KINGMAX (1x8GB) DDR4 2400MHz', 'RAM', 1250000, 0.2, 1, '../img/RAM desktop KINGMAX (1x8GB) DDR4 2400MHz.webp', 'Đang bán'),
 (10, 'RAM desktop KINGMAX Zeus Dragon Heatsink (1 x 32GB) DDR4 3200MHz', 'RAM', 4790000, 0.2, 5, '../img/RAM desktop KINGMAX Zeus Dragon Heatsink (1 x 32GB) DDR4 3200MHz.webp', 'Đang bán'),
@@ -276,10 +282,10 @@ INSERT INTO `linhkien` (`ID_LK`, `Ten_LK`, `Loai_LK`, `Gia_LK`, `Giam_gia`, `So_
 (17, 'Card màn hình GIGABYTE GeForce RTX 2060 D6 6G 6GB GDDR6', 'GPU', 12990000, 0.2, 7, '../img/Card màn hình GIGABYTE GeForce RTX 2060 D6 6G 6GB GDDR6.webp', 'Đang bán'),
 (18, 'Ổ cứng HDD Seagate Barracuda 3TB 3.5\" SATA 3 - ST3000DM007', 'disk', 2350000, 0.2, 8, '../img/HDD Seagate Barracuda 3TB SATA 3 - ST3000DM007.webp', 'Đang bán'),
 (19, 'Ổ cứng SSD Transcend 220S 120GB 2.5\" SATA 3', 'disk', 650000, 0.2, 4, '../img/SSD Transcend 220S 120GB SATA 3.webp', 'Đang bán'),
-(20, 'Ổ cứng SSD Transcend 220S 240GB 2.5\" SATA 3', 'disk', 1090000, 0.2, 4, '../img/SSD Transcend 220S 240GB SATA 3.webp', 'Đang bán'),
+(20, 'Ổ cứng SSD Transcend 220S 240GB 2.5\" SATA 3', 'disk', 1090000, 0.2, 3, '../img/SSD Transcend 220S 240GB SATA 3.webp', 'Đang bán'),
 (21, 'Ổ cứng SSD Western Digital Green 120GB M.2 2280 SATA 3 - WDS120G2G0B', 'disk', 790000, 0.2, 3, '../img/Ổ cứng SSD Western Digital Green 120GB M.2 2280 SATA 3 - WDS120G2G0B.webp', 'Đang bán'),
 (22, 'Case máy tính Cooler Master RC 343', 'Case', 830000, 0.2, 2, '../img/Case máy tính Cooler Master RC 343.webp', 'Đang bán'),
-(23, 'Case máy tính Cooler Master RC K380', 'Case', 999000, 0.2, 2, '../img/Case máy tính Cooler Master RC K380.webp', 'Đang bán'),
+(23, 'Case máy tính Cooler Master RC K380', 'Case', 999000, 0.2, 1, '../img/Case máy tính Cooler Master RC K380.webp', 'Đang bán'),
 (24, 'Case Golden Field Z21 (3 fans LED Rainbow)', 'Case', 1150000, 0.2, 2, '../img/Case Golden Field Z21 (3 fans LED Rainbow).webp', 'Đang bán'),
 (25, 'Case máy tính Cooler Master MasterBox 5 White', 'Case', 1660000, 0.2, 1, '../img/Case máy tính Cooler Master MasterBox 5 White.webp', 'Đang bán'),
 (26, 'Case máy tính Jetek G9311W - Mid Tower (Trắng)', 'Case', 670000, 0.2, 1, '../img/Case máy tính Jetek G9311W - Mid Tower (Trắng).webp', 'Đang bán');
@@ -341,14 +347,6 @@ CREATE TABLE `user_cart` (
   `ID_LK` int(11) NOT NULL,
   `So_luong` int(11) NOT NULL CHECK (`So_luong` > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `user_cart`
---
-
-INSERT INTO `user_cart` (`ID_User`, `ID_LK`, `So_luong`) VALUES
-(1, 1, 1),
-(1, 2, 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -450,7 +448,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `ID_DH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_DH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `linhkien`

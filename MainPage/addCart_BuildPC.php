@@ -31,6 +31,7 @@
 			$query = "update `user_cart` set So_luong ='".($slLK + $old_sl)."' where ID_User = '".$idUser."' and id_lk='".$idLK."'";
 			mysqli_query($connect, $query);
 		}
+        closeDB($connect);
     }
 
 	$connect = connectDB();
@@ -86,8 +87,8 @@
             unset($_SESSION['slCase']);
         }
         $_SESSION['addToCart_BuildPC'] = "Thêm vào giỏ hàng thành công";
-        header("Location: BuildPC.php");
         closeDB($connect);
+        header("Location: BuildPC.php");
     }
     else{
         $_SESSION['addToCart_BuildPC'] = "Hãy đăng nhập trước khi thêm vào giỏ hàng";
